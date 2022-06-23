@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 
@@ -50,7 +50,7 @@ export class contact_master {
         description : "Contact Email"
     })
     @Column({nullable:true})
-    @IsString()
+    @IsEmail()
     c_email: String;
 
     @ApiProperty({
