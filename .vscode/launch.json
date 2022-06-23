@@ -4,7 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+<<<<<<< Updated upstream
         
+=======
+>>>>>>> Stashed changes
         {
             "type": "pwa-node",
             "request": "launch",
@@ -12,7 +15,11 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
+<<<<<<< Updated upstream
             "program": "${workspaceFolder}\\src\\company_master\\company_master.service.ts",
+=======
+            "program": "${workspaceFolder}\\src\\user_master\\user_master.service.ts",
+>>>>>>> Stashed changes
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"

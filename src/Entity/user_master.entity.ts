@@ -63,12 +63,12 @@ export class user_master{
     email_address:String;
 
     @ApiProperty({
-        type:Boolean,
+        type:String,
         description:"Gender"
     })
     @Column()
     @IsNotEmpty()
-    gender:Boolean;
+    gender:String;
 
     @ApiProperty({
         type:String,
@@ -119,8 +119,7 @@ export class user_master{
         type:Date,
         description:"Date"
     })
-    @CreateDateColumn()
-    @IsDate()
+    @Column()
     @IsNotEmpty()
     created_date:Date;
 
@@ -165,7 +164,6 @@ export class user_master{
         description:"Password Change Date"
     })
     @Column()
-    @IsDate()
     @IsNotEmpty()
     password_change_date:Date;
 
@@ -183,7 +181,6 @@ export class user_master{
         description:"Updated Timestamp"
     })
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 
