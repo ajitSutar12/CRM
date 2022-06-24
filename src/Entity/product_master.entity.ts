@@ -9,91 +9,50 @@ import { unit_master } from './unit_master.entity';
 
 @Entity()
 export class product_master {
-  
-    @ApiProperty({
-        type: Number,
-        description : "Product ID"
-    })
+
     @PrimaryGeneratedColumn()
     p_code : Number;
 
-    @ApiProperty({
-        type: String,
-        description : "Product Name"
-    })
     @Column()
     @IsString()
     @IsNotEmpty()
     p: String;
 
-    @ApiProperty({
-        type: Number,
-        description : "Procuct Category ID"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     pc_code: Number;
 
-    @ApiProperty({
-        type: Number,
-        description : "Procuct Type ID"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     pt_code: Number;
 
-    @ApiProperty({
-        type: Number,
-        description : "Product Unit"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     p_unit: Number;
 
-    @ApiProperty({
-        type: String,
-        description : "Product Image"
-    })
     @Column()
     @IsString()
     @IsNotEmpty()
     p_image: String;
 
-    @ApiProperty({
-        type: Number,
-        description : "Created By User Id"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     created_by: Number;
-
-    @ApiProperty({
-        type: Date,
-        description : "Created Timestamp"
-    })
 
     @Column()
     @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
-    @ApiProperty({
-        type: Number,
-        description : "Updated By User Id"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     updated_by: Number;
 
-    @ApiProperty({
-        type: Date,
-        description : "Updated Timestamp"
-    })
     @Column()
     @IsDate()
     @IsNotEmpty()

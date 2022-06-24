@@ -7,58 +7,85 @@ import { UserMasterService } from './user_master.service';
 export class UserMasterController {
     constructor(private readonly userMasterService:UserMasterService){}
 
-@Post()
-@UsePipes(ValidationPipe)
-@ApiBody({ schema:{
-            type:'object',
-            properties:{
-                first_name:{type:'string'},
-                middle_name:{type:'string'},
-                last_name:{type:'string'},
-                mobile_number:{type:'string'},
-                email_address:{type:'string'},
-                gender:{type:'string'},
-                address:{type:'string'},
-                photo:{type:'string'},
-                user_role_type:{type:'string'},
-                user_role_id:{type:'number'},
-                url:{type:'string'},
-                created_date:{type:'string'},
-                created_by:{type:'number'},
-                user_status:{type:'number'},
-                username:{type:'string'},
-                password:{type:'string'},
-                password_change_date:{type:'string'},
-                updated_by:{type:'number'},
-                updated_timestamp:{type:'string'},
-            }}})
-create(@Body() data){
-    return this.userMasterService.addUserData(data)
-}
+    //-------------------------------------user data add---------------------------------//
+    @Post()
+    @UsePipes(ValidationPipe)
+    @ApiBody({ schema:{
+                type:'object',
+                properties:{
+                    first_name:{type:'string'},
+                    middle_name:{type:'string'},
+                    last_name:{type:'string'},
+                    mobile_number:{type:'string'},
+                    email_address:{type:'string'},
+                    gender:{type:'string'},
+                    address:{type:'string'},
+                    photo:{type:'string'},
+                    user_role_type:{type:'string'},
+                    user_role_id:{type:'number'},
+                    url:{type:'string'},
+                    created_date:{type:'string'},
+                    created_by:{type:'number'},
+                    user_status:{type:'number'},
+                    username:{type:'string'},
+                    password:{type:'string'},
+                    password_change_date:{type:'string'},
+                    updated_by:{type:'number'},
+                    updated_timestamp:{type:'string'},
+                }}})
+    create(@Body() data){
+        return this.userMasterService.addUserData(data)
+    }
 
-@Get(':user_code')
-@UsePipes(ValidationPipe)
-findOne(@Param('user_code') user_code:Number){
-    return this.userMasterService.getOneUser(user_code);
-}
+    //-------------------------------find one user using user_code-------------------//
+    @Get(':user_code')
+    @UsePipes(ValidationPipe)
+    findOne(@Param('user_code') user_code:Number){
+        return this.userMasterService.getOneUser(user_code);
+    }
 
-@Get()
-@UsePipes(ValidationPipe)
-findAll(){
-    return this.userMasterService.getAllUser()
-}
+    //-------------------------------find all user data----------------------------//
+    @Get()
+    @UsePipes(ValidationPipe)
+    findAll(){
+        return this.userMasterService.getAllUser()
+    }
 
-@Put(':user_code')
-@UsePipes(ValidationPipe)
-@ApiBody({ schema:{type:'object'}})
-update(@Param('user_code') user_code: number, @Body() data){
-    return this.userMasterService.updateUserData(user_code,data);
-}
+    //-------------------------------update user data----------------------------//
+    @Put(':user_code')
+    @UsePipes(ValidationPipe)
+    @ApiBody({ schema:{
+        type:'object',
+        properties:{
+            first_name:{type:'string'},
+            middle_name:{type:'string'},
+            last_name:{type:'string'},
+            mobile_number:{type:'string'},
+            email_address:{type:'string'},
+            gender:{type:'string'},
+            address:{type:'string'},
+            photo:{type:'string'},
+            user_role_type:{type:'string'},
+            user_role_id:{type:'number'},
+            url:{type:'string'},
+            created_date:{type:'string'},
+            created_by:{type:'number'},
+            user_status:{type:'number'},
+            username:{type:'string'},
+            password:{type:'string'},
+            password_change_date:{type:'string'},
+            updated_by:{type:'number'},
+            updated_timestamp:{type:'string'},
+        }}})
+    update(@Param('user_code') user_code: number, @Body() data){
+        return this.userMasterService.updateUserData(user_code,data);
+    }
 
-@Delete(':user_code')
-@UsePipes(ValidationPipe)
-delete(@Param('user_code') user_code: number){
-    return this.userMasterService.deleteUserData(user_code)
-}
+    //------------------------------delete user data-------------------------------//
+    @Delete(':user_code')
+    @UsePipes(ValidationPipe)
+    delete(@Param('user_code') user_code: number){
+        return this.userMasterService.deleteUserData(user_code)
+    }
 
 }

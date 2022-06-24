@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { user_master } from 'src/Entity/user_master.entity';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, Repository } from 'typeorm';
 
 @Injectable()
 export class UserMasterService {
@@ -19,7 +19,7 @@ async addUserData(data){
 
 //-------------------------------find one user using user_code-------------------//
 async getOneUser(user_code) {
-    let findUser= await this.userMaster.findOne({ where:{user_code: user_code }});
+    let findUser= await this.userMaster.findOne({ where:{user_code: user_code }, relations:['user_role_master']});
     if(!findUser){
         throw new NotFoundException(`${user_code},data not found`);
     }
@@ -28,7 +28,10 @@ async getOneUser(user_code) {
 
 //-------------------------------find all user data----------------------------//
 async getAllUser(){
-    return await this.userMaster.find();
+    const result = await this.userMaster.createQueryBuilder("user_master") 
+                    .leftJoinAndSelect("user_master.user_role_master",'ur')
+                    .getMany()
+    return result
 }
 
 //-------------------------------update user data----------------------------//
@@ -48,7 +51,7 @@ async updateUserData(user_code,data){
 async deleteUserData(user_code){
     let findUser= await this.userMaster.findOne({ where:{user_code: user_code }});
     if(!findUser){
-        throw new NotFoundException(`${user_code},data not found`);
+        throw new NotFoundException(`${user_code}, data not found`);
     }
     let deleteData= await this.userMaster.delete(user_code);
     if(deleteData){

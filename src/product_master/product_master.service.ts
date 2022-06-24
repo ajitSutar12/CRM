@@ -20,7 +20,7 @@ export class ProductMasterService {
     
     //-------------------------------find one Product using uma_code-------------------//
     async getOneProduct(p_code) {
-        let findProduct= await this.productMaster.findOne({ where:{p_code: p_code }});
+        let findProduct= await this.productMaster.findOne({ where:{p_code: p_code }, relations:['product_category','product_type','unit_master']});
         if(!findProduct){
             throw new NotFoundException(`${p_code},data not found`);
         }
@@ -29,7 +29,12 @@ export class ProductMasterService {
     
     //-------------------------------find all Product data----------------------------//
     async getAllProduct(){
-        return await this.productMaster.find();
+        var result = await this.productMaster.createQueryBuilder("product_master") 
+                        .leftJoinAndSelect("product_master.product_category",'pc')
+                        .leftJoinAndSelect("product_master.product_type",'pt')
+                        .leftJoinAndSelect("product_master.unit_master",'um')
+                        .getMany()
+        return result;
     }
     
     //-------------------------------update Product data----------------------------//

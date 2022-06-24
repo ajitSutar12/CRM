@@ -19,7 +19,7 @@ export class UserRoleMasterService {
     
     //-------------------------------find one userRole using role_code-------------------//
     async getOneUserRole(role_code) {
-        let finduserRole= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
+        let finduserRole= await this.userRoleMaster.findOne({ where:{role_code: role_code }, relations:['user_master_created','user_master_updated']});
         if(!finduserRole){
             throw new NotFoundException(`${role_code},data not found`);
         }
@@ -28,7 +28,11 @@ export class UserRoleMasterService {
     
     //-------------------------------find all userRole data----------------------------//
     async getAllUserRole(){
-        return await this.userRoleMaster.find();
+        var result = await this.userRoleMaster.createQueryBuilder("user_role_master") 
+                                .leftJoinAndSelect("user_role_master.user_master_created",'umc')
+                                .leftJoinAndSelect("user_role_master.user_master_updated",'umu')
+                                .getMany()
+        return result;
     }
     
     //-------------------------------update userRole data----------------------------//

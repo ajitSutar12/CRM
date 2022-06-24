@@ -7,6 +7,7 @@ import { TaxMasterService } from './tax_master.service';
 export class TaxMasterController {
     constructor(private readonly taxMasterService:TaxMasterService){}
 
+    //-------------------------------------Tax data add---------------------------------//
     @Post()
     @UsePipes(ValidationPipe)
     @ApiBody({ schema:{
@@ -24,25 +25,39 @@ export class TaxMasterController {
         return this.taxMasterService.addTaxData(data)
     }
     
+    //-------------------------------find one Tax data using t_code-------------------//
     @Get(':t_code')
     @UsePipes(ValidationPipe)
     findOne(@Param('role_code') role_code:Number){
         return this.taxMasterService.getOneTax(role_code);
     }
     
+    //-------------------------------find all Tax data----------------------------//
     @Get()
     @UsePipes(ValidationPipe)
     findAll(){
         return this.taxMasterService.getAllTaxData()
     }
     
+    //-------------------------------update userRole data----------------------------//
     @Put(':t_code')
     @UsePipes(ValidationPipe)
-    @ApiBody({ schema:{type:'object'}})
+    @ApiBody({ schema:{
+        type:'object',
+        properties:{
+            t_name:{type:'string'},
+            t_status:{type:'number'},
+            t_percentage:{type:'string'},
+            created_by:{type:'number'},
+            created_timestamp:{type:'string'},
+            updated_by:{type:'number'},
+            updated_timestamp:{type:'string'},
+        }}})
     update(@Param('role_code') role_code: number, @Body() data){
         return this.taxMasterService.updateTaxData(role_code,data);
     }
     
+    //------------------------------delete Tax data-------------------------------//
     @Delete(':t_code')
     @UsePipes(ValidationPipe)
     delete(@Param('role_code') role_code: number){

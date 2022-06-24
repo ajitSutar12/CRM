@@ -6,81 +6,45 @@ import { user_master } from "./user_master.entity";
 @Entity()
 export class financial_year{
 
-    @ApiProperty({
-        type:Number,
-        description:"Financial Year ID"
-    })
     @PrimaryGeneratedColumn()
     @IsNotEmpty()
     fy_code:Number;
-   
-    @ApiProperty({
-        type:String,
-        description:"Financial Year"
-    })
+ 
     @Column()
     @IsString()
     @IsNotEmpty()
     fy:String;
 
-    @ApiProperty({
-        type:String,
-        description:"Financial Start Month"
-    })
     @Column()
     @IsString()
     @IsNotEmpty()
     fy_start_month:String;   
-    
-    @ApiProperty({
-        type:String,
-        description:"Financial End Month"
-    })
+
     @Column()
     @IsString()
     @IsNotEmpty()
     fy_end_month:String;  
-        
-    @ApiProperty({
-        type:Number,
-        description:"Financial Year Status"
-    })
+
     @Column()
     @IsNumber()
     @IsNotEmpty()
     fy_status:Number;   
-        
-    @ApiProperty({
-        type:Number,
-        description:"Created By User Id"
-    })
+
     @Column()
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
-        
-    @ApiProperty({
-        type:Date,
-        description:"Created timestamp"
-    })
+
     @Column()
     @IsDate()
     @IsNotEmpty()
     create_timestamp:Date;
-        
-    @ApiProperty({
-        type:Number,
-        description:"Updated By User Id"
-    })
+
     @Column()
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;
-        
-    @ApiProperty({
-        type:Date,
-        description:"Updated Timestamp"
-    })
+
     @Column()
     @IsDate()
     @IsNotEmpty()

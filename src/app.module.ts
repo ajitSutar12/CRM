@@ -32,12 +32,17 @@ import { UserRoleMasterModule } from './user_role_master/user_role_master.module
 import { TaxMasterModule } from './tax_master/tax_master.module';
 import { UnitMasterModule } from './unit_master/unit_master.module';
 import { ProductMasterModule } from './product_master/product_master.module';
+import { ContactEmailModule } from './contact_email/contact_email.module';
+import { notes_manage } from './Entity/notes_manage.entity';
+import { NotesManageModule } from './notes_manage/notes_manage.module';
+import { CallModule } from './call/call.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
               TypeOrmModule.forFeature([company_master, menu_master, contact_master, product_category,
                  product_master, product_type, unit_master, product_rate_master, country_state_city,
-                 financial_year, user_master, user_menu_access, user_role_master, tax_master]),
+                 financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage]),
               CompanyMasterModule,
               MenuMasterModule,
               ContactMasterModule,
@@ -50,7 +55,11 @@ import { ProductMasterModule } from './product_master/product_master.module';
               UserRoleMasterModule,
               TaxMasterModule,
               UnitMasterModule,
-              ProductMasterModule],
+              ProductMasterModule,
+              ContactEmailModule,
+              NotesManageModule,
+              CallModule,
+              EventModule],
   controllers: [AppController],
   providers: [AppService],
 })

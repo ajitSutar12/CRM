@@ -5,63 +5,36 @@ import { user_master } from "./user_master.entity";
 
 @Entity()
 export class user_role_master{
-    @ApiProperty({
-        type:Number,
-        description:"User Role ID"
-    })
+  
     @PrimaryGeneratedColumn()
     @IsNotEmpty()
     role_code:Number;
-   
-    @ApiProperty({
-        type:String,
-        description:"Role Name"
-    })
+ 
     @Column()
     @IsString()
     @IsNotEmpty()
     role_name:String;
 
-    @ApiProperty({
-        type:Number,
-        description:"Role Status"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     role_status:Number;
 
-    @ApiProperty({
-        type:Number,
-        description:"Created By User Id"
-    })
     @Column()
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
-    
-    @ApiProperty({
-        type:Date,
-        description:"Created timestamp"
-    })
+ 
     @Column()
     @IsDate()
     @IsNotEmpty()
     create_timestamp:Date;
-    
-    @ApiProperty({
-        type:Number,
-        description:"Updated By User Id"
-    })
+ 
     @Column()
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;
-    
-    @ApiProperty({
-        type:Date,
-        description:"Updated Timestamp"
-    })
+  
     @Column()
     @IsDate()
     @IsNotEmpty()

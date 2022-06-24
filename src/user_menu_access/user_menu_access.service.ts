@@ -19,7 +19,7 @@ export class UserMenuAccessService {
     
     //-------------------------------find one UserMenuAccess using uma_code-------------------//
     async getOneUserMenu(uma_code) {
-        let findUserMenu= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
+        let findUserMenu= await this.userMenuAccess.findOne({ where:{uma_code: uma_code },relations:['user_master','menu_master']});
         if(!findUserMenu){
             throw new NotFoundException(`${uma_code},data not found`);
         }
@@ -28,7 +28,11 @@ export class UserMenuAccessService {
     
     //-------------------------------find all UserMenuAccess data----------------------------//
     async getAllUserMenu(){
-        return await this.userMenuAccess.find();
+        var result = await this.userMenuAccess.createQueryBuilder("user_menu_access") 
+                                .leftJoinAndSelect("user_menu_access.user_master",'um')
+                                .leftJoinAndSelect("user_menu_access.menu_master",'mm')
+                                .getMany()
+        return result;
     }
     
     //-------------------------------update UserMenuAccess data----------------------------//

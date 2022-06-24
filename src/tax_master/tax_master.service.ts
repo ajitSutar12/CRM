@@ -19,7 +19,7 @@ export class TaxMasterService {
     
     //-------------------------------find one Tax  data using t_code-------------------//
     async getOneTax(t_code) {
-        let findTax= await this.taxMaster.findOne({ where:{t_code: t_code }});
+        let findTax= await this.taxMaster.findOne({ where:{t_code: t_code }, relations:['user_master_created','user_master_updated']});
         if(!findTax){
             throw new NotFoundException(`${t_code},data not found`);
         }
@@ -28,7 +28,11 @@ export class TaxMasterService {
     
     //-------------------------------find all Tax data----------------------------//
     async getAllTaxData(){
-        return await this.taxMaster.find();
+        var result = await this.taxMaster.createQueryBuilder("tax_master") 
+                        .leftJoinAndSelect("tax_master.user_master_created",'umc')
+                        .leftJoinAndSelect("tax_master.user_master_updated",'umu')
+                        .getMany()
+        return result;
     }
     
     //-------------------------------update userRole data----------------------------//
