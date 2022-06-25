@@ -37,6 +37,7 @@ import { notes_manage } from './Entity/notes_manage.entity';
 import { NotesManageModule } from './notes_manage/notes_manage.module';
 import { CallModule } from './call/call.module';
 import { EventModule } from './event/event.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
@@ -59,7 +60,8 @@ import { EventModule } from './event/event.module';
               ContactEmailModule,
               NotesManageModule,
               CallModule,
-              EventModule],
+              EventModule,
+              TaskModule],
   controllers: [AppController],
   providers: [AppService],
 })

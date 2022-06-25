@@ -1,7 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
 
 @Entity()
 export class company_master {
@@ -9,7 +7,7 @@ export class company_master {
     @PrimaryGeneratedColumn()
     company_code : Number;
 
-    @Column({length:"2"})
+    @Column({length:200})
     @IsString()
     @IsNotEmpty()
     company_name: String;

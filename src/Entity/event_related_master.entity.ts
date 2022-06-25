@@ -2,17 +2,16 @@ import { IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { event_master } from './event_master.entity';
 
-
 @Entity()
-export class event_type_master{
+export class event_related_master{
   
     @PrimaryGeneratedColumn()
-    etm_code : Number;
+    erm_code : Number;
 
     @Column({nullable:true})
     @IsString()
-    event_type: String;
+    event_relation: String;
 
-    @OneToMany(()=> event_master, event_master =>event_master.event_status_master)
+    @OneToMany(()=> event_master, event_master =>event_master.event_related_master)
     event_master:event_master[]
 }

@@ -1,11 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { product_category } from './product_category.entity';
 import { product_rate_master } from './product_rate_master.entity';
 import { product_type } from './product_type.entity';
 import { unit_master } from './unit_master.entity';
-
 
 @Entity()
 export class product_master {
