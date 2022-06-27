@@ -10,20 +10,20 @@ export class UserRoleMasterService {
     //-------------------------------------userRole data add---------------------------------//
         
     async addUserRoleData(data){
-        let addUserRoleData = await this.userRoleMaster.save(data);
-        if(addUserRoleData){
-            let msg={message:"UserRole Data Added Successfully"}
+        let result = await this.userRoleMaster.save(data);
+        if(result){
+            let msg={message:"Added Successfully"}
             return msg;
         }
     }
     
     //-------------------------------find one userRole using role_code-------------------//
     async getOneUserRole(role_code) {
-        let finduserRole= await this.userRoleMaster.findOne({ where:{role_code: role_code }, relations:['user_master_created','user_master_updated']});
-        if(!finduserRole){
+        let result= await this.userRoleMaster.findOne({ where:{role_code: role_code }, relations:['user_master_created','user_master_updated']});
+        if(!result){
             throw new NotFoundException(`${role_code},data not found`);
         }
-        return finduserRole;
+        return result;
       }
     
     //-------------------------------find all userRole data----------------------------//
@@ -37,12 +37,12 @@ export class UserRoleMasterService {
     
     //-------------------------------update userRole data----------------------------//
     async updateUserRoleData(role_code,data){
-        let finduserRole= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
-        if(!finduserRole){
+        let output= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
+        if(!output){
             throw new NotFoundException(`${role_code},data not found`);
         }
-        let updateUserRoleData= await this.userRoleMaster.update(role_code,data);
-        if(updateUserRoleData){
+        let result= await this.userRoleMaster.update(role_code,data);
+        if(result){
             let msg={message:"UserRole Data updated Successfully"}
             return msg;
         }
@@ -50,12 +50,12 @@ export class UserRoleMasterService {
     
     //------------------------------delete userRole data-------------------------------//
     async deleteUserRoleData(role_code){
-        let finduserRole= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
-        if(!finduserRole){
+        let output= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
+        if(!output){
             throw new NotFoundException(`${role_code},data not found`);
         }
-        let deleteUserRoleData= await this.userRoleMaster.delete(role_code);
-        if(deleteUserRoleData){
+        let result= await this.userRoleMaster.delete(role_code);
+        if(result){
             let msg={message:"UserRole Data deleted Successfully"};
             return msg;
         }

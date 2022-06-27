@@ -36,8 +36,8 @@ export class ContactEmailMappingService {
 
     //------------------Update single record from contact_email_mapping------------------//
     async updateContactEmailMapping(cei_code, data){
-        var company = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
-        if(!company){
+        var output = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
+        if(!output){
             throw new NotFoundException(`${cei_code} is not exist`)
         }
         var result = await this.contactEmailMapping.update(cei_code, data)
@@ -49,8 +49,8 @@ export class ContactEmailMappingService {
 
     //------------------Delete single record from contact_email_mapping------------------//
     async deleteContactEmailMapping(cei_code){
-        var company = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
-        if(!company){
+        var output = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
+        if(!output){
             throw new NotFoundException(`${cei_code} is not exist`)
         }
         var result = await this.contactEmailMapping.delete(cei_code)

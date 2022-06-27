@@ -9,7 +9,7 @@ export class event_type_master{
     @PrimaryGeneratedColumn()
     etm_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     event_type: String;
 

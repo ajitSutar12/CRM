@@ -1,4 +1,3 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { user_master } from "./user_master.entity";
@@ -10,7 +9,7 @@ export class user_role_master{
     @IsNotEmpty()
     role_code:Number;
  
-    @Column()
+    @Column({length:30})
     @IsString()
     @IsNotEmpty()
     role_name:String;

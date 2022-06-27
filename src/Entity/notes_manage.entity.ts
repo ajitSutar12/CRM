@@ -8,11 +8,11 @@ export class notes_manage{
     @IsNotEmpty()
     notes_code: Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:200})
     @IsString()
     notes_subject : String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:500})
     @IsString()
     notes_content : String;
 

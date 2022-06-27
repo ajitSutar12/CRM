@@ -10,8 +10,8 @@ export class UnitMasterService {
     //-------------------------------------unit data add---------------------------------//
         
     async addUnitData(data){
-        let addUnitData = await this.unitMaster.save(data);
-        if(addUnitData){
+        let result = await this.unitMaster.save(data);
+        if(result){
             let msg={message:"Data Added Successfully"}
             return msg;
         }
@@ -19,11 +19,11 @@ export class UnitMasterService {
 
     //-------------------------------find one unit using u_code-------------------//
     async getOneUnit(u_code) {
-        let findUnit= await this.unitMaster.findOne({ where:{u_code: u_code }});
-        if(!findUnit){
+        let result= await this.unitMaster.findOne({ where:{u_code: u_code }});
+        if(!result){
             throw new NotFoundException(`${u_code},data not found`);
         }
-        return findUnit;
+        return result;
     }
 
     //-------------------------------find all unit data----------------------------//
@@ -33,12 +33,12 @@ export class UnitMasterService {
 
     //-------------------------------update unit data----------------------------//
     async updateUnitData(u_code,data){
-        let findUnit= await this.unitMaster.findOne({ where:{u_code: u_code }});
-        if(!findUnit){
+        let output= await this.unitMaster.findOne({ where:{u_code: u_code }});
+        if(!output){
             throw new NotFoundException(`${u_code},data not found`);
         }
-        let updateUnitData= await this.unitMaster.update(u_code,data);
-        if(updateUnitData){
+        let result= await this.unitMaster.update(u_code,data);
+        if(result){
             let msg={message:"Data updated Successfully"}
             return msg;
         }
@@ -46,12 +46,12 @@ export class UnitMasterService {
 
     //------------------------------delete unit data-------------------------------//
     async deleteUnitData(u_code){
-        let findUnit= await this.unitMaster.findOne({ where:{u_code: u_code }});
-        if(!findUnit){
+        let output= await this.unitMaster.findOne({ where:{u_code: u_code }});
+        if(!output){
             throw new NotFoundException(`${u_code},data not found`);
         }
-        let deleteUnitData= await this.unitMaster.delete(u_code);
-        if(deleteUnitData){
+        let result= await this.unitMaster.delete(u_code);
+        if(result){
             let msg={message:"Data deleted Successfully"};
             return msg;
         }

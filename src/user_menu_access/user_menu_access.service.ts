@@ -10,20 +10,20 @@ export class UserMenuAccessService {
     //-------------------------------------UserMenuAccess data add---------------------------------//
         
     async addUserMenuData(data){
-        let addUserMenuAccessData = await this.userMenuAccess.save(data);
-        if(addUserMenuAccessData){
-            let msg={message:"UserMenuAccess Data Added Successfully"}
+        let result = await this.userMenuAccess.save(data);
+        if(result){
+            let msg={message:"Added Successfully"}
             return msg;
         }
     }
     
     //-------------------------------find one UserMenuAccess using uma_code-------------------//
     async getOneUserMenu(uma_code) {
-        let findUserMenu= await this.userMenuAccess.findOne({ where:{uma_code: uma_code },relations:['user_master','menu_master']});
-        if(!findUserMenu){
+        let result= await this.userMenuAccess.findOne({ where:{uma_code: uma_code },relations:['user_master','menu_master']});
+        if(!result){
             throw new NotFoundException(`${uma_code},data not found`);
         }
-        return findUserMenu;
+        return result;
       }
     
     //-------------------------------find all UserMenuAccess data----------------------------//
@@ -37,26 +37,26 @@ export class UserMenuAccessService {
     
     //-------------------------------update UserMenuAccess data----------------------------//
     async updateUserMenuData(uma_code,data){
-        let findUserMenu= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
-        if(!findUserMenu){
+        let output= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
+        if(!output){
             throw new NotFoundException(`${uma_code},data not found`);
         }
-        let updateUserMenuAccessData= await this.userMenuAccess.update(uma_code,data);
-        if(updateUserMenuAccessData){
-            let msg={message:"UserRole Data updated Successfully"}
+        let result= await this.userMenuAccess.update(uma_code,data);
+        if(result){
+            let msg={message:"Updated Successfully"}
             return msg;
         }
     }
     
     //------------------------------delete UserMenuAccess data-------------------------------//
     async deleteUserMenuData(uma_code){
-        let findUserMenu= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
-        if(!findUserMenu){
+        let output= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
+        if(!output){
             throw new NotFoundException(`${uma_code},data not found`);
         }
-        let deleteUserMenuAccessData= await this.userMenuAccess.delete(uma_code);
-        if(deleteUserMenuAccessData){
-            let msg={message:"UserRole Data deleted Successfully"};
+        let result= await this.userMenuAccess.delete(uma_code);
+        if(result){
+            let msg={message:"Deleted Successfully"};
             return msg;
         }
     }

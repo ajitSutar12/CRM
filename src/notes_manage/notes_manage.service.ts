@@ -38,8 +38,8 @@ export class NotesManageService {
 
     //------------------Update single record from notes_manage------------------//
     async updateNotesManage(notes_code, data){
-        var company = await this.notesManage.findOne({where: {notes_code:notes_code}})
-        if(!company){
+        var output = await this.notesManage.findOne({where: {notes_code:notes_code}})
+        if(!output){
             throw new NotFoundException(`${notes_code} is not exist`)
         }
         var result = await this.notesManage.update(notes_code, data)
@@ -51,8 +51,8 @@ export class NotesManageService {
 
     //------------------Delete single record from notes_manage------------------//
     async deleteNotesManage(notes_code){
-        var company = await this.notesManage.findOne({where: {notes_code:notes_code}})
-        if(!company){
+        var output = await this.notesManage.findOne({where: {notes_code:notes_code}})
+        if(!output){
             throw new NotFoundException(`${notes_code} is not exist`)
         }
         var result = await this.notesManage.delete(notes_code)

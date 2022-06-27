@@ -12,7 +12,7 @@ export class contact_email_mapping_attachment{
     @IsNumber()
     cei_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:200})
     @IsString()
     attachment_path : String;
 

@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { product_master } from './product_master.entity';
@@ -10,7 +9,7 @@ export class product_category{
     @PrimaryGeneratedColumn()
     pc_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:30})
     @IsString()
     pc: String;
 

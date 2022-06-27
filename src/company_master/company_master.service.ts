@@ -36,8 +36,8 @@ export class CompanyMasterService {
 
     //------------------Update single record from company_master------------------//
     async updateCompanyMaster(company_code, data: company_master){
-        var company = await this.companyMaster.findOne({where: {company_code:company_code}})
-        if(!company){
+        var output = await this.companyMaster.findOne({where: {company_code:company_code}})
+        if(!output){
             throw new NotFoundException(`${company_code} is not exist`)
         }
         var result = await this.companyMaster.update(company_code, data)
@@ -49,8 +49,8 @@ export class CompanyMasterService {
 
     //------------------Delete single record from company_master------------------//
     async deleteCompanyMaster(company_code){
-        var company = await this.companyMaster.findOne({where: {company_code:company_code}})
-        if(!company){
+        var output = await this.companyMaster.findOne({where: {company_code:company_code}})
+        if(!output){
             throw new NotFoundException(`${company_code} is not exist`)
         }
         var result = await this.companyMaster.delete(company_code)

@@ -36,8 +36,8 @@ export class ProductCategoryService {
 
     //------------------Update single record from product_category------------------//
     async updateProductCategory(pc_code, data){
-        var company = await this.productCategory.findOne({where: {pc_code:pc_code}})
-        if(!company){
+        var output = await this.productCategory.findOne({where: {pc_code:pc_code}})
+        if(!output){
             throw new NotFoundException(`${pc_code} is not exist`)
         }
         var result = await this.productCategory.update(pc_code, data)
@@ -49,8 +49,8 @@ export class ProductCategoryService {
 
     //------------------Delete single record from product_category------------------//
     async deleteProductCategory(pc_code){
-        var company = await this.productCategory.findOne({where: {pc_code:pc_code}})
-        if(!company){
+        var output = await this.productCategory.findOne({where: {pc_code:pc_code}})
+        if(!output){
             throw new NotFoundException(`${pc_code} is not exist`)
         }
         var result = await this.productCategory.delete(pc_code)

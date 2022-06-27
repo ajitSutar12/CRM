@@ -1,6 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { financial_year } from "./financial_year.entity";
 import { tax_master } from "./tax_master.entity";
 import { user_menu_access } from "./user_menu_access.entity";
@@ -13,27 +12,27 @@ export class user_master{
     @IsNotEmpty()
     user_code:Number;
 
-    @Column()
+    @Column({length:35})
     @IsString()
     @IsNotEmpty()
     first_name:String;
 
-    @Column()
+    @Column({length:35})
     @IsString()
     @IsNotEmpty()
     middle_name:String;
 
-    @Column()
+    @Column({length:35})
     @IsString()
     @IsNotEmpty()
     last_name:String;
 
-    @Column()
+    @Column({length:20})
     @IsString()
     @IsNotEmpty()
     mobile_number:String;
 
-    @Column()
+    @Column({length:35})
     @IsEmail()
     @IsNotEmpty()
     email_address:String;
@@ -42,17 +41,17 @@ export class user_master{
     @IsNotEmpty()
     gender:String;
 
-    @Column()
+    @Column({length:255})
     @IsString()
     @IsNotEmpty()
     address:String;
 
-    @Column()
+    @Column({length:255})
     @IsString()
     @IsNotEmpty()
     photo:String;
 
-    @Column()
+    @Column({length:20})
     @IsString()
     @IsNotEmpty()
     user_role_type:String;
@@ -62,7 +61,7 @@ export class user_master{
     @IsNotEmpty()
     user_role_id:Number;
 
-    @Column()
+    @Column({length:300})
     @IsString()
     @IsNotEmpty()
     url:String;
@@ -81,12 +80,12 @@ export class user_master{
     @IsNotEmpty()
     user_status:Number;
 
-    @Column()
+    @Column({length:35})
     @IsString()
     @IsNotEmpty()
     username:String;
 
-    @Column()
+    @Column({length:35})
     @IsString()
     @IsNotEmpty()
     password:String;

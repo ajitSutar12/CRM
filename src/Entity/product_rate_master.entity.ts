@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { product_master } from './product_master.entity';
@@ -13,7 +12,7 @@ export class product_rate_master {
     @IsNumber()
     p_code: Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:11})
     @IsString()
     p_rate: String;
 

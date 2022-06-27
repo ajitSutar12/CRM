@@ -12,7 +12,7 @@ export class product_master {
     @PrimaryGeneratedColumn()
     p_code : Number;
 
-    @Column()
+    @Column({length:40})
     @IsString()
     @IsNotEmpty()
     p: String;
@@ -32,7 +32,7 @@ export class product_master {
     @IsNotEmpty()
     p_unit: Number;
 
-    @Column()
+    @Column({length:60})
     @IsString()
     @IsNotEmpty()
     p_image: String;

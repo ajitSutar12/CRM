@@ -1,4 +1,3 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { user_master } from "./user_master.entity";
@@ -10,17 +9,17 @@ export class financial_year{
     @IsNotEmpty()
     fy_code:Number;
  
-    @Column()
+    @Column({ length:20})
     @IsString()
     @IsNotEmpty()
     fy:String;
 
-    @Column()
+    @Column({length:15})
     @IsString()
     @IsNotEmpty()
     fy_start_month:String;   
 
-    @Column()
+    @Column({length:15})
     @IsString()
     @IsNotEmpty()
     fy_end_month:String;  

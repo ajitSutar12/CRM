@@ -36,8 +36,8 @@ export class ProductTypeService {
 
     //------------------Update single record from product_type------------------//
     async updateProductType(pt_code, data){
-        var company = await this.productType.findOne({where: {pt_code:pt_code}})
-        if(!company){
+        var output = await this.productType.findOne({where: {pt_code:pt_code}})
+        if(!output){
             throw new NotFoundException(`${pt_code} is not exist`)
         }
         var result = await this.productType.update(pt_code, data)
@@ -49,8 +49,8 @@ export class ProductTypeService {
 
     //------------------Delete single record from product_type------------------//
     async deleteProductType(pt_code){
-        var company = await this.productType.findOne({where: {pt_code:pt_code}})
-        if(!company){
+        var output = await this.productType.findOne({where: {pt_code:pt_code}})
+        if(!output){
             throw new NotFoundException(`${pt_code} is not exist`)
         }
         var result = await this.productType.delete(pt_code)

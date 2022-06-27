@@ -8,7 +8,7 @@ export class event_related_master{
     @PrimaryGeneratedColumn()
     erm_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     event_relation: String;
 

@@ -36,8 +36,8 @@ export class CallStatusMasterService {
 
     //------------------Update single record from call_status_master------------------//
     async updateCallStatusMaster(csm_code, data){
-        var company = await this.callStatusMaster.findOne({where: {csm_code:csm_code}})
-        if(!company){
+        var output = await this.callStatusMaster.findOne({where: {csm_code:csm_code}})
+        if(!output){
             throw new NotFoundException(`${csm_code} is not exist`)
         }
         var result = await this.callStatusMaster.update(csm_code, data)
@@ -49,8 +49,8 @@ export class CallStatusMasterService {
 
     //------------------Delete single record from call_status_master------------------//
     async deleteCallStatusMaster(csm_code){
-        var company = await this.callStatusMaster.findOne({where: {csm_code:csm_code}})
-        if(!company){
+        var output = await this.callStatusMaster.findOne({where: {csm_code:csm_code}})
+        if(!output){
             throw new NotFoundException(`${csm_code} is not exist`)
         }
         var result = await this.callStatusMaster.delete(csm_code)

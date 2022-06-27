@@ -12,32 +12,32 @@ export class company_master {
     @IsNotEmpty()
     company_name: String;
 
-    @Column()
+    @Column({length:30})
     @IsString()
     @IsNotEmpty()
     company_contact: String;
 
-    @Column()
+    @Column({length:50})
     @IsString()
     @IsNotEmpty()
     company_email: String;
 
-    @Column()
+    @Column({length:255})
     @IsString()
     @IsNotEmpty()
     company_address: String;
 
-    @Column()
+    @Column({length:60})
     @IsString()
     @IsNotEmpty()
     name_format: String;
 
-    @Column()
+    @Column({length:40})
     @IsString()
     @IsNotEmpty()
     date_format: String;
 
-    @Column()
+    @Column({length:60})
     @IsString()
     @IsNotEmpty()
     calendar_week: string;

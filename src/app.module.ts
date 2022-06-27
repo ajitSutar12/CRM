@@ -21,7 +21,6 @@ import { user_role_master } from './Entity/user_role_master.entity';
 import { config } from './orm.config';
 import { CompanyMasterModule } from './company_master/company_master.module';
 import { MenuMasterModule } from './menu_master/menu_master.module';
-import { ContactMasterModule } from './contact_master/contact_master.module';
 import { FinancialYearModule } from './financial_year/financial_year.module';
 import { ProductCategoryModule } from './product_category/product_category.module';
 import { ProductTypeModule } from './product_type/product_type.module';
@@ -45,17 +44,21 @@ import { deal_milestone_master } from './Entity/deal_milestone_master';
 import { DealModule } from './deal/deal.module';
 import { deal_master_Milestone_mapping } from './Entity/deal_master_milestoneMapping';
 import { notes_management_deal } from './Entity/notes_management_deal';
+import { task_management } from './Entity/task_management.entity';
+import { task_category } from './Entity/task_category.entity';
+import { contact_document_master } from './Entity/contact_document_master.entity';
+import { CampaignModule } from './campaign/campaign.module';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
-              TypeOrmModule.forFeature([company_master, menu_master, contact_master, product_category,
-                 product_master, product_type, unit_master, product_rate_master, country_state_city,
-                 financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage,
-                 deal_master,deal_attachment,deal_master_product_mapping,deal_milestone_master,deal_master_Milestone_mapping,
-                 notes_management_deal]),
+              TypeOrmModule.forFeature([company_master, menu_master, contact_master, product_category,task_management,
+                 product_master, product_type, unit_master, product_rate_master, country_state_city,deal_master,
+                 financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage, task_category,
+                 contact_document_master, deal_attachment, deal_master_product_mapping, deal_milestone_master,
+                 deal_master_Milestone_mapping, notes_management_deal]),
               CompanyMasterModule,
               MenuMasterModule,
-              ContactMasterModule,
               FinancialYearModule,
               ProductCategoryModule,
               ProductTypeModule,
@@ -71,7 +74,9 @@ import { notes_management_deal } from './Entity/notes_management_deal';
               CallModule,
               EventModule,
               TaskModule,
-              DealModule],
+              DealModule,
+              CampaignModule,
+              ContactModule],
   controllers: [AppController],
   providers: [AppService],
 })

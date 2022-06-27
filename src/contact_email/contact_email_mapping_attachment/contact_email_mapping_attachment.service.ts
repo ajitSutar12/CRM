@@ -38,8 +38,8 @@ export class ContactEmailMappingAttachmentService {
 
     //------------------Update single record from contact_email_mapping_attachment------------------//
     async updateContactEmailMappingAttachment(cema_code, data){
-        var company = await this.contactEmailMappingAttachment.findOne({where: {cema_code:cema_code}})
-        if(!company){
+        var output = await this.contactEmailMappingAttachment.findOne({where: {cema_code:cema_code}})
+        if(!output){
             throw new NotFoundException(`${cema_code} is not exist`)
         }
         var result = await this.contactEmailMappingAttachment.update(cema_code, data)
@@ -51,8 +51,8 @@ export class ContactEmailMappingAttachmentService {
 
     //------------------Delete single record from contact_email_mapping_attachment------------------//
     async deleteContactEmailMappingAttachment(cema_code){
-        var company = await this.contactEmailMappingAttachment.findOne({where: {cema_code:cema_code}})
-        if(!company){
+        var output = await this.contactEmailMappingAttachment.findOne({where: {cema_code:cema_code}})
+        if(!output){
             throw new NotFoundException(`${cema_code} is not exist`)
         }
         var result = await this.contactEmailMappingAttachment.delete(cema_code)

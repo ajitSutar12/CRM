@@ -1,4 +1,3 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { user_master } from "./user_master.entity";
@@ -10,7 +9,7 @@ export class tax_master{
     @IsNotEmpty()
     t_code:Number;
 
-    @Column()
+    @Column({length:20})
     @IsString()
     @IsNotEmpty()
     t_name:String;

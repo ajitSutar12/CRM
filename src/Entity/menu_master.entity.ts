@@ -9,12 +9,12 @@ export class menu_master {
     @PrimaryGeneratedColumn()
     m_code : Number;
 
-    @Column()
+    @Column({length:40})
     @IsString()
     @IsNotEmpty()
     m_name: String;
 
-    @Column()
+    @Column({length:40})
     @IsString()
     @IsNotEmpty()
     m_subname: String;

@@ -36,8 +36,8 @@ export class MenuMasterService {
 
     //------------------Update single record from menu_master------------------//
     async updateMenuMaster(m_code, data){
-        var company = await this.menuMaster.findOne({where: {m_code:m_code}})
-        if(!company){
+        var output = await this.menuMaster.findOne({where: {m_code:m_code}})
+        if(!output){
             throw new NotFoundException(`${m_code} is not exist`)
         }
         var result = await this.menuMaster.update(m_code, data)
@@ -49,8 +49,8 @@ export class MenuMasterService {
 
     //------------------Delete single record from menu_master------------------//
     async deleteMenuMaster(m_code){
-        var company = await this.menuMaster.findOne({where: {m_code:m_code}})
-        if(!company){
+        var output = await this.menuMaster.findOne({where: {m_code:m_code}})
+        if(!output){
             throw new NotFoundException(`${m_code} is not exist`)
         }
         var result = await this.menuMaster.delete(m_code)

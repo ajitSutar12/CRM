@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { ContactMasterService } from '../contact_master/contact_master.service'
+import { ContactMasterService } from './contact_master.service'
 
 @ApiTags('contact-master')
 @Controller('contact-master')

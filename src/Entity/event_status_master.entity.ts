@@ -8,7 +8,7 @@ export class event_status_master{
     @PrimaryGeneratedColumn()
     esm_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     event_status: String;
 

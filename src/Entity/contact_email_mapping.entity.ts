@@ -13,19 +13,19 @@ export class contact_email_mapping{
     @IsNumber()
     c_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:200})
     @IsString()
     to_email : String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:200})
     @IsString()
     cc_email : String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:200})
     @IsString()
     bcc_email : String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:150})
     @IsString()
     subject : String;
 

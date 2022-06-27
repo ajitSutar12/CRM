@@ -8,7 +8,7 @@ export class call_status_master{
     @PrimaryGeneratedColumn()
     csm_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:2})
     @IsString()
     call_status: String;
 

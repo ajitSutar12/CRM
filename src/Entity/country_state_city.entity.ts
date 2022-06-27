@@ -1,5 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 
@@ -9,15 +8,15 @@ export class country_state_city {
     @PrimaryGeneratedColumn()
     csc_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     country_name: String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     state_name: String;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     city_name: String;
 }

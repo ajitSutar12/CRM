@@ -1,5 +1,5 @@
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
 import { event_related_master } from './event_related_master.entity';
 import { event_status_master } from './event_status_master.entity';
 import { event_type_master } from './event_type_master.entity';

@@ -7,7 +7,7 @@ import { CallLogManagementService } from '../call_log_management/call_log_manage
 export class CallLogManagementController {
     constructor(private readonly CallLogManagementService: CallLogManagementService) {}
 
-    //------------------Insert record in contact_master------------------//
+    //------------------Insert record in call_log_management------------------//
     @Post()
     @UsePipes(ValidationPipe)
     @ApiBody({
@@ -38,19 +38,19 @@ export class CallLogManagementController {
         return await this.CallLogManagementService.addCallLogManagement(data)
     }
 
-    //------------------Finding all records from contact_master------------------//
+    //------------------Finding all records from call_log_management------------------//
     @Get()
     find(){
         return this.CallLogManagementService.findAllCallLogManagement()
     }
 
-    //------------------Finding one record from contact_master-------------------//
+    //------------------Finding one record from call_log_management-------------------//
     @Get(':clm_code')
     findOne(@Param('clm_code') clm_code: number){
         return this.CallLogManagementService.findOneCallLogManagement(clm_code)
     }
 
-    //------------------Update single record from contact_master------------------//
+    //------------------Update single record from call_log_management------------------//
     @Put(':clm_code')
     @ApiBody({
         schema:{
@@ -80,7 +80,7 @@ export class CallLogManagementController {
         return this.CallLogManagementService.updateCallLogManagement(clm_code,data)
     }
 
-    //------------------Delete single record from contact_master------------------//
+    //------------------Delete single record from call_log_management------------------//
     @Delete(':clm_code')
     delete(@Param('clm_code') clm_code: number){
         return this.CallLogManagementService.deleteCallLogManagement(clm_code)

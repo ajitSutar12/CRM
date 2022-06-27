@@ -38,8 +38,8 @@ export class ProductRateMasterService {
 
     //------------------Update single record from product_rate_master------------------//
     async updateProductRateMaster(pr_code, data){
-        var company = await this.productRateMaster.findOne({where: {pr_code:pr_code}})
-        if(!company){
+        var output = await this.productRateMaster.findOne({where: {pr_code:pr_code}})
+        if(!output){
             throw new NotFoundException(`${pr_code} is not exist`)
         }
         var result = await this.productRateMaster.update(pr_code, data)
@@ -51,8 +51,8 @@ export class ProductRateMasterService {
 
     //------------------Delete single record from product_rate_master------------------//
     async deleteProductRateMaster(pr_code){
-        var company = await this.productRateMaster.findOne({where: {pr_code:pr_code}})
-        if(!company){
+        var output = await this.productRateMaster.findOne({where: {pr_code:pr_code}})
+        if(!output){
             throw new NotFoundException(`${pr_code} is not exist`)
         }
         var result = await this.productRateMaster.delete(pr_code)

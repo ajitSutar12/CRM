@@ -8,7 +8,7 @@ export class task_category{
     @PrimaryGeneratedColumn()
     tc_code : Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true, length:40})
     @IsString()
     task_category: String;
 

@@ -10,8 +10,8 @@ export class TaxMasterService {
     //-------------------------------------Tax data add---------------------------------//
         
     async addTaxData(data){
-        let addTaxData = await this.taxMaster.save(data);
-        if(addTaxData){
+        let result = await this.taxMaster.save(data);
+        if(result){
             let msg={message:"Tax Data Added Successfully"}
             return msg;
         }
@@ -19,11 +19,11 @@ export class TaxMasterService {
     
     //-------------------------------find one Tax  data using t_code-------------------//
     async getOneTax(t_code) {
-        let findTax= await this.taxMaster.findOne({ where:{t_code: t_code }, relations:['user_master_created','user_master_updated']});
-        if(!findTax){
+        let result= await this.taxMaster.findOne({ where:{t_code: t_code }, relations:['user_master_created','user_master_updated']});
+        if(!result){
             throw new NotFoundException(`${t_code},data not found`);
         }
-        return findTax;
+        return result;
       }
     
     //-------------------------------find all Tax data----------------------------//
@@ -37,12 +37,12 @@ export class TaxMasterService {
     
     //-------------------------------update userRole data----------------------------//
     async updateTaxData(t_code,data){
-        let findTax= await this.taxMaster.findOne({ where:{t_code: t_code }});
-        if(!findTax){
+        let output= await this.taxMaster.findOne({ where:{t_code: t_code }});
+        if(!output){
             throw new NotFoundException(`${t_code},data not found`);
         }
-        let updateTaxData= await this.taxMaster.update(t_code,data);
-        if(updateTaxData){
+        let result= await this.taxMaster.update(t_code,data);
+        if(result){
             let msg={message:"Tax Data updated Successfully"}
             return msg;
         }
@@ -50,12 +50,12 @@ export class TaxMasterService {
     
     //------------------------------delete Tax data-------------------------------//
     async deleteTaxData(t_code){
-        let findTax= await this.taxMaster.findOne({ where:{t_code: t_code }});
-        if(!findTax){
+        let output= await this.taxMaster.findOne({ where:{t_code: t_code }});
+        if(!output){
             throw new NotFoundException(`${t_code},data not found`);
         }
-        let deleteTaxData= await this.taxMaster.delete(t_code);
-        if(deleteTaxData){
+        let result= await this.taxMaster.delete(t_code);
+        if(result){
             let msg={message:"Tax Data deleted Successfully"};
             return msg;
         }

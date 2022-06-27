@@ -36,8 +36,8 @@ export class EventTypeMasterService {
 
     //------------------Update single record from event_type_master------------------//
     async updateEventTypeMaster(etm_code, data){
-        var company = await this.eventTypeMaster.findOne({where: {etm_code:etm_code}})
-        if(!company){
+        var output = await this.eventTypeMaster.findOne({where: {etm_code:etm_code}})
+        if(!output){
             throw new NotFoundException(`${etm_code} is not exist`)
         }
         var result = await this.eventTypeMaster.update(etm_code, data)
@@ -49,8 +49,8 @@ export class EventTypeMasterService {
 
     //------------------Delete single record from event_type_master------------------//
     async deleteEventTypeMaster(etm_code){
-        var company = await this.eventTypeMaster.findOne({where: {etm_code:etm_code}})
-        if(!company){
+        var output = await this.eventTypeMaster.findOne({where: {etm_code:etm_code}})
+        if(!output){
             throw new NotFoundException(`${etm_code} is not exist`)
         }
         var result = await this.eventTypeMaster.delete(etm_code)

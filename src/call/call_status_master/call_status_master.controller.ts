@@ -7,7 +7,7 @@ import { CallStatusMasterService } from '../call_status_master/call_status_maste
 export class CallStatusMasterController {
     constructor(private readonly CallStatusMasterService: CallStatusMasterService) {}
 
-    //------------------Insert record in menu_master------------------//
+    //------------------Insert record in call_status_master------------------//
     @Post()
     @UsePipes(ValidationPipe)
     @ApiBody({
@@ -23,19 +23,19 @@ export class CallStatusMasterController {
         return await this.CallStatusMasterService.addCallStatusMaster(data)
     }
 
-    //------------------Finding all records from menu_master------------------//
+    //------------------Finding all records from call_status_master------------------//
     @Get()
     find(){
         return this.CallStatusMasterService.findAllCallStatusMaster()
     }
 
-    //------------------Finding one record from menu_master-------------------//
+    //------------------Finding one record from call_status_master-------------------//
     @Get(':csm_code')
     findOne(@Param('csm_code') csm_code: number){
         return this.CallStatusMasterService.findOneCallStatusMaster(csm_code)
     }
 
-    //------------------Update single record from menu_master------------------//
+    //------------------Update single record from call_status_master------------------//
     @Put(':csm_code')
     @ApiBody({
         schema:{
@@ -50,7 +50,7 @@ export class CallStatusMasterController {
         return this.CallStatusMasterService.updateCallStatusMaster(csm_code,data)
     }
 
-    //------------------Delete single record from menu_master------------------//
+    //------------------Delete single record from call_status_master------------------//
     @Delete(':csm_code')
     delete(@Param('csm_code') csm_code: number){
         return this.CallStatusMasterService.deleteCallStatusMaster(csm_code)

@@ -39,8 +39,8 @@ export class FinancialYearService {
 
     //------------------Update single record from financial_year------------------//
     async updateFinancialYear(fy_code, data){
-        var company = await this.financialYear.findOne({where: {fy_code:fy_code}})
-        if(!company){
+        var output = await this.financialYear.findOne({where: {fy_code:fy_code}})
+        if(!output){
             throw new NotFoundException(`${fy_code} is not exist`)
         }
         var result = await this.financialYear.update(fy_code, data)
@@ -52,8 +52,8 @@ export class FinancialYearService {
 
     //------------------Delete single record from financial_year------------------//
     async deleteFinancialYear(fy_code){
-        var company = await this.financialYear.findOne({where: {fy_code:fy_code}})
-        if(!company){
+        var output = await this.financialYear.findOne({where: {fy_code:fy_code}})
+        if(!output){
             throw new NotFoundException(`${fy_code} is not exist`)
         }
         var result = await this.financialYear.delete(fy_code)

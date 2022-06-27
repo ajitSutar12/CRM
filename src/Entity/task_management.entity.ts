@@ -1,5 +1,6 @@
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
+import { deal_master } from './deal_master.entity';
 import { task_category } from './task_category.entity';
 
 @Entity()
@@ -60,8 +61,8 @@ export class task_management{
     @JoinColumn({name:"t_c_id"})
     task_category:task_category[]
 
-    // @ManyToOne(() => product_type, product_type =>product_type.task_management)
-    // @JoinColumn({name:"deal_code"})
-    // product_type:product_type[]
+    @ManyToOne(() => deal_master, deal_master =>deal_master.task_management)
+    @JoinColumn({name:"deal_code"})
+    deal_master:deal_master[]
 
 }

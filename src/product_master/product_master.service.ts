@@ -11,20 +11,20 @@ export class ProductMasterService {
     //-------------------------------------ProductMaster data add---------------------------------//
         
     async addProductData(data){
-        let addProductData = await this.productMaster.save(data);
-        if(addProductData){
-            let msg={message:"Product Data Added Successfully"}
+        let result = await this.productMaster.save(data);
+        if(result){
+            let msg={message:"Added Successfully"}
             return msg;
         }
     }
     
     //-------------------------------find one Product using uma_code-------------------//
     async getOneProduct(p_code) {
-        let findProduct= await this.productMaster.findOne({ where:{p_code: p_code }, relations:['product_category','product_type','unit_master']});
-        if(!findProduct){
+        let result= await this.productMaster.findOne({ where:{p_code: p_code }, relations:['product_category','product_type','unit_master']});
+        if(!result){
             throw new NotFoundException(`${p_code},data not found`);
         }
-        return findProduct;
+        return result;
       }
     
     //-------------------------------find all Product data----------------------------//
@@ -39,26 +39,26 @@ export class ProductMasterService {
     
     //-------------------------------update Product data----------------------------//
     async updateProductData(p_code,data){
-        let findProduct= await this.productMaster.findOne({ where:{p_code: p_code }});
-        if(!findProduct){
+        let output= await this.productMaster.findOne({ where:{p_code: p_code }});
+        if(!output){
             throw new NotFoundException(`${p_code},data not found`);
         }
-        let updateProductData= await this.productMaster.update(p_code,data);
-        if(updateProductData){
-            let msg={message:"Product Data updated Successfully"}
+        let result= await this.productMaster.update(p_code,data);
+        if(result){
+            let msg={message:"updated Successfully"}
             return msg;
         }
     }
     
     //------------------------------delete Product data-------------------------------//
     async deleteProductData(p_code){
-        let findProduct= await this.productMaster.findOne({ where:{p_code: p_code }});
-        if(!findProduct){
+        let output= await this.productMaster.findOne({ where:{p_code: p_code }});
+        if(!output){
             throw new NotFoundException(`${p_code},data not found`);
         }
-        let deleteProductData= await this.productMaster.delete(p_code);
-        if(deleteProductData){
-            let msg={message:"Product Data deleted Successfully"};
+        let result= await this.productMaster.delete(p_code);
+        if(result){
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }
