@@ -38,12 +38,18 @@ import { NotesManageModule } from './notes_manage/notes_manage.module';
 import { CallModule } from './call/call.module';
 import { EventModule } from './event/event.module';
 import { TaskModule } from './task/task.module';
+import { deal_master } from './Entity/deal_master.entity';
+import { deal_attachment } from './Entity/deal_attachment.entity';
+import { deal_master_product_mapping } from './Entity/deal_master_product_mapping';
+import { deal_milestone_master } from './Entity/deal_milestone_master';
+import { DealModule } from './deal/deal.module';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
               TypeOrmModule.forFeature([company_master, menu_master, contact_master, product_category,
                  product_master, product_type, unit_master, product_rate_master, country_state_city,
-                 financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage]),
+                 financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage,
+                 deal_master,deal_attachment,deal_master_product_mapping,deal_milestone_master]),
               CompanyMasterModule,
               MenuMasterModule,
               ContactMasterModule,
@@ -61,7 +67,8 @@ import { TaskModule } from './task/task.module';
               NotesManageModule,
               CallModule,
               EventModule,
-              TaskModule],
+              TaskModule,
+              DealModule],
   controllers: [AppController],
   providers: [AppService],
 })

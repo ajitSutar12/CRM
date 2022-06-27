@@ -1,5 +1,6 @@
 import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { deal_master } from './deal_master.entity';
 import { notes_manage } from './notes_manage.entity';
 
 
@@ -71,4 +72,8 @@ export class contact_master {
 
     @OneToMany(()=> notes_manage, notes_manage =>notes_manage.contact_master)
     notes_manage:notes_manage[]
+
+    @OneToMany(() => deal_master, deal_master =>deal_master.contact_master)
+    deal_master:deal_master[]
+
 }

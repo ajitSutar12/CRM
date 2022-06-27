@@ -1,5 +1,6 @@
 import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { deal_master_product_mapping } from './deal_master_product_mapping';
 import { product_category } from './product_category.entity';
 import { product_rate_master } from './product_rate_master.entity';
 import { product_type } from './product_type.entity';
@@ -70,4 +71,8 @@ export class product_master {
 
     @OneToMany(()=> product_rate_master, product_rate_master =>product_rate_master.product_master)
     product_rate_master:product_rate_master[]
+
+    @OneToMany(() => deal_master_product_mapping, deal_master_product_mapping => deal_master_product_mapping.product_master)
+    deal_master_product_mapping:deal_master_product_mapping[]
+
 }

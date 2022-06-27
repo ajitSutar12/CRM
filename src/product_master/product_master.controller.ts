@@ -38,7 +38,7 @@ export class ProductMasterController {
     @Get()
     @UsePipes(ValidationPipe)
     findAll(){
-        return this.productMasterService.getAllProduct()
+        return this.productMasterService.getAllProduct();
     }
     
     //-------------------------------update Product data----------------------------//
@@ -65,6 +65,6 @@ export class ProductMasterController {
     @Delete(':p_code')
     @UsePipes(ValidationPipe)
     delete(@Param('p_code') p_code: number){
-        return this.productMasterService.deleteProductData(p_code)
+        return this.productMasterService.deleteProductData(p_code);
     }
 }
