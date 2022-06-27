@@ -43,13 +43,16 @@ import { deal_attachment } from './Entity/deal_attachment.entity';
 import { deal_master_product_mapping } from './Entity/deal_master_product_mapping';
 import { deal_milestone_master } from './Entity/deal_milestone_master';
 import { DealModule } from './deal/deal.module';
+import { deal_master_Milestone_mapping } from './Entity/deal_master_milestoneMapping';
+import { notes_management_deal } from './Entity/notes_management_deal';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
               TypeOrmModule.forFeature([company_master, menu_master, contact_master, product_category,
                  product_master, product_type, unit_master, product_rate_master, country_state_city,
                  financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage,
-                 deal_master,deal_attachment,deal_master_product_mapping,deal_milestone_master]),
+                 deal_master,deal_attachment,deal_master_product_mapping,deal_milestone_master,deal_master_Milestone_mapping,
+                 notes_management_deal]),
               CompanyMasterModule,
               MenuMasterModule,
               ContactMasterModule,

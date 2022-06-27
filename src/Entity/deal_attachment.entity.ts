@@ -4,23 +4,23 @@ import { deal_master } from "./deal_master.entity";
 
 @Entity()
 export class deal_attachment{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({type:"int"})
     @IsNotEmpty()
     da_code:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"int"})
     @IsNumber()
     deal_code:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"varchar",length:150})
     @IsString()
     attachment_name:String;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"varchar",length:200})
     @IsString()
     attachment_path:String;
 
-    @Column()
+    @Column({type:"int"})
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
@@ -29,7 +29,7 @@ export class deal_attachment{
     @IsNotEmpty()
     created_timestamp:Date;
 
-    @Column()
+    @Column({type:"int"})
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;

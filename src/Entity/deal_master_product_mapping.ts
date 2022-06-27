@@ -1,31 +1,31 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { deal_master } from "./deal_master.entity";
 import { product_master } from "./product_master.entity";
 
 @Entity()
 export class deal_master_product_mapping{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({type:"int"})
     @IsNotEmpty()
     dmpm_code:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"int"})
     @IsNumber()
     deal_code:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"int"})
     @IsNumber()
     product_code:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"int"})
     @IsNumber()
     product_qty:Number;
 
-    @Column({nullable:true})
+    @Column({nullable:true,type:"varchar",length:20})
     @IsString()
     product_rate:String;
     
-    @Column()
+    @Column({type:"int"})
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
@@ -34,7 +34,7 @@ export class deal_master_product_mapping{
     @IsNotEmpty()
     created_timestamp:Date;
 
-    @Column()
+    @Column({type:"int"})
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;
@@ -51,5 +51,6 @@ export class deal_master_product_mapping{
     @JoinColumn({name:"product_code"})
     product_master:product_master[]
 
+   
 
 }
