@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString,MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { user_master } from "./user_master.entity";
 
@@ -9,8 +9,9 @@ export class tax_master{
     @IsNotEmpty()
     t_code:Number;
 
-    @Column({length:20})
+    @Column()
     @IsString()
+    @MaxLength(20)
     @IsNotEmpty()
     t_name:String;
 

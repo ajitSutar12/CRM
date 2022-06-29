@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { product_master } from 'src/Entity/product_master.entity';
 import { ProductMasterService } from './product_master.service';
 
 @ApiTags('ProductMaster')
@@ -23,7 +24,7 @@ export class ProductMasterController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'},
                 }}})
-    create(@Body() data){
+    create(@Body() data:product_master){
         return this.productMasterService.addProductData(data)
     }
     
@@ -57,7 +58,7 @@ export class ProductMasterController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'},
         }}})
-    update(@Param('p_code') p_code: number, @Body() data){
+    update(@Param('p_code') p_code: number, @Body() data:product_master){
         return this.productMasterService.updateProductData(p_code,data);
     }
     

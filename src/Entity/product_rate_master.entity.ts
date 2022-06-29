@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { product_master } from './product_master.entity';
 
@@ -12,8 +12,9 @@ export class product_rate_master {
     @IsNumber()
     p_code: Number;
 
-    @Column({nullable:true, length:11})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(11)
     p_rate: String;
 
     @Column({nullable:true})

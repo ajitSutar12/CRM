@@ -28,7 +28,9 @@ export class DealMasterService {
     
     //-------------------------------find all deal data----------------------------//
     async getAllDeal(){
-        var result = await this.dealMaster.createQueryBuilder("deal_master") 
+        var result = await this.dealMaster.createQueryBuilder("deal_master")
+                                .offset(1)
+                                .limit(2)
                                 .leftJoinAndSelect("deal_master.contact_master",'cm')
                                 .leftJoinAndSelect("deal_master.deal_milestone_master",'dmm')
                                 .getMany()

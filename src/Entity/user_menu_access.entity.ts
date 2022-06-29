@@ -7,7 +7,6 @@ import { user_master } from "./user_master.entity";
 export class user_menu_access{
  
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     uma_code:Number;
  
     @Column({nullable:true})

@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { deal_master_product_mapping } from './deal_master_product_mapping';
 import { product_category } from './product_category.entity';
@@ -12,8 +12,9 @@ export class product_master {
     @PrimaryGeneratedColumn()
     p_code : Number;
 
-    @Column({length:40})
+    @Column()
     @IsString()
+    @MaxLength(40)
     @IsNotEmpty()
     p: String;
 
@@ -32,8 +33,9 @@ export class product_master {
     @IsNotEmpty()
     p_unit: Number;
 
-    @Column({length:60})
+    @Column()
     @IsString()
+    @MaxLength(60)
     @IsNotEmpty()
     p_image: String;
 

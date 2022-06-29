@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { event_type_master } from 'src/Entity/event_type_master.entity';
 import { EventTypeMasterService } from '../event_type_master/event_type_master.service'
 
 @ApiTags('event-type-master')
@@ -19,7 +20,7 @@ export class EventTypeMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:event_type_master){
         return await this.EventTypeMasterService.addEventTypeMaster(data)
     }
 
@@ -46,7 +47,7 @@ export class EventTypeMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('etm_code') etm_code: number, @Body() data){
+    update(@Param('etm_code') etm_code: number, @Body() data:event_type_master){
         return this.EventTypeMasterService.updateEventTypeMaster(etm_code,data)
     }
 

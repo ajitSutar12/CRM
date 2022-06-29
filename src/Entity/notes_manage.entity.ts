@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { contact_master } from "./contact_master.entity";
 
@@ -8,12 +8,14 @@ export class notes_manage{
     @IsNotEmpty()
     notes_code: Number;
 
-    @Column({nullable:true, length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     notes_subject : String;
 
-    @Column({nullable:true, length:500})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(500)
     notes_content : String;
 
     @Column({nullable:true})

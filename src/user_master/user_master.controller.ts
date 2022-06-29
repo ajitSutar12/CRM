@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { user_master } from 'src/Entity/user_master.entity';
 import { UserMasterService } from './user_master.service';
 
 @ApiTags('UserMaster')
@@ -33,7 +34,7 @@ export class UserMasterController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'},
                 }}})
-    create(@Body() data){
+    create(@Body() data:user_master){
         return this.userMasterService.addUserData(data)
     }
 
@@ -77,7 +78,7 @@ export class UserMasterController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'},
         }}})
-    update(@Param('user_code') user_code: number, @Body() data){
+    update(@Param('user_code') user_code: number, @Body() data:user_master){
         return this.userMasterService.updateUserData(user_code,data);
     }
 

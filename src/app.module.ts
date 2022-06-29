@@ -56,7 +56,7 @@ import { ContactModule } from './contact/contact.module';
                  product_master, product_type, unit_master, product_rate_master, country_state_city,deal_master,
                  financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage, task_category,
                  contact_document_master, deal_attachment, deal_master_product_mapping, deal_milestone_master,
-                 deal_master_Milestone_mapping, notes_management_deal]),
+                 deal_master_Milestone_mapping, notes_management_deal,company_master]),
               CompanyMasterModule,
               MenuMasterModule,
               FinancialYearModule,

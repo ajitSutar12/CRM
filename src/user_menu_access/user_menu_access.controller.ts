@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { user_menu_access } from 'src/Entity/user_menu_access.entity';
 import { UserMenuAccessService } from './user_menu_access.service';
 
 @ApiTags('UserMenuAccess')
@@ -24,7 +25,7 @@ export class UserMenuAccessController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'},
                 }}})
-    create(@Body() data){
+    create(@Body() data:user_menu_access){
         return this.userMenuAccessService.addUserMenuData(data)
     }
     
@@ -59,7 +60,7 @@ export class UserMenuAccessController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'},
         }}})
-    update(@Param('uma_code') uma_code: number, @Body() data){
+    update(@Param('uma_code') uma_code: number, @Body() data:user_menu_access){
         return this.userMenuAccessService.updateUserMenuData(uma_code,data);
     }
     

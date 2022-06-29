@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString ,MaxLength} from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { event_master } from './event_master.entity';
 
@@ -9,8 +9,9 @@ export class event_type_master{
     @PrimaryGeneratedColumn()
     etm_code : Number;
 
-    @Column({nullable:true, length:40})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(40)
     event_type: String;
 
     @OneToMany(()=> event_master, event_master =>event_master.event_status_master)

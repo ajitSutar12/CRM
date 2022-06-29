@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
 import { deal_master } from './deal_master.entity';
 import { task_category } from './task_category.entity';
@@ -9,8 +9,9 @@ export class task_management{
     @PrimaryGeneratedColumn()
     tm_code : Number;
 
-    @Column({nullable:true, length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     t_name: String;
 
     @Column({nullable:true})
@@ -21,16 +22,19 @@ export class task_management{
     @IsDate()
     t_due_date: Date;
 
-    @Column({nullable:true, length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     t_due_time: String;
 
-    @Column({nullable:true, length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     t_priority: String;
 
-    @Column({nullable:true, length:40})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(40)
     t_status: String;
 
     @Column({nullable:true})

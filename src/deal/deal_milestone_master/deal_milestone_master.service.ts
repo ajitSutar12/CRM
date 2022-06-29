@@ -9,7 +9,7 @@ export class DealMilestoneMasterService {
 
     //-------------------------------------dealMilestoneMaster add---------------------------------//
         
-    async addDealData(data){
+    async addDealData(data:deal_milestone_master){
         let result = await this.dealMilestoneMaster.save(data);
         if(result){
             let msg={message:"Added Successfully"}

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { financial_year } from 'src/Entity/financial_year.entity';
 import { FinancialYearService } from './financial_year.service'
 
 @ApiTags('financial-year')
@@ -26,7 +27,7 @@ export class FinancialYearController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data:financial_year){
         return await this.FinancialYearService.addFinancialYear(data)
     }
 
@@ -60,7 +61,7 @@ export class FinancialYearController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('fy_code') fy_code: number, @Body() data){
+    update(@Param('fy_code') fy_code: number, @Body() data:financial_year){
         return this.FinancialYearService.updateFinancialYear(fy_code,data)
     }
 

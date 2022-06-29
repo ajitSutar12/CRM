@@ -1,7 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { campaign_master } from 'src/Entity/campaign_master.entity';
-import { Repository } from 'typeorm';
+import { PaginationOptionsInterface } from 'src/pagination/pagination.option.interface';
+import { ILike, In, Repository } from 'typeorm';
+import { Pagination } from './campaign_pagination.ts/pagination';
 
 @Injectable()
 export class CampaignMasterService {
@@ -25,14 +27,26 @@ export class CampaignMasterService {
         }
         return findUser;
     }
-
+    
     //-------------------------------find all campaign_master----------------------------//
-    async getAllCampaignMaster(){
-        const result = await this.campaignMaster.createQueryBuilder("campaign_master") 
-                        .leftJoinAndSelect("campaign_master.campaign_type_master",'ctm')
-                        .getMany()
-        return result
-    }
+    async getAllCampaignMaster(options: PaginationOptionsInterface,): Promise<Pagination<campaign_master[]>> {
+        var object = {}
+        console.log(object)
+        for (var key in options.filterData){
+            object[key] = In(options.filterData[key])   
+        }
+        const [data, recordsTotal] = await this.campaignMaster.createQueryBuilder('campaign_master')
+          .leftJoinAndSelect('campaign_master.campaign_type_master', 'ctm')
+          .take(options.limit)
+          .skip(options.page)
+          .where(object)
+          .orderBy('campaign_master.cm_code', 'DESC')
+          .getManyAndCount()
+        return new Pagination<campaign_master[]>({
+          data,
+          recordsTotal,
+        });
+      }
 
     //-------------------------------update into campaign_master----------------------------//
     async updateCampaignMaster(cm_code,data){
@@ -59,4 +73,7 @@ export class CampaignMasterService {
             return msg;
         }
     }
+
+    //-----------------------pagination---------------------------------//
+    
 }

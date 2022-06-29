@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { notes_management_deal } from 'src/Entity/notes_management_deal';
 import { NotesManagementDealService } from './notes_management_deal.service';
 
 @ApiTags('NotesManagementDeal')
@@ -25,7 +26,7 @@ export class NotesManagementDealController {
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data:notes_management_deal) {
         return this.notesManagementDealService.addNotesManagementDealData(data)
     }
 
@@ -61,7 +62,7 @@ export class NotesManagementDealController {
             }
         }
     })
-    update(@Param('notes_code') notes_code: number, @Body() data) {
+    update(@Param('notes_code') notes_code: number, @Body()  data:notes_management_deal) {
         return this.notesManagementDealService.updateNotesManagementDealData(notes_code, data);
     }
 

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { task_management } from 'src/Entity/task_management.entity';
 import { TaskManagementService} from './task_management.service'
 
 @ApiTags('task-management')
@@ -29,7 +30,7 @@ export class TaskManagementController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:task_management){
         return await this.TaskManagementService.addTaskManagement(data)
     }
 
@@ -66,7 +67,7 @@ export class TaskManagementController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('tm_code') tm_code: number, @Body() data){
+    update(@Param('tm_code') tm_code: number, @Body() data:task_management){
         return this.TaskManagementService.updateTaskManagement(tm_code,data)
     }
 

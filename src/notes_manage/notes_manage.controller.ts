@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { notes_manage } from 'src/Entity/notes_manage.entity';
 import { NotesManageService } from './notes_manage.service';
 
 @ApiTags('notes-manage')
@@ -25,7 +26,7 @@ export class NotesManageController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data:notes_manage){
         return await this.NotesManageService.addNotesManage(data)
     }
 
@@ -58,7 +59,7 @@ export class NotesManageController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('notes_code') notes_code: number, @Body() data){
+    update(@Param('notes_code') notes_code: number, @Body() data:notes_manage){
         return this.NotesManageService.updateNotesManage(notes_code,data)
     }
 

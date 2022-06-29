@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { menu_master } from 'src/Entity/menu_master.entity';
 import { MenuMasterService } from '../menu_master/menu_master.service'
 
 @ApiTags('menu-master')
@@ -20,7 +21,7 @@ export class MenuMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:menu_master){
         return await this.MenuMasterService.addMenuMaster(data)
     }
 
@@ -48,7 +49,7 @@ export class MenuMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('m_code') m_code: number, @Body() data){
+    update(@Param('m_code') m_code: number, @Body() data:menu_master){
         return this.MenuMasterService.updateMenuMaster(m_code,data)
     }
 

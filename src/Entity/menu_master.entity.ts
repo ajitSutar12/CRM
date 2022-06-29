@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString,MaxLength } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { user_menu_access } from './user_menu_access.entity';
 
@@ -9,13 +9,15 @@ export class menu_master {
     @PrimaryGeneratedColumn()
     m_code : Number;
 
-    @Column({length:40})
+    @Column()
     @IsString()
+    @MaxLength(40)
     @IsNotEmpty()
     m_name: String;
 
-    @Column({length:40})
+    @Column()
     @IsString()
+    @MaxLength(40)
     @IsNotEmpty()
     m_subname: String;
 

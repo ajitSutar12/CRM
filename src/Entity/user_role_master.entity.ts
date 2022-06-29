@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { user_master } from "./user_master.entity";
 
@@ -6,11 +6,11 @@ import { user_master } from "./user_master.entity";
 export class user_role_master{
   
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     role_code:Number;
  
-    @Column({length:30})
+    @Column()
     @IsString()
+    @MaxLength(30)
     @IsNotEmpty()
     role_name:String;
 
@@ -21,6 +21,7 @@ export class user_role_master{
 
     @Column()
     @IsNumber()
+    @MaxLength(11)
     @IsNotEmpty()
     created_by:Number;
  

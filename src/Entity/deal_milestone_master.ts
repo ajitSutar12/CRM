@@ -6,7 +6,6 @@ import { deal_master_Milestone_mapping } from "./deal_master_milestoneMapping";
 @Entity()
 export class deal_milestone_master{
     @PrimaryGeneratedColumn({type:"int"})
-    @IsNotEmpty()
     dm_code:Number;
 
     @Column({type:"varchar",length:40})

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { product_category } from 'src/Entity/product_category.entity';
 import { ProductCategoryService } from '../product_category/product_category.service'
 
 @ApiTags('product-category')
@@ -20,7 +21,7 @@ export class ProductCategoryController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:product_category){
         return await this.ProductCategoryService.addProductCategory(data)
     }
 
@@ -48,7 +49,7 @@ export class ProductCategoryController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('pc_code') pc_code: number, @Body() data){
+    update(@Param('pc_code') pc_code: number, @Body() data:product_category){
         return this.ProductCategoryService.updateProductCategory(pc_code,data)
     }
 

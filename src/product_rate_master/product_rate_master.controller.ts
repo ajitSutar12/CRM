@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { product_rate_master } from 'src/Entity/product_rate_master.entity';
 import { ProductRateMasterService } from './product_rate_master.service'
 
 @ApiTags('product-rate-master')
@@ -26,7 +27,7 @@ export class ProductRateMasterController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data:product_rate_master){
         return await this.ProductRateMasterService.addProductRateMaster(data)
     }
 
@@ -60,7 +61,7 @@ export class ProductRateMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('pr_code') pr_code: number, @Body() data){
+    update(@Param('pr_code') pr_code: number, @Body() data:product_rate_master){
         return this.ProductRateMasterService.updateProductRateMaster(pr_code,data)
     }
 

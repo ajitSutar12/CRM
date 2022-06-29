@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { task_category } from 'src/Entity/task_category.entity';
 import { TaskCategoryService } from '../task_category/task_category.service'
 
 @ApiTags('task-category')
@@ -19,7 +20,7 @@ export class TaskCategoryController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:task_category){
         return await this.TaskCategoryService.addTaskCategory(data)
     }
 
@@ -46,7 +47,7 @@ export class TaskCategoryController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('tc_code') tc_code: number, @Body() data){
+    update(@Param('tc_code') tc_code: number, @Body() data:task_category){
         return this.TaskCategoryService.updateTaskCategory(tc_code,data)
     }
 

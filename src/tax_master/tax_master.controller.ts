@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { tax_master } from 'src/Entity/tax_master.entity';
 import { TaxMasterService } from './tax_master.service';
 
 @ApiTags('TaxMaster')
@@ -21,7 +22,7 @@ export class TaxMasterController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'},
                 }}})
-    create(@Body() data){
+    create(@Body() data:tax_master){
         return this.taxMasterService.addTaxData(data)
     }
     
@@ -53,7 +54,7 @@ export class TaxMasterController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'},
         }}})
-    update(@Param('role_code') role_code: number, @Body() data){
+    update(@Param('role_code') role_code: number, @Body() data:tax_master){
         return this.taxMasterService.updateTaxData(role_code,data);
     }
     

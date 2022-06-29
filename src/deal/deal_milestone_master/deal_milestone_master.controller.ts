@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { deal_milestone_master } from 'src/Entity/deal_milestone_master';
 import { DealMilestoneMasterService } from './deal_milestone_master.service';
 
 @ApiTags('DealMilestoneMaster')
@@ -12,13 +13,13 @@ export class DealMilestoneMasterController {
     @UsePipes(ValidationPipe)
     @ApiBody({
         schema: {
-            type: 'object',
+            type:'object',
             properties: {
                 deal_milestone: { type: 'string' },
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data:deal_milestone_master) {
         return this.dealMilestoneMasterService.addDealData(data)
     }
 

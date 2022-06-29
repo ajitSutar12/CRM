@@ -38,8 +38,8 @@ export class ContactMasterController {
 
     //------------------Finding all records from contact_master------------------//
     @Get()
-    find(){
-        return this.ContactMasterService.findAllContactMaster()
+    find(@Body() data){
+        return this.ContactMasterService.findAllContactMaster(data)
     }
 
     //------------------Finding one record from contact_master-------------------//

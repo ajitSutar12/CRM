@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { user_role_master } from 'src/Entity/user_role_master.entity';
 import { UserRoleMasterService } from './user_role_master.service';
 
 @ApiTags('UserRoleMaster')
@@ -23,7 +24,7 @@ export class UserRoleMasterController {
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data:user_role_master) {
         return this.userRoleMasterService.addUserRoleData(data)
     }
 
@@ -57,7 +58,7 @@ export class UserRoleMasterController {
             }
         }
     })
-    update(@Param('role_code') role_code: number, @Body() data) {
+    update(@Param('role_code') role_code: number, @Body() data:user_role_master) {
         return this.userRoleMasterService.updateUserRoleData(role_code, data);
     }
 

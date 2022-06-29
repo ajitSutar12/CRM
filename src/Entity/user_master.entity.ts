@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString ,MaxLength} from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { financial_year } from "./financial_year.entity";
 import { tax_master } from "./tax_master.entity";
@@ -12,28 +12,33 @@ export class user_master{
     @IsNotEmpty()
     user_code:Number;
 
-    @Column({length:35})
+    @Column()
     @IsString()
+    @MaxLength(35)
     @IsNotEmpty()
     first_name:String;
 
-    @Column({length:35})
+    @Column()
     @IsString()
+    @MaxLength(35)
     @IsNotEmpty()
     middle_name:String;
 
-    @Column({length:35})
+    @Column()
     @IsString()
+    @MaxLength(35)
     @IsNotEmpty()
     last_name:String;
 
-    @Column({length:20})
+    @Column()
     @IsString()
+    @MaxLength(20)
     @IsNotEmpty()
     mobile_number:String;
 
-    @Column({length:35})
+    @Column()
     @IsEmail()
+    @MaxLength(35)
     @IsNotEmpty()
     email_address:String;
 
@@ -41,18 +46,21 @@ export class user_master{
     @IsNotEmpty()
     gender:String;
 
-    @Column({length:255})
+    @Column()
     @IsString()
+    @MaxLength(255)
     @IsNotEmpty()
     address:String;
 
-    @Column({length:255})
+    @Column()
     @IsString()
+    @MaxLength(255)
     @IsNotEmpty()
     photo:String;
 
-    @Column({length:20})
+    @Column()
     @IsString()
+    @MaxLength(20)
     @IsNotEmpty()
     user_role_type:String;
 
@@ -61,8 +69,9 @@ export class user_master{
     @IsNotEmpty()
     user_role_id:Number;
 
-    @Column({length:300})
+    @Column()
     @IsString()
+    @MaxLength(300)
     @IsNotEmpty()
     url:String;
 
@@ -80,13 +89,15 @@ export class user_master{
     @IsNotEmpty()
     user_status:Number;
 
-    @Column({length:35})
+    @Column()
     @IsString()
+    @MaxLength(35)
     @IsNotEmpty()
     username:String;
 
-    @Column({length:35})
+    @Column()
     @IsString()
+    @MaxLength(35)
     @IsNotEmpty()
     password:String;
 

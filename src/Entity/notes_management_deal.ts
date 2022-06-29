@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString,MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { contact_master } from "./contact_master.entity";
 import { deal_master } from "./deal_master.entity";
@@ -8,23 +8,25 @@ export class notes_management_deal{
     @PrimaryGeneratedColumn({type:"int"})
     notes_code:Number;
 
-    @Column({nullable:true,type:"varchar",length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     notes_subject:String;
 
-    @Column({nullable:true,type:"varchar",length:500})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(500)
     note_content:String;
 
-    @Column({nullable:true,type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     contact_id:Number;
 
-    @Column({nullable:true,type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     deal_id:Number;
 
-    @Column({type:"int"})
+    @Column()
     @IsNotEmpty()
     @IsNumber()
     created_by:Number;
@@ -34,7 +36,7 @@ export class notes_management_deal{
     @IsDate()
     created_timestamp:Date;
 
-    @Column({type:"int"})
+    @Column()
     @IsNotEmpty()
     @IsNumber()
     updated_by:Number;
