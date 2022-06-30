@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { contact_email_mapping_attachment } from 'src/Entity/contact_email_mapping_attachment.entity';
 import { ContactEmailMappingAttachmentService } from './contact_email_mapping_attachment.service'
 
 @ApiTags('contact-email-mapping-attactment')
@@ -7,7 +8,7 @@ import { ContactEmailMappingAttachmentService } from './contact_email_mapping_at
 export class ContactEmailMappingAttachmentController {
     constructor(private readonly ContactEmailMappingAttachmentService: ContactEmailMappingAttachmentService) {}
 
-    //------------------Insert record in contact_email_mapping------------------//
+    //------------------Insert record in contact_email_mapping_attachment------------------//
     @Post()
     @UsePipes(ValidationPipe)
     @ApiBody({
@@ -24,7 +25,7 @@ export class ContactEmailMappingAttachmentController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data: contact_email_mapping_attachment){
         return await this.ContactEmailMappingAttachmentService.addContactEmailMappingAttachment(data)
     }
 
@@ -56,7 +57,7 @@ export class ContactEmailMappingAttachmentController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('cema_code') cema_code: number, @Body() data){
+    update(@Param('cema_code') cema_code: number, @Body() data:contact_email_mapping_attachment){
         return this.ContactEmailMappingAttachmentService.updateContactEmailMappingAttachment(cema_code,data)
     }
 

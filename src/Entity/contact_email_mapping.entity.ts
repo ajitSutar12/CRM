@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { contact_email_mapping_attachment } from "./contact_email_mapping_attachment.entity";
 
@@ -13,20 +13,24 @@ export class contact_email_mapping{
     @IsNumber()
     c_code : Number;
 
-    @Column({nullable:true, length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     to_email : String;
 
-    @Column({nullable:true, length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     cc_email : String;
 
-    @Column({nullable:true, length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     bcc_email : String;
 
-    @Column({nullable:true, length:150})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(150)
     subject : String;
 
     @Column({nullable:true})

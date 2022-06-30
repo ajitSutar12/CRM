@@ -1,7 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe,Request } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { campaign_master } from 'src/Entity/campaign_master.entity';
+<<<<<<< Updated upstream
 import { PaginationDto } from 'src/pagination/pagination.dto';
+=======
+>>>>>>> Stashed changes
 import { CampaignMasterService } from './campaign_master.service';
 import { Pagination } from './campaign_pagination.ts/pagination';
 
@@ -31,7 +34,7 @@ export class CampaignMasterController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'}
                 }}})
-    create(@Body() data){
+    create(@Body() data: campaign_master){
         return this.CampaignMasterService.addCampaignMaster(data)
     }
 
@@ -74,7 +77,7 @@ export class CampaignMasterController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'}
         }}})
-    update(@Param('cm_code') cm_code: number, @Body() data){
+    update(@Param('cm_code') cm_code: number, @Body() data:campaign_master){
         return this.CampaignMasterService.updateCampaignMaster(cm_code,data);
     }
 
@@ -84,8 +87,5 @@ export class CampaignMasterController {
     delete(@Param('cm_code') cm_code: number){
         return this.CampaignMasterService.deleteCampaignMaster(cm_code)
     }
-
-    //-------------------------pagination---------------------//
-   
 
 }

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { document_master } from 'src/Entity/document_master.entity';
 import { DocumentMasterService } from './document_master.service'
 
 @ApiTags('document-master')
@@ -19,7 +20,7 @@ export class DocumentMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data: document_master){
         return await this.DocumentMasterService.addDocumentMaster(data)
     }
 
@@ -46,7 +47,7 @@ export class DocumentMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('dm_code') dm_code: number, @Body() data){
+    update(@Param('dm_code') dm_code: number, @Body() data: document_master){
         return this.DocumentMasterService.updateDocumentMaster(dm_code,data)
     }
 

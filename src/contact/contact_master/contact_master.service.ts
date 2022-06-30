@@ -21,12 +21,13 @@ export class ContactMasterService {
 
     //------------------Finding all records from contact_master------------------//
     async findAllContactMaster(data){
-      //  var result = await this.contactMaster.find({where: {c_c_address: In(data.c_c_address),c_first_name:In(data.c_first_name)}})
-        var result = await this.contactMaster.createQueryBuilder("contact_master")
-        .where("contact_master.c_c_address IN (:c_c_address)", { c_c_address: data.c_c_address })
-        .orWhere("contact_master.c_first_name IN (:c_first_name)", { c_first_name: data.c_first_name })
-        .getMany();
-        return result                                       
+        var result =  await this.contactMaster.find({where: {c_c_address: In(data.c_c_address), c_first_name: In(data.c_first_name)}})
+        // await this.contactMaster.createQueryBuilder("contact_master")
+        //                 .where("contact_master.c_first_name IN (:c_first_name)", { c_first_name: data.c_first_name })
+        //                 .andWhere("contact_master.c_c_address IN (:c_c_address)", { c_c_address: data.c_c_address })
+        //                 //.andWhere("contact_master.")
+        //                 .getMany();
+        return result
     }
 
     //------------------Finding one record from contact_master-------------------//

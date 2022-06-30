@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiTags,ApiBody } from '@nestjs/swagger';
+import { deal_master_Milestone_mapping } from 'src/Entity/deal_master_milestoneMapping';
 import { DealMasterMilestoneMappingService } from './deal_master_milestone_mapping.service';
 
 @ApiTags('DealMasterMilestoneMapping')
@@ -24,7 +25,7 @@ export class DealMasterMilestoneMappingController {
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data: deal_master_Milestone_mapping) {
         return this.dealMasterMilestoneMappingService.addDealData(data)
     }
 
@@ -59,7 +60,7 @@ export class DealMasterMilestoneMappingController {
             }
         }
     })
-    update(@Param('dmmm_id') dmmm_id: number, @Body() data) {
+    update(@Param('dmmm_id') dmmm_id: number, @Body() data: deal_master_Milestone_mapping) {
         return this.dealMasterMilestoneMappingService.updateDealData(dmmm_id, data);
     }
 

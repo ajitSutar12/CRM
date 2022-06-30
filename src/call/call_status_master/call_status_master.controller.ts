@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { call_status_master } from 'src/Entity/call_status_master.entity';
 import { CallStatusMasterService } from '../call_status_master/call_status_master.service'
 
 @ApiTags('call-status-master')
@@ -19,7 +20,7 @@ export class CallStatusMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:call_status_master){
         return await this.CallStatusMasterService.addCallStatusMaster(data)
     }
 
@@ -46,7 +47,7 @@ export class CallStatusMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('csm_code') csm_code: number, @Body() data){
+    update(@Param('csm_code') csm_code: number, @Body() data: call_status_master){
         return this.CallStatusMasterService.updateCallStatusMaster(csm_code,data)
     }
 

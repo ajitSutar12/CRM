@@ -26,7 +26,11 @@ export class NotesManagementDealController {
             }
         }
     })
+<<<<<<< Updated upstream
     create(@Body() data:notes_management_deal) {
+=======
+    create(@Body() data: notes_management_deal) {
+>>>>>>> Stashed changes
         return this.notesManagementDealService.addNotesManagementDealData(data)
     }
 
@@ -62,7 +66,11 @@ export class NotesManagementDealController {
             }
         }
     })
+<<<<<<< Updated upstream
     update(@Param('notes_code') notes_code: number, @Body()  data:notes_management_deal) {
+=======
+    update(@Param('notes_code') notes_code: number, @Body() data: notes_management_deal) {
+>>>>>>> Stashed changes
         return this.notesManagementDealService.updateNotesManagementDealData(notes_code, data);
     }
 

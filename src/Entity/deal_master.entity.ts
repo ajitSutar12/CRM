@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { contact_document_master } from "./contact_document_master.entity";
 import { contact_master } from "./contact_master.entity";
@@ -10,42 +10,46 @@ import { notes_management_deal } from "./notes_management_deal";
 import { task_management } from "./task_management.entity";
 @Entity()
 export class deal_master{
-    @PrimaryGeneratedColumn({type:"int"})
+    @PrimaryGeneratedColumn()
     @IsNotEmpty()
     deal_code:Number;
 
-    @Column({nullable:true, type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     contact_id:Number;
 
-    @Column({nullable:true,type:"varchar",length:50})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(50)
     deal_name:String;
 
-    @Column({nullable:true,type:"varchar",length:29})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(29)
     deal_value:String;
 
-    @Column({nullable:true,type:"varchar",length:10})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(10)
     deal_discount_in:String;
 
-    @Column({nullable:true,type:"varchar",length:10})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(10)
     deal_discount_input:String;
 
-    @Column({nullable:true,type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     deal_milestone:Number;
 
     @Column({nullable:true})
     deal_close_date:Date;
 
-    @Column({nullable:true,type:"text"})
+    @Column({nullable:true})
     @IsString()
     description:String;
 
-    @Column({type:"int"})
+    @Column()
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
@@ -54,7 +58,7 @@ export class deal_master{
     @IsNotEmpty()
     created_timestamp:Date;
 
-    @Column({type:"int"})
+    @Column()
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;

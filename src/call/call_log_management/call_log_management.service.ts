@@ -1,7 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { call_log_management } from 'src/Entity/call_log_management.entity';
-import { Repository } from 'typeorm';
+import { PaginationInterface } from 'src/pagination/pagination.interface';
+import { ILike, In, Repository } from 'typeorm';
+import { Pagination } from './pagination/pagination';
 
 @Injectable()
 export class CallLogManagementService {
@@ -20,11 +22,22 @@ export class CallLogManagementService {
     }
 
     //------------------Finding all records from call_log_management------------------//
-    async findAllCallLogManagement(){
-        var result = await this.callLogManagement.createQueryBuilder("call_log_management")
+    async findAllCallLogManagement(options: PaginationInterface,): Promise<Pagination<call_log_management[]>>{
+        var object = {}
+        for (var key in options.filterData) {
+            object[key] = In(options.filterData[key])
+        }
+        console.log(object)
+        var [data,recordsTotal] = await this.callLogManagement.createQueryBuilder("call_log_management")
                         .innerJoinAndSelect("call_log_management.call_status_master","csm")
-                        .getMany()
-        return result
+                        .take(options.limit)
+                        .skip(options.page)
+                        .where(object)
+                        .getManyAndCount()
+        return new Pagination<call_log_management[]>({
+            data,
+            recordsTotal,
+          });
     }
 
     //------------------Finding one record from call_log_management-------------------//

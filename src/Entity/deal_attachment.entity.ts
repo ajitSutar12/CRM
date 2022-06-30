@@ -1,26 +1,27 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { deal_master } from "./deal_master.entity";
 
 @Entity()
 export class deal_attachment{
-    @PrimaryGeneratedColumn({type:"int"})
-    @IsNotEmpty()
+    @PrimaryGeneratedColumn()
     da_code:Number;
 
-    @Column({nullable:true,type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     deal_code:Number;
 
-    @Column({nullable:true,type:"varchar",length:150})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(150)
     attachment_name:String;
 
-    @Column({nullable:true,type:"varchar",length:200})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(200)
     attachment_path:String;
 
-    @Column({type:"int"})
+    @Column()
     @IsNumber()
     @IsNotEmpty()
     created_by:Number;
@@ -29,7 +30,7 @@ export class deal_attachment{
     @IsNotEmpty()
     created_timestamp:Date;
 
-    @Column({type:"int"})
+    @Column()
     @IsNumber()
     @IsNotEmpty()
     updated_by:Number;

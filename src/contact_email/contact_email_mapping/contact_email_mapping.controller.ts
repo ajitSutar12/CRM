@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { contact_email_mapping } from 'src/Entity/contact_email_mapping.entity';
 import { ContactEmailMappingService } from './contact_email_mapping.service'
 
 @ApiTags('contact-email-mapping')
@@ -28,7 +29,7 @@ export class ContactEmailMappingController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data: contact_email_mapping){
         return await this.ContactEmailMappingService.addContactEmailMapping(data)
     }
 
@@ -64,7 +65,7 @@ export class ContactEmailMappingController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('cei_code') cei_code: number, @Body() data){
+    update(@Param('cei_code') cei_code: number, @Body() data: contact_email_mapping){
         return this.ContactEmailMappingService.updateContactEmailMapping(cei_code,data)
     }
 

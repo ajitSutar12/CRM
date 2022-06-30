@@ -19,7 +19,11 @@ export class DealMilestoneMasterController {
             }
         }
     })
+<<<<<<< Updated upstream
     create(@Body() data:deal_milestone_master) {
+=======
+    create(@Body() data: deal_milestone_master) {
+>>>>>>> Stashed changes
         return this.dealMilestoneMasterService.addDealData(data)
     }
 
@@ -48,7 +52,7 @@ export class DealMilestoneMasterController {
             }
         }
     })
-    update(@Param('dm_code') dm_code: number, @Body() data) {
+    update(@Param('dm_code') dm_code: number, @Body() data: deal_milestone_master) {
         return this.dealMilestoneMasterService.updateDealData(dm_code, data);
     }
 

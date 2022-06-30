@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { contact_master } from 'src/Entity/contact_master.entity';
 import { ContactMasterService } from './contact_master.service'
 
 @ApiTags('contact-master')
@@ -32,7 +33,7 @@ export class ContactMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data: contact_master){
         return await this.ContactMasterService.addContactMaster(data)
     }
 
@@ -72,7 +73,7 @@ export class ContactMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('c_code') c_code: number, @Body() data){
+    update(@Param('c_code') c_code: number, @Body() data: contact_master){
         return this.ContactMasterService.updateContactMaster(c_code,data)
     }
 

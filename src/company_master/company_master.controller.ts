@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { company_master } from 'src/Entity/company_master.entity';
 import { CompanyMasterService } from './company_master.service'
 
 @ApiTags('company-master')
@@ -29,7 +30,7 @@ export class CompanyMasterController {
                 }
             })
     
-    async save(@Body() data){
+    async save(@Body() data: company_master){
         return await this.CompanyMasterService.addCompanyMaster(data)
     }
 
@@ -66,7 +67,7 @@ export class CompanyMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('company_code') company_code: number, @Body() data){
+    update(@Param('company_code') company_code: number, @Body() data:company_master){
         return this.CompanyMasterService.updateCompanyMaster(company_code,data)
     }
 

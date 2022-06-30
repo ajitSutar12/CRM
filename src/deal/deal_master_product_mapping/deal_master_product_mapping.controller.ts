@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { deal_master_product_mapping } from 'src/Entity/deal_master_product_mapping';
 import { DealMasterProductMappingService } from './deal_master_product_mapping.service';
 
 @ApiTags('DealMasterProductMapping')
@@ -25,7 +26,7 @@ export class DealMasterProductMappingController {
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data: deal_master_product_mapping) {
         return this.dealMasterProductMappingService.addDealData(data)
     }
 
@@ -61,7 +62,7 @@ export class DealMasterProductMappingController {
             }
         }
     })
-    update(@Param('dmpm_code') dmpm_code: number, @Body() data) {
+    update(@Param('dmpm_code') dmpm_code: number, @Body() data: deal_master_product_mapping) {
         return this.dealMasterProductMappingService.updateDealData(dmpm_code, data);
     }
 

@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -7,39 +7,46 @@ export class company_master {
     @PrimaryGeneratedColumn()
     company_code : Number;
 
-    @Column({length:200})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(200)
     company_name: String;
 
-    @Column({length:30})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(30)
     company_contact: String;
 
-    @Column({length:50})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(50)
     company_email: String;
 
-    @Column({length:255})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(255)
     company_address: String;
 
-    @Column({length:60})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(60)
     name_format: String;
 
-    @Column({length:40})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(40)
     date_format: String;
 
-    @Column({length:60})
+    @Column()
     @IsString()
     @IsNotEmpty()
+    @MaxLength(60)
     calendar_week: string;
 
     @Column()

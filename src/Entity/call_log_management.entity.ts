@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { call_status_master } from './call_status_master.entity';
 
@@ -8,32 +8,38 @@ export class call_log_management{
     @PrimaryGeneratedColumn()
     clm_code : Number;
 
-    @Column({nullable:true,length:100})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(100)
     call_subject: String;
 
-    @Column({nullable:true,length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     phone_number: String;
 
-    @Column({nullable:true,length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     call_type: String;
 
     @Column({nullable:true})
     @IsNumber()
     call_status_id: Number;
 
-    @Column({nullable:true,length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     call_hour: String;
 
-    @Column({nullable:true,length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     call_minute: String;
 
-    @Column({nullable:true,length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     call_second: string;
 
     @Column({nullable:true})

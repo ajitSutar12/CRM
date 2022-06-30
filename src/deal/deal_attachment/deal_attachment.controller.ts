@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiTags,ApiBody } from '@nestjs/swagger';
+import { deal_attachment } from 'src/Entity/deal_attachment.entity';
 import { DealAttachmentService } from './deal_attachment.service';
 
 @ApiTags('DealAttachment')
@@ -24,7 +25,7 @@ export class DealAttachmentController {
             }
         }
     })
-    create(@Body() data) {
+    create(@Body() data: deal_attachment) {
         return this.dealAttachmentService.addDealData(data)
     }
 
@@ -59,7 +60,7 @@ export class DealAttachmentController {
             }
         }
     })
-    update(@Param('da_code') da_code: number, @Body() data) {
+    update(@Param('da_code') da_code: number, @Body() data: deal_attachment) {
         return this.dealAttachmentService.updateDealData(da_code, data);
     }
 

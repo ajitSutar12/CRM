@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { contact_document_master } from 'src/Entity/contact_document_master.entity';
 import { ContactDocumentMasterService } from './contact_document_master.service';
 
 @ApiTags('contact-document-master')
@@ -25,7 +26,7 @@ export class ContactDocumentMasterController {
             }
         }
     })
-    create(@Body() data){
+    create(@Body() data: contact_document_master){
         return this.ContactDocumentMasterService.addContactDocumentMaster(data)
     }
 
@@ -61,7 +62,7 @@ export class ContactDocumentMasterController {
             }
         }
     })
-    update(@Param('cdm_code') cdm_code: number, @Body() data){
+    update(@Param('cdm_code') cdm_code: number, @Body() data : contact_document_master){
         return this.ContactDocumentMasterService.updateContactDocumentMaster(cdm_code,data);
     }
 

@@ -1,6 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { call_log_management } from 'src/Entity/call_log_management.entity';
+import { PaginationDto } from 'src/pagination/pagination.dto';
+import { PaginationInterface } from 'src/pagination/pagination.interface';
 import { CallLogManagementService } from '../call_log_management/call_log_management.service'
+import { Pagination } from './pagination/pagination';
 
 @ApiTags('call-log-master')
 @Controller('call-log-master')
@@ -34,14 +38,19 @@ export class CallLogManagementController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data:call_log_management){
         return await this.CallLogManagementService.addCallLogManagement(data)
     }
 
     //------------------Finding all records from call_log_management------------------//
     @Get()
-    find(){
-        return this.CallLogManagementService.findAllCallLogManagement()
+    async find(@Request() request, @Body() dataTableParameters: PaginationDto
+    ): Promise<Pagination<call_log_management>>{
+        return await this.CallLogManagementService.findAllCallLogManagement({
+            limit: request.query.hasOwnProperty('limit') ? request.query.limit : dataTableParameters.length,
+            page: request.query.hasOwnProperty('page') ? request.query.page : dataTableParameters.start,
+            filterData: dataTableParameters.filterData,
+        })
     }
 
     //------------------Finding one record from call_log_management-------------------//
@@ -76,7 +85,7 @@ export class CallLogManagementController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('clm_code') clm_code: number, @Body() data){
+    update(@Param('clm_code') clm_code: number, @Body() data:call_log_management){
         return this.CallLogManagementService.updateCallLogManagement(clm_code,data)
     }
 

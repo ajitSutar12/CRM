@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
 import { event_related_master } from './event_related_master.entity';
 import { event_status_master } from './event_status_master.entity';
@@ -14,8 +14,9 @@ export class event_master {
     @IsNumber()
     etm_code: Number;
 
-    @Column({nullable:true, length:20})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(20)
     event_priority: String;
 
     @Column({nullable:true})
@@ -26,16 +27,18 @@ export class event_master {
     @IsDate()
     start_date: Date;
 
-    @Column({nullable:true, length:10})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(10)
     start_time: String;
 
     @Column({nullable:true})
     @IsDate()
     end_date: Date;
 
-    @Column({nullable:true, length:10})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(10)
     end_time: String;
 
     @Column({nullable:true})

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { event_master } from 'src/Entity/event_master.entity';
 import { EventMasterService } from '../event_master/event_master.service'
 
 @ApiTags('event-master')
@@ -33,7 +34,7 @@ export class EventMasterController {
         }
     })
     
-    async save(@Body() data){
+    async save(@Body() data: event_master){
         return await this.EventMasterService.addEventMaster(data)
     }
 
@@ -74,7 +75,7 @@ export class EventMasterController {
         }
     })
     @UsePipes(ValidationPipe)
-    update(@Param('event_code') event_code: number, @Body() data){
+    update(@Param('event_code') event_code: number, @Body() data: event_master){
         return this.EventMasterService.updateEventMaster(event_code,data)
     }
 

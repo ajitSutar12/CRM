@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { campaign_type_master } from "./campaign_type_master.entity";
 import { contact_campaign_mapping } from "./contact_campaign_mapping.entity";
@@ -14,12 +14,14 @@ export class campaign_master{
     @IsNumber()
     c_t_id:Number;
 
-    @Column({nullable:true,length:100})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(100)
     c_name:String;
 
-    @Column({nullable:true,length:50})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(50)
     c_status:String;
 
     @Column({nullable:true})
@@ -30,20 +32,24 @@ export class campaign_master{
     @IsDate()
     c_e_date:Date;
 
-    @Column({nullable:true,length:12})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(12)
     c_e_r:String;
 
-    @Column({nullable:true,length:15})
+    @Column({nullable:true})
     @IsEmail()
+    @MaxLength(15)
     b_cost:String;
 
-    @Column({nullable:true,length:12})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(12)
     genda_coster:String;
 
-    @Column({nullable:true,length:10})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(10)
     e_response:String;
 
     @Column({nullable:true})

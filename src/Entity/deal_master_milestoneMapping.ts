@@ -1,23 +1,24 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { deal_master } from "./deal_master.entity";
 import { deal_milestone_master } from "./deal_milestone_master";
 
 @Entity()
 export class deal_master_Milestone_mapping{
-    @PrimaryGeneratedColumn({type:"int"})
+    @PrimaryGeneratedColumn()
     dmmm_id:Number;
 
-    @Column({type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     deal_id:Number;
 
-    @Column({type:"int"})
+    @Column({nullable:true})
     @IsNumber()
     deal_milestone_id:Number;
 
-    @Column({type:"varchar",length:300})
+    @Column({nullable:true})
     @IsString()
+    @MaxLength(300)
     deal_lost_comment:String;
 
     @Column()

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { contact_campaign_mapping } from 'src/Entity/contact_campaign_mapping.entity';
 import { ContactCampaignMappingService } from './contact_campaign_mapping.service';
 
 @ApiTags('contact-campaign-mapping')
@@ -20,7 +21,7 @@ export class ContactCampaignMappingController {
                     updated_by:{type:'number'},
                     updated_timestamp:{type:'string'}
                 }}})
-    create(@Body() data){
+    create(@Body() data: contact_campaign_mapping){
         return this.ContactCampaignMappingService.addContactCampaignMapping(data)
     }
 
@@ -51,7 +52,7 @@ export class ContactCampaignMappingController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'}
         }}})
-    update(@Param('ccm_id') ccm_id: number, @Body() data){
+    update(@Param('ccm_id') ccm_id: number, @Body() data:contact_campaign_mapping){
         return this.ContactCampaignMappingService.updateContactCampaignMapping(ccm_id,data);
     }
 
