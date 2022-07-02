@@ -49,6 +49,11 @@ import { task_category } from './Entity/task_category.entity';
 import { contact_document_master } from './Entity/contact_document_master.entity';
 import { CampaignModule } from './campaign/campaign.module';
 import { ContactModule } from './contact/contact.module';
+import { ExpenseModule } from './expense/expense.module';
+import { target_master } from './Entity/target_master.entity';
+import { TargetMasterModule } from './target_master/target_master.module';
+
+
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
@@ -56,7 +61,7 @@ import { ContactModule } from './contact/contact.module';
                  product_master, product_type, unit_master, product_rate_master, country_state_city,deal_master,
                  financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage, task_category,
                  contact_document_master, deal_attachment, deal_master_product_mapping, deal_milestone_master,
-                 deal_master_milestone_mapping, notes_management_deal,company_master]),
+                 deal_master_milestone_mapping, notes_management_deal,company_master,target_master]),
               CompanyMasterModule,
               MenuMasterModule,
               FinancialYearModule,
@@ -76,7 +81,10 @@ import { ContactModule } from './contact/contact.module';
               TaskModule,
               DealModule,
               CampaignModule,
-              ContactModule],
+              ContactModule,
+              ExpenseModule,
+              TargetMasterModule,
+              ],
   controllers: [AppController],
   providers: [AppService],
 })

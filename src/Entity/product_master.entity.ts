@@ -4,6 +4,7 @@ import { deal_master_product_mapping } from './deal_master_product_mapping';
 import { product_category } from './product_category.entity';
 import { product_rate_master } from './product_rate_master.entity';
 import { product_type } from './product_type.entity';
+import { target_master } from './target_master.entity';
 import { unit_master } from './unit_master.entity';
 
 @Entity()
@@ -74,5 +75,8 @@ export class product_master {
 
     @OneToMany(() => deal_master_product_mapping, deal_master_product_mapping => deal_master_product_mapping.product_master)
     deal_master_product_mapping:deal_master_product_mapping[]
+
+    @OneToMany(() => target_master, target_master => target_master.product_master)
+    target_master:target_master[]
 
 }

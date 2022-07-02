@@ -1,6 +1,8 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString ,MaxLength} from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { expense_master } from "./expense_master.entity";
 import { financial_year } from "./financial_year.entity";
+import { target_master } from "./target_master.entity";
 import { tax_master } from "./tax_master.entity";
 import { user_menu_access } from "./user_menu_access.entity";
 import { user_role_master } from "./user_role_master.entity";
@@ -120,12 +122,6 @@ export class user_master{
     @JoinColumn({name:"user_role_id"})
     user_role_master:user_role_master[]
 
-    @OneToMany(()=> user_role_master, user_role_master =>user_role_master.user_master_created)
-    user_role_master_created:user_role_master[]
-
-    @OneToMany(()=> user_role_master, user_role_master =>user_role_master.user_master_updated)
-    user_role_master_updated:user_role_master[]
-
     @OneToMany(()=> financial_year, financial_year =>financial_year.user_master_created)
     financial_year_created:financial_year[]
 
@@ -137,4 +133,10 @@ export class user_master{
 
     @OneToMany(()=> tax_master, tax_master_updated =>tax_master_updated.user_master_updated)
     tax_master_updated:tax_master[]
+
+    @OneToMany(()=> expense_master, expense_master =>expense_master.user_master)
+    expense_master:expense_master[]
+
+    @ManyToOne(() => target_master, target_master => target_master.user_master)
+    target_master:target_master[]
 }

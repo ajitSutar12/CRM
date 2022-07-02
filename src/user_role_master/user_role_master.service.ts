@@ -29,8 +29,6 @@ export class UserRoleMasterService {
     //-------------------------------find all userRole data----------------------------//
     async getAllUserRole(){
         var result = await this.userRoleMaster.createQueryBuilder("user_role_master") 
-                                .leftJoinAndSelect("user_role_master.user_master_created",'umc')
-                                .leftJoinAndSelect("user_role_master.user_master_updated",'umu')
                                 .getMany()
         return result;
     }

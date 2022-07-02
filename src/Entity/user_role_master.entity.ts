@@ -43,11 +43,5 @@ export class user_role_master{
     @OneToMany(()=> user_master, user_master =>user_master.user_role_master)
     user_master:user_master[]
 
-    @ManyToOne(() => user_master, user_master =>user_master.user_role_master_created)
-    @JoinColumn({name:"created_by"})
-    user_master_created:user_master[]
 
-    @ManyToOne(() => user_master, user_master =>user_master.user_role_master_updated)
-    @JoinColumn({name:"updated_by"})
-    user_master_updated:user_master[]
 }

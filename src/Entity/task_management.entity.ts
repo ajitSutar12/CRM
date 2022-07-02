@@ -1,6 +1,7 @@
 import { IsDate, IsNotEmpty, IsNumber, IsString ,MaxLength} from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany} from 'typeorm';
 import { deal_master } from './deal_master.entity';
+import { expense_master } from './expense_master.entity';
 import { task_category } from './task_category.entity';
 
 @Entity()
@@ -66,4 +67,6 @@ export class task_management{
     @JoinColumn({name:"deal_code"})
     deal_master:deal_master[]
 
+    @OneToMany(()=> expense_master, expense_master =>expense_master.task_management)
+    expense_master:expense_master[]
 }
