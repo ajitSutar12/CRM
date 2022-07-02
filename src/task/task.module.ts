@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { task_category } from 'src/Entity/task_category.entity';
-import { task_management } from 'src/Entity/task_management.entity';
+import { TaskCategoryModule } from './task_category/task_category.module';
+import { TaskManagementModule } from './task_management/task_management.module';
 
 @Module({
-    imports:[task_management, task_category]
+    imports:[TaskManagementModule, TaskCategoryModule]
 })
 export class TaskModule {}

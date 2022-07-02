@@ -9,7 +9,6 @@ import { user_role_master } from "./user_role_master.entity";
 export class user_master{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     user_code:Number;
 
     @Column()

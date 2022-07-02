@@ -6,7 +6,6 @@ import { user_master } from "./user_master.entity";
 export class tax_master{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     t_code:Number;
 
     @Column()
@@ -31,9 +30,8 @@ export class tax_master{
     created_by:Number;
  
     @Column()
-    @IsDate()
     @IsNotEmpty()
-    create_timestamp:Date;
+    created_timestamp:Date;
 
     @Column()
     @IsNumber()
@@ -41,7 +39,6 @@ export class tax_master{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 

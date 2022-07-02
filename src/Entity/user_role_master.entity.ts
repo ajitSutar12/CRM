@@ -21,14 +21,14 @@ export class user_role_master{
 
     @Column()
     @IsNumber()
-    @MaxLength(11)
+    
     @IsNotEmpty()
     created_by:Number;
  
     @Column()
-    @IsDate()
+
     @IsNotEmpty()
-    create_timestamp:Date;
+    created_timestamp:Date;
  
     @Column()
     @IsNumber()
@@ -36,7 +36,7 @@ export class user_role_master{
     updated_by:Number;
   
     @Column()
-    @IsDate()
+    
     @IsNotEmpty()
     updated_timestamp:Date;
 

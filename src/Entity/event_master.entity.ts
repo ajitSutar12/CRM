@@ -63,7 +63,6 @@ export class event_master {
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -73,7 +72,6 @@ export class event_master {
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 

@@ -12,7 +12,7 @@ export class UnitMasterService {
     async addUnitData(data){
         let result = await this.unitMaster.save(data);
         if(result){
-            let msg={message:"Data Added Successfully"}
+            let msg={message:"Added Successfully"}
             return msg;
         }
     }
@@ -39,7 +39,7 @@ export class UnitMasterService {
         }
         let result= await this.unitMaster.update(u_code,data);
         if(result){
-            let msg={message:"Data updated Successfully"}
+            let msg={message:"Updated Successfully"}
             return msg;
         }
     }
@@ -52,7 +52,7 @@ export class UnitMasterService {
         }
         let result= await this.unitMaster.delete(u_code);
         if(result){
-            let msg={message:"Data deleted Successfully"};
+            let msg={message:"Deleted Successfully"};
             return msg;
         }
     }

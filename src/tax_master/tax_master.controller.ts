@@ -54,8 +54,8 @@ export class TaxMasterController {
             updated_by:{type:'number'},
             updated_timestamp:{type:'string'},
         }}})
-    update(@Param('role_code') role_code: number, @Body() data:tax_master){
-        return this.taxMasterService.updateTaxData(role_code,data);
+    update(@Param('t_code') t_code: number, @Body() data:tax_master){
+        return this.taxMasterService.updateTaxData(t_code,data);
     }
     
     //------------------------------delete Tax data-------------------------------//

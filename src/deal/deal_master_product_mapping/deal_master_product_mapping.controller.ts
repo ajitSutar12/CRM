@@ -15,7 +15,7 @@ export class DealMasterProductMappingController {
         schema: {
             type: 'object',
             properties: {
-                deal_id: { type: 'number' },
+                deal_code: { type: 'number' },
                 product_code: { type: 'number' },
                 product_qty:{ type: 'number' },
                 product_rate: { type: 'string' },

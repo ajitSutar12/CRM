@@ -45,7 +45,6 @@ export class product_master {
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -55,7 +54,6 @@ export class product_master {
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 

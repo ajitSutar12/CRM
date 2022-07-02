@@ -12,7 +12,7 @@ export class TaxMasterService {
     async addTaxData(data){
         let result = await this.taxMaster.save(data);
         if(result){
-            let msg={message:"Tax Data Added Successfully"}
+            let msg={message:"Added Successfully"}
             return msg;
         }
     }
@@ -43,7 +43,7 @@ export class TaxMasterService {
         }
         let result= await this.taxMaster.update(t_code,data);
         if(result){
-            let msg={message:"Tax Data updated Successfully"}
+            let msg={message:"Updated Successfully"}
             return msg;
         }
     }
@@ -56,7 +56,7 @@ export class TaxMasterService {
         }
         let result= await this.taxMaster.delete(t_code);
         if(result){
-            let msg={message:"Tax Data deleted Successfully"};
+            let msg={message:"Deleted Successfully"};
             return msg;
         }
     }

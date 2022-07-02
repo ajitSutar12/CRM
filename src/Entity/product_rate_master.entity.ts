@@ -18,7 +18,6 @@ export class product_rate_master {
     p_rate: String;
 
     @Column({nullable:true})
-    @IsDate()
     date: Date;
 
     @Column()
@@ -32,7 +31,6 @@ export class product_rate_master {
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -42,7 +40,6 @@ export class product_rate_master {
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 

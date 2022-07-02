@@ -39,7 +39,6 @@ export class user_menu_access{
     created_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp:Date;
 
@@ -49,7 +48,6 @@ export class user_menu_access{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 

@@ -5,7 +5,6 @@ import { contact_master } from "./contact_master.entity";
 @Entity()
 export class notes_manage{
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     notes_code: Number;
 
     @Column({nullable:true})
@@ -28,7 +27,6 @@ export class notes_manage{
     created_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp:Date;
 
@@ -38,7 +36,6 @@ export class notes_manage{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 

@@ -19,7 +19,6 @@ export class task_management{
     t_c_id: Number;
 
     @Column({nullable:true})
-    @IsDate()
     t_due_date: Date;
 
     @Column({nullable:true})
@@ -47,7 +46,6 @@ export class task_management{
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -57,7 +55,6 @@ export class task_management{
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 

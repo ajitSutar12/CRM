@@ -6,7 +6,6 @@ import { user_master } from "./user_master.entity";
 export class financial_year{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     fy_code:Number;
  
     @Column()
@@ -38,9 +37,8 @@ export class financial_year{
     created_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
-    create_timestamp:Date;
+    created_timestamp:Date;
 
     @Column()
     @IsNumber()
@@ -48,7 +46,6 @@ export class financial_year{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 

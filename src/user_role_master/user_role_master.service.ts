@@ -43,7 +43,7 @@ export class UserRoleMasterService {
         }
         let result= await this.userRoleMaster.update(role_code,data);
         if(result){
-            let msg={message:"UserRole Data updated Successfully"}
+            let msg={message:"Updated Successfully"}
             return msg;
         }
     }
@@ -56,7 +56,7 @@ export class UserRoleMasterService {
         }
         let result= await this.userRoleMaster.delete(role_code);
         if(result){
-            let msg={message:"UserRole Data deleted Successfully"};
+            let msg={message:"Deleted Successfully"};
             return msg;
         }
     }
