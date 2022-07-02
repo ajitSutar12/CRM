@@ -33,7 +33,6 @@ export class notes_management_deal{
 
     @Column()
     @IsNotEmpty()
-    @IsDate()
     created_timestamp:Date;
 
     @Column()
@@ -43,7 +42,6 @@ export class notes_management_deal{
 
     @Column()
     @IsNotEmpty()
-    @IsDate()
     updated_timestamp:Date;
 
     @ManyToOne(() => deal_master, deal_master =>deal_master.notes_management_deal)

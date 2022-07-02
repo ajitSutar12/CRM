@@ -20,8 +20,8 @@ export class ContactMasterService {
     }
 
     //------------------Finding all records from contact_master------------------//
-    async findAllContactMaster(data){
-        var result =  await this.contactMaster.find({where: {c_c_address: In(data.c_c_address), c_first_name: In(data.c_first_name)}})
+    async findAllContactMaster(){
+        var result =  await this.contactMaster.find()
         // await this.contactMaster.createQueryBuilder("contact_master")
         //                 .where("contact_master.c_first_name IN (:c_first_name)", { c_first_name: data.c_first_name })
         //                 .andWhere("contact_master.c_c_address IN (:c_c_address)", { c_c_address: data.c_c_address })

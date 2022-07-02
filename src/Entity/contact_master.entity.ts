@@ -1,5 +1,6 @@
 import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { contact_campaign_mapping } from './contact_campaign_mapping.entity';
 import { contact_document_master } from './contact_document_master.entity';
 import { deal_master } from './deal_master.entity';
 import { notes_manage } from './notes_manage.entity';
@@ -67,7 +68,6 @@ export class contact_master {
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -77,7 +77,6 @@ export class contact_master {
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 
@@ -92,4 +91,7 @@ export class contact_master {
 
     @OneToMany(()=> contact_document_master, contact_document_master =>contact_document_master.contact_master)
     contact_document_master:contact_document_master[]
+
+    @OneToMany(()=> contact_campaign_mapping, contact_campaign_mapping =>contact_campaign_mapping.contact_master)
+    contact_campaign_mapping:contact_campaign_mapping[]
 }

@@ -42,7 +42,7 @@ import { deal_attachment } from './Entity/deal_attachment.entity';
 import { deal_master_product_mapping } from './Entity/deal_master_product_mapping';
 import { deal_milestone_master } from './Entity/deal_milestone_master';
 import { DealModule } from './deal/deal.module';
-import { deal_master_Milestone_mapping } from './Entity/deal_master_milestoneMapping';
+import { deal_master_milestone_mapping } from './Entity/deal_master_milestone_mapping';
 import { notes_management_deal } from './Entity/notes_management_deal';
 import { task_management } from './Entity/task_management.entity';
 import { task_category } from './Entity/task_category.entity';
@@ -56,7 +56,7 @@ import { ContactModule } from './contact/contact.module';
                  product_master, product_type, unit_master, product_rate_master, country_state_city,deal_master,
                  financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage, task_category,
                  contact_document_master, deal_attachment, deal_master_product_mapping, deal_milestone_master,
-                 deal_master_Milestone_mapping, notes_management_deal,company_master]),
+                 deal_master_milestone_mapping, notes_management_deal,company_master]),
               CompanyMasterModule,
               MenuMasterModule,
               FinancialYearModule,

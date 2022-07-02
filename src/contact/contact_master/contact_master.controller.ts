@@ -39,8 +39,8 @@ export class ContactMasterController {
 
     //------------------Finding all records from contact_master------------------//
     @Get()
-    find(@Body() data){
-        return this.ContactMasterService.findAllContactMaster(data)
+    find(){
+        return this.ContactMasterService.findAllContactMaster()
     }
 
     //------------------Finding one record from contact_master-------------------//

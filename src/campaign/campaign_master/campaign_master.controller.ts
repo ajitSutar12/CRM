@@ -1,10 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe,Request } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { campaign_master } from 'src/Entity/campaign_master.entity';
-<<<<<<< Updated upstream
 import { PaginationDto } from 'src/pagination/pagination.dto';
-=======
->>>>>>> Stashed changes
 import { CampaignMasterService } from './campaign_master.service';
 import { Pagination } from './campaign_pagination.ts/pagination';
 
@@ -28,7 +25,7 @@ export class CampaignMasterController {
                     b_cost:{type:'string'},
                     a_cost:{type:'string'},
                     e_response:{type:'string'},
-                    description:{type:'number'},
+                    description:{type:'string'},
                     created_by:{type:'number'},
                     created_timestamp:{type:'string'},
                     updated_by:{type:'number'},

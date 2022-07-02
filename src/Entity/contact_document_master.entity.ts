@@ -8,7 +8,6 @@ import { document_master } from "./document_master.entity";
 export class contact_document_master{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     cdm_code:Number;
 
     @Column({nullable:true})

@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { deal_master_Milestone_mapping } from 'src/Entity/deal_master_milestoneMapping';
+import { deal_master_milestone_mapping } from 'src/Entity/deal_master_milestone_mapping';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class DealMasterMilestoneMappingService {
-    constructor(@InjectRepository(deal_master_Milestone_mapping) private dealMasterMilestoneMapping:Repository<deal_master_Milestone_mapping>){}
+    constructor(@InjectRepository(deal_master_milestone_mapping) private dealMasterMilestoneMapping:Repository<deal_master_milestone_mapping>){}
 
     //-------------------------------------dealMasterMilestoneMapping add---------------------------------//
         

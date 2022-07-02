@@ -2,12 +2,12 @@ import { IsNotEmpty, IsNumber } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { campaign_master } from "./campaign_master.entity";
 import { campaign_type_master } from "./campaign_type_master.entity";
+import { contact_master } from "./contact_master.entity";
 
 @Entity()
 export class contact_campaign_mapping{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     ccm_id:Number;
 
     @Column({nullable:true})
@@ -36,11 +36,11 @@ export class contact_campaign_mapping{
     @IsNotEmpty()
     updated_timestamp:Date;
 
-    @ManyToOne(() => campaign_master, campaign_master =>campaign_master.contact_campaign_mapping)
+    @ManyToOne(() => contact_master, contact_master =>contact_master.contact_campaign_mapping)
     @JoinColumn({name:"c_id"})
-    campaign_master:campaign_master[]
+    contact_master:contact_master[]
 
-    @ManyToOne(() => campaign_type_master, campaign_type_master =>campaign_type_master.contact_campaign_mapping)
+    @ManyToOne(() => campaign_master, campaign_master =>campaign_master.contact_campaign_mapping)
     @JoinColumn({name:"camp_id"})
-    campaign_type_master:campaign_type_master[]
+    campaign_master:campaign_master[]
 }

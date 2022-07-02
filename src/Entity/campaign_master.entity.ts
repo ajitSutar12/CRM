@@ -7,7 +7,6 @@ import { contact_campaign_mapping } from "./contact_campaign_mapping.entity";
 export class campaign_master{
 
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     cm_code:Number;
 
     @Column({nullable:true})
@@ -25,11 +24,9 @@ export class campaign_master{
     c_status:String;
 
     @Column({nullable:true})
-    @IsDate()
     c_s_date:Date;
 
     @Column({nullable:true})
-    @IsDate()
     c_e_date:Date;
 
     @Column({nullable:true})
@@ -38,14 +35,14 @@ export class campaign_master{
     c_e_r:String;
 
     @Column({nullable:true})
-    @IsEmail()
+    @IsString()
     @MaxLength(15)
     b_cost:String;
 
     @Column({nullable:true})
     @IsString()
     @MaxLength(12)
-    genda_coster:String;
+    a_cost:String;
 
     @Column({nullable:true})
     @IsString()

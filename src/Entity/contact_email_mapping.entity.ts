@@ -5,7 +5,6 @@ import { contact_email_mapping_attachment } from "./contact_email_mapping_attach
 @Entity()
 export class contact_email_mapping{
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     cei_code: Number;
 
     @Column({nullable:true})
@@ -43,7 +42,6 @@ export class contact_email_mapping{
     created_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp:Date;
 
@@ -53,7 +51,6 @@ export class contact_email_mapping{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
 

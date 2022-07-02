@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
 import { contact_document_master } from "./contact_document_master.entity";
 import { contact_master } from "./contact_master.entity";
 import { deal_attachment } from "./deal_attachment.entity";
-import { deal_master_Milestone_mapping } from "./deal_master_milestoneMapping";
+import { deal_master_milestone_mapping } from "./deal_master_milestone_mapping";
 import { deal_master_product_mapping } from "./deal_master_product_mapping";
 import { deal_milestone_master } from "./deal_milestone_master";
 import { notes_management_deal } from "./notes_management_deal";
@@ -11,7 +11,6 @@ import { task_management } from "./task_management.entity";
 @Entity()
 export class deal_master{
     @PrimaryGeneratedColumn()
-    @IsNotEmpty()
     deal_code:Number;
 
     @Column({nullable:true})
@@ -84,8 +83,8 @@ export class deal_master{
     @OneToMany(() => notes_management_deal, notes_management_deal =>notes_management_deal.deal_master)
     notes_management_deal:deal_master[]
     
-    @OneToMany(() => deal_master_Milestone_mapping, deal_master_Milestone_mapping =>deal_master_Milestone_mapping.deal_master)
-    deal_master_Milestone_mapping:deal_master_Milestone_mapping[]
+    @OneToMany(() => deal_master_milestone_mapping, deal_master_milestone_mapping =>deal_master_milestone_mapping.deal_master)
+    deal_master_milestone_mapping:deal_master_milestone_mapping[]
 
     @OneToMany(() => task_management, task_management => task_management.deal_master)
     task_management:task_management[]

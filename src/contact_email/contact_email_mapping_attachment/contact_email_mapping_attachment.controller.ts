@@ -3,8 +3,8 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { contact_email_mapping_attachment } from 'src/Entity/contact_email_mapping_attachment.entity';
 import { ContactEmailMappingAttachmentService } from './contact_email_mapping_attachment.service'
 
-@ApiTags('contact-email-mapping-attactment')
-@Controller('contact-email-mapping-attactment')
+@ApiTags('contact-email-mapping-attachment')
+@Controller('contact-email-mapping-attachment')
 export class ContactEmailMappingAttachmentController {
     constructor(private readonly ContactEmailMappingAttachmentService: ContactEmailMappingAttachmentService) {}
 

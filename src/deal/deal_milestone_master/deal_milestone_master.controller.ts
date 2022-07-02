@@ -19,11 +19,7 @@ export class DealMilestoneMasterController {
             }
         }
     })
-<<<<<<< Updated upstream
     create(@Body() data:deal_milestone_master) {
-=======
-    create(@Body() data: deal_milestone_master) {
->>>>>>> Stashed changes
         return this.dealMilestoneMasterService.addDealData(data)
     }
 

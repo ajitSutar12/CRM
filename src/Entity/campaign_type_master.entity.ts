@@ -17,6 +17,4 @@ export class campaign_type_master{
     @OneToMany(()=> campaign_master, campaign_master =>campaign_master.campaign_type_master)
     campaign_master:campaign_master[]
 
-    @OneToMany(()=> contact_campaign_mapping, contact_campaign_mapping =>contact_campaign_mapping.campaign_type_master)
-    contact_campaign_mapping:contact_campaign_mapping[]
 }

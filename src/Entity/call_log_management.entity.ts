@@ -47,7 +47,6 @@ export class call_log_management{
     description: string;
 
     @Column({nullable:true})
-    @IsDate()
     followup_date: Date;
 
     @Column()
@@ -56,7 +55,6 @@ export class call_log_management{
     created_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp: Date;
 
@@ -66,7 +64,6 @@ export class call_log_management{
     updated_by: Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp: Date;
 
@@ -75,7 +72,6 @@ export class call_log_management{
     followup_status: Number;
 
     @Column({nullable:true})
-    @IsDate()
     followup_actual_date: Date;
         
     @Column({nullable:true})

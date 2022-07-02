@@ -19,7 +19,7 @@ export class ContactCampaignMappingService {
 
     //-------------------------------find one contact_campaign_mapping-------------------//
     async getOneContactCampaignMapping(ccm_id) {
-        let findUser= await this.contactCampaignMapping.findOne({ where:{ccm_id: ccm_id }, relations:['campaign_master','campaign_type_master']});
+        let findUser= await this.contactCampaignMapping.findOne({ where:{ccm_id: ccm_id }, relations:['campaign_master','contact_master']});
         if(!findUser){
             throw new NotFoundException(`${ccm_id},data not found`);
         }
@@ -30,7 +30,7 @@ export class ContactCampaignMappingService {
     async getAllContactCampaignMapping(){
         const result = await this.contactCampaignMapping.createQueryBuilder("campaign_master") 
                         .leftJoinAndSelect("campaign_master.campaign_master",'cm')
-                        .leftJoinAndSelect("campaign_master.campaign_type_master",'ctm')
+                        .leftJoinAndSelect("campaign_master.contact_master",'ctm')
                         .getMany()
         return result
     }

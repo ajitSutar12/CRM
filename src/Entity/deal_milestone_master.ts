@@ -1,15 +1,11 @@
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { deal_master } from "./deal_master.entity";
-import { deal_master_Milestone_mapping } from "./deal_master_milestoneMapping";
+import { deal_master_milestone_mapping } from "./deal_master_milestone_mapping";
 
 @Entity()
 export class deal_milestone_master{
     @PrimaryGeneratedColumn()
-<<<<<<< Updated upstream
-=======
-    @IsNotEmpty()
->>>>>>> Stashed changes
     dm_code:Number;
 
     @Column()
@@ -20,7 +16,7 @@ export class deal_milestone_master{
     @OneToMany(() => deal_master, deal_master =>deal_master.deal_milestone_master)
     deal_master:deal_master[]
 
-    @OneToMany(() => deal_master_Milestone_mapping, deal_master_Milestone_mapping =>deal_master_Milestone_mapping.deal_milestone_master)
-    deal_master_Milestone_mapping:deal_master_Milestone_mapping[]
+    @OneToMany(() => deal_master_milestone_mapping, deal_master_milestone_mapping =>deal_master_milestone_mapping.deal_milestone_master)
+    deal_master_milestone_mapping:deal_master_milestone_mapping[]
 
 }

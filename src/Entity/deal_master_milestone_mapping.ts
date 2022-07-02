@@ -4,7 +4,7 @@ import { deal_master } from "./deal_master.entity";
 import { deal_milestone_master } from "./deal_milestone_master";
 
 @Entity()
-export class deal_master_Milestone_mapping{
+export class deal_master_milestone_mapping{
     @PrimaryGeneratedColumn()
     dmmm_id:Number;
 
@@ -27,7 +27,6 @@ export class deal_master_Milestone_mapping{
     created_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     created_timestamp:Date;
 
@@ -37,15 +36,14 @@ export class deal_master_Milestone_mapping{
     updated_by:Number;
 
     @Column()
-    @IsDate()
     @IsNotEmpty()
     updated_timestamp:Date;
     
-    @ManyToOne(() => deal_master, deal_master =>deal_master.deal_master_Milestone_mapping)
+    @ManyToOne(() => deal_master, deal_master =>deal_master.deal_master_milestone_mapping)
     @JoinColumn({name:"deal_id"})
     deal_master:deal_master[]
 
-    @ManyToOne(() => deal_milestone_master, deal_milestone_master =>deal_milestone_master.deal_master_Milestone_mapping)
+    @ManyToOne(() => deal_milestone_master, deal_milestone_master =>deal_milestone_master.deal_master_milestone_mapping)
     @JoinColumn({name:"deal_milestone_id"})
     deal_milestone_master:deal_milestone_master[]
 
