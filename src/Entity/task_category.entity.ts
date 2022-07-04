@@ -13,6 +13,9 @@ export class task_category{
     @MaxLength(40)
     task_category: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> task_management, task_management =>task_management.task_category)
     task_management:task_management[]
 }

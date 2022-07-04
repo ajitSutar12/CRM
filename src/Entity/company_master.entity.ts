@@ -66,4 +66,7 @@ export class company_master {
     @Column()
     @IsNotEmpty()
     updated_timestamp: Date;
+
+    @Column({default:0})
+    status: number
 }

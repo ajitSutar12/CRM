@@ -21,7 +21,7 @@ export class CompanyMasterService {
 
     //------------------Finding all records from company_master------------------//
     async findAllCompanyMaster(){
-        var result = await this.companyMaster.find()
+        var result = await this.companyMaster.find({where:{status:0}})
         return result
     }
 
@@ -30,7 +30,10 @@ export class CompanyMasterService {
         var result = await this.companyMaster.findOne({where: {company_code:company_code}})
         if(!result){
             throw new NotFoundException(`${company_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${company_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class CompanyMasterService {
         var output = await this.companyMaster.findOne({where: {company_code:company_code}})
         if(!output){
             throw new NotFoundException(`${company_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${company_code}, data not found`);
         }
         var result = await this.companyMaster.update(company_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class CompanyMasterService {
         if(!output){
             throw new NotFoundException(`${company_code} is not exist`)
         }
-        var result = await this.companyMaster.delete(company_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${company_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.companyMaster.update(company_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

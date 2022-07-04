@@ -42,6 +42,9 @@ export class tax_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => user_master, user_master_created =>user_master_created.tax_master_created)
     @JoinColumn({name:"created_by"})
     user_master_created:user_master[]

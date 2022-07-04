@@ -13,6 +13,9 @@ export class document_master{
     @MaxLength(40)
     d_name: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> contact_document_master, contact_document_master =>contact_document_master.document_master)
     contact_document_master:contact_document_master[]
 }

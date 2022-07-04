@@ -14,6 +14,9 @@ export class event_type_master{
     @MaxLength(40)
     event_type: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> event_master, event_master =>event_master.event_status_master)
     event_master:event_master[]
 }

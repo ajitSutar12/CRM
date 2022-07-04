@@ -49,6 +49,9 @@ export class financial_year{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => user_master, user_master =>user_master.financial_year_created)
     @JoinColumn({name:"created_by"})
     user_master_created:user_master[]

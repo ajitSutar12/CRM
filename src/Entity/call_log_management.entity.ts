@@ -76,7 +76,10 @@ export class call_log_management{
         
     @Column({nullable:true})
     @IsNumber()
-    Followup_by: Number;
+    followup_by: Number;
+
+    @Column({default:0})
+    status: number
 
     @ManyToOne(() => call_status_master, call_status_master =>call_status_master.call_log_management)
     @JoinColumn({name:"call_status_id"})

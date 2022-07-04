@@ -19,6 +19,9 @@ export class product_type{
     @IsNotEmpty()
     p_status: Number;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> product_master, product_master =>product_master.product_type)
     product_master:product_master[]
 }

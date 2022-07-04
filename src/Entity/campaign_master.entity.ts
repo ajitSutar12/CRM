@@ -71,6 +71,9 @@ export class campaign_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => campaign_type_master, campaign_type_master =>campaign_type_master.campaign_master)
     @JoinColumn({name:"c_t_id"})
     campaign_type_master:campaign_type_master[]

@@ -43,6 +43,9 @@ export class product_rate_master {
     @IsNotEmpty()
     updated_timestamp: Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => product_master, product_master =>product_master.product_rate_master)
     @JoinColumn({name:"p_code"})
     product_master:product_master[]

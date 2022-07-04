@@ -21,7 +21,7 @@ export class CampaignTypeMasterService {
 
     //------------------Finding all records from campaign_type_master------------------//
     async findAllCampaignTypeMaster(){
-        var result = await this.campaignTypeMaster.find()
+        var result = await this.campaignTypeMaster.find({where:{status:0}})
         return result
     }
 
@@ -30,7 +30,10 @@ export class CampaignTypeMasterService {
         var result = await this.campaignTypeMaster.findOne({where: {ct_code:ct_code}})
         if(!result){
             throw new NotFoundException(`${ct_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${ct_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class CampaignTypeMasterService {
         var output = await this.campaignTypeMaster.findOne({where: {ct_code:ct_code}})
         if(!output){
             throw new NotFoundException(`${ct_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${ct_code}, data not found`);
         }
         var result = await this.campaignTypeMaster.update(ct_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class CampaignTypeMasterService {
         if(!output){
             throw new NotFoundException(`${ct_code} is not exist`)
         }
-        var result = await this.campaignTypeMaster.delete(ct_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${ct_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.campaignTypeMaster.update(ct_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

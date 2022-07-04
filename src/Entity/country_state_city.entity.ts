@@ -22,4 +22,7 @@ export class country_state_city {
     @IsString()
     @MaxLength(40)
     city_name: String;
+
+    @Column({default:0})
+    status: number
 }

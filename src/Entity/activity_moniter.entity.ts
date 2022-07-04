@@ -34,16 +34,8 @@ export class activity_moniter{
     @IsNotEmpty()
     updated_timestamp: Date;
 
-    @Column({nullable:true})
-    @IsNumber()
-    followup_status: Number;
-
-    @Column({nullable:true})
-    followup_actual_date: Date;
-        
-    @Column({nullable:true})
-    @IsNumber()
-    Followup_by: Number;
+    @Column({default:0})
+    status: number
 
     @ManyToOne(() => transaction_master, transaction_master =>transaction_master.activity_moniter)
     @JoinColumn({name:"t_id"})

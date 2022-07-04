@@ -75,6 +75,9 @@ export class event_master {
     @IsNotEmpty()
     updated_timestamp: Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => event_type_master, event_type_master =>event_type_master.event_master)
     @JoinColumn({name:"etm_code"})
     event_type_master:event_type_master[]

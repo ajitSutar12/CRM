@@ -34,6 +34,9 @@ export class contact_email_mapping_attachment{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => contact_email_mapping, contact_email_mapping =>contact_email_mapping.contact_email_mapping_attachment)
     @JoinColumn({name:"cei_code"})
     contact_email_mapping:contact_email_mapping[]

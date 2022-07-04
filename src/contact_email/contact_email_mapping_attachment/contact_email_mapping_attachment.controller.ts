@@ -29,19 +29,19 @@ export class ContactEmailMappingAttachmentController {
         return await this.ContactEmailMappingAttachmentService.addContactEmailMappingAttachment(data)
     }
 
-    //------------------Finding all records from contact_email_mapping------------------//
+    //------------------Finding all records from contact_email_mapping_attachment------------------//
     @Get()
     find(){
         return this.ContactEmailMappingAttachmentService.findContactEmailMappingAttachment()
     }
 
-    //------------------Finding one record from contact_email_mapping-------------------//
+    //------------------Finding one record from contact_email_mapping_attachment-------------------//
     @Get(':cema_code')
     findOne(@Param('cema_code') cema_code: number){
         return this.ContactEmailMappingAttachmentService.findOneContactEmailMappingAttachment(cema_code)
     }
 
-    //------------------Update single record from contact_email_mapping------------------//
+    //------------------Update single record from contact_email_mapping_attachment------------------//
     @Put(':cema_code')
     @ApiBody({
         schema:{
@@ -61,7 +61,7 @@ export class ContactEmailMappingAttachmentController {
         return this.ContactEmailMappingAttachmentService.updateContactEmailMappingAttachment(cema_code,data)
     }
 
-    //------------------Delete single record from contact_email_mapping------------------//
+    //------------------Delete single record from contact_email_mapping_attachment------------------//
     @Delete(':cema_code')
     delete(@Param('cema_code') cema_code: number){
         return this.ContactEmailMappingAttachmentService.deleteContactEmailMappingAttachment(cema_code)

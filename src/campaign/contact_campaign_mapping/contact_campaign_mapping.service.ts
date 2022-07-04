@@ -19,11 +19,14 @@ export class ContactCampaignMappingService {
 
     //-------------------------------find one contact_campaign_mapping-------------------//
     async getOneContactCampaignMapping(ccm_id) {
-        let findUser= await this.contactCampaignMapping.findOne({ where:{ccm_id: ccm_id }, relations:['campaign_master','contact_master']});
-        if(!findUser){
+        let result= await this.contactCampaignMapping.findOne({ where:{ccm_id: ccm_id}, relations:['campaign_master','contact_master']});
+        if(!result){
             throw new NotFoundException(`${ccm_id},data not found`);
         }
-        return findUser;
+        if(result.status == 1){
+            throw new NotFoundException(`${ccm_id},data not found`);
+        }
+        return result;
     }
 
     //-------------------------------find all contact_campaign_mapping----------------------------//
@@ -31,6 +34,7 @@ export class ContactCampaignMappingService {
         const result = await this.contactCampaignMapping.createQueryBuilder("campaign_master") 
                         .leftJoinAndSelect("campaign_master.campaign_master",'cm')
                         .leftJoinAndSelect("campaign_master.contact_master",'ctm')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -40,6 +44,9 @@ export class ContactCampaignMappingService {
         let output= await this.contactCampaignMapping.findOne({ where:{ccm_id: ccm_id }});
         if(!output){
             throw new NotFoundException(`${ccm_id},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${ccm_id}, data not found`);
         }
         let result= await this.contactCampaignMapping.update(ccm_id,data);
         if(result){
@@ -54,7 +61,12 @@ export class ContactCampaignMappingService {
         if(!output){
             throw new NotFoundException(`${ccm_id}, data not found`);
         }
-        let result= await this.contactCampaignMapping.delete(ccm_id);
+        if(output.status == 1){
+            throw new NotFoundException(`${ccm_id}, data not found`);
+        }
+        output.status = 1
+        let result = await this.contactCampaignMapping.update(ccm_id, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

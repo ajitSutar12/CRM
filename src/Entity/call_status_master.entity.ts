@@ -13,6 +13,9 @@ export class call_status_master{
     @MaxLength(50)
     call_status: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> call_log_management, call_log_management =>call_log_management.call_status_master)
     call_log_management:call_log_management[]
 }

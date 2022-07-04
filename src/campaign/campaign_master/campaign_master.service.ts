@@ -12,8 +12,8 @@ export class CampaignMasterService {
     //-------------------------------------insert into campaign_master---------------------------------//
         
     async addCampaignMaster(data){
-        let addData = await this.campaignMaster.save(data);
-        if(addData){
+        let result = await this.campaignMaster.save(data);
+        if(result){
             let msg={message:"Added Successfully"}
             return msg;
         }
@@ -21,11 +21,14 @@ export class CampaignMasterService {
 
     //-------------------------------find one campaign_master-------------------//
     async getOneCampaignMaster(cm_code) {
-        let findUser= await this.campaignMaster.findOne({ where:{cm_code: cm_code }, relations:['campaign_type_master']});
-        if(!findUser){
+        let result= await this.campaignMaster.findOne({ where:{cm_code: cm_code }, relations:['campaign_type_master']});
+        if(!result){
             throw new NotFoundException(`${cm_code},data not found`);
         }
-        return findUser;
+        if(result.status == 1){
+            throw new NotFoundException(`${cm_code}, data not found`);
+        }
+        return result;
     }
     
     //-------------------------------find all campaign_master----------------------------//
@@ -40,6 +43,7 @@ export class CampaignMasterService {
           .take(options.limit)
           .skip(options.page)
           .where(object)
+          .andWhere({status:0})
           .orderBy('campaign_master.cm_code', 'DESC')
           .getManyAndCount()
         return new Pagination<campaign_master[]>({
@@ -54,6 +58,9 @@ export class CampaignMasterService {
         if(!output){
             throw new NotFoundException(`${cm_code},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${cm_code}, data not found`);
+        }
         let result= await this.campaignMaster.update(cm_code,data);
         if(result){
             let msg={message:"Updated Successfully"}
@@ -67,13 +74,15 @@ export class CampaignMasterService {
         if(!output){
             throw new NotFoundException(`${cm_code}, data not found`);
         }
-        let result= await this.campaignMaster.delete(cm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${cm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.campaignMaster.update(cm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;
         }
     }
-
-    //-----------------------pagination---------------------------------//
-    
 }

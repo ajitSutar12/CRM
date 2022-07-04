@@ -2,6 +2,7 @@ import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength } from 'clas
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { contact_campaign_mapping } from './contact_campaign_mapping.entity';
 import { contact_document_master } from './contact_document_master.entity';
+import { contact_visit_master } from './contact_visit_master.entity';
 import { deal_master } from './deal_master.entity';
 import { notes_manage } from './notes_manage.entity';
 import { notes_management_deal } from './notes_management_deal';
@@ -80,6 +81,9 @@ export class contact_master {
     @IsNotEmpty()
     updated_timestamp: Date;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> notes_manage, notes_manage =>notes_manage.contact_master)
     notes_manage:notes_manage[]
 
@@ -94,4 +98,7 @@ export class contact_master {
 
     @OneToMany(()=> contact_campaign_mapping, contact_campaign_mapping =>contact_campaign_mapping.contact_master)
     contact_campaign_mapping:contact_campaign_mapping[]
+
+    @OneToMany(()=> contact_visit_master, contact_visit_master =>contact_visit_master.contact_master)
+    contact_visit_master:contact_visit_master[]
 }

@@ -21,6 +21,9 @@ export class menu_master {
     @IsNotEmpty()
     m_subname: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> user_menu_access, user_menu_access =>user_menu_access.menu_master)
     user_menu_access:user_menu_access[]
 }

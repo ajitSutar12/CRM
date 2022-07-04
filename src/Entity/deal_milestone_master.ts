@@ -13,6 +13,9 @@ export class deal_milestone_master{
     @MaxLength(40)
     deal_milestone:String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(() => deal_master, deal_master =>deal_master.deal_milestone_master)
     deal_master:deal_master[]
 

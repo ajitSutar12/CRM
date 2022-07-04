@@ -58,6 +58,9 @@ export class product_master {
     @IsNotEmpty()
     updated_timestamp: Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => product_category, product_category =>product_category.product_master)
     @JoinColumn({name:"pc_code"})
     product_category:product_category[]

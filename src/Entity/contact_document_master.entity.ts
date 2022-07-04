@@ -45,6 +45,9 @@ export class contact_document_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => contact_master, contact_master =>contact_master.contact_document_master)
     @JoinColumn({name:"c_id"})
     contact_master :contact_master[]

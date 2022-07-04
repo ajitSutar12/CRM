@@ -6,8 +6,8 @@ import { PaginationInterface } from 'src/pagination/pagination.interface';
 import { CallLogManagementService } from '../call_log_management/call_log_management.service'
 import { Pagination } from './pagination/pagination';
 
-@ApiTags('call-log-master')
-@Controller('call-log-master')
+@ApiTags('call-log-management')
+@Controller('call-log-management')
 export class CallLogManagementController {
     constructor(private readonly CallLogManagementService: CallLogManagementService) {}
 

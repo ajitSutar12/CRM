@@ -13,6 +13,9 @@ export class transaction_master{
     @MaxLength(40)
     t_name: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> activity_moniter, activity_moniter =>activity_moniter.transaction_master)
     activity_moniter:activity_moniter[]
 }

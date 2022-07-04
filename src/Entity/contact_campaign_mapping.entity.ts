@@ -36,6 +36,9 @@ export class contact_campaign_mapping{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => contact_master, contact_master =>contact_master.contact_campaign_mapping)
     @JoinColumn({name:"c_id"})
     contact_master:contact_master[]

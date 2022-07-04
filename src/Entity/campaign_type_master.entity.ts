@@ -14,6 +14,9 @@ export class campaign_type_master{
     @MaxLength(40)
     type: String;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> campaign_master, campaign_master =>campaign_master.campaign_type_master)
     campaign_master:campaign_master[]
 

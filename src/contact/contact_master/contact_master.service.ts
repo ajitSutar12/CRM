@@ -20,8 +20,13 @@ export class ContactMasterService {
     }
 
     //------------------Finding all records from contact_master------------------//
-    async findAllContactMaster() {
-        var result = await this.contactMaster.find()        
+    async findAllContactMaster(){
+        var result =  await this.contactMaster.find({where:{status:0}})
+        // await this.contactMaster.createQueryBuilder("contact_master")
+        //                 .where("contact_master.c_first_name IN (:c_first_name)", { c_first_name: data.c_first_name })
+        //                 .andWhere("contact_master.c_c_address IN (:c_c_address)", { c_c_address: data.c_c_address })
+        //                 //.andWhere("contact_master.")
+        //                 .getMany();
         return result
     }
 
@@ -29,6 +34,9 @@ export class ContactMasterService {
     async findOneContactMaster(c_code) {
         var result = await this.contactMaster.findOne({ where: { c_code: c_code } })
         if (!result) {
+            throw new NotFoundException(`${c_code} is not exist`)
+        }
+        if(result.status == 1){
             throw new NotFoundException(`${c_code} is not exist`)
         }
         return result
@@ -39,6 +47,9 @@ export class ContactMasterService {
         var output = await this.contactMaster.findOne({ where: { c_code: c_code } })
         if (!output) {
             throw new NotFoundException(`${c_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${c_code}, data not found`);
         }
         var result = await this.contactMaster.update(c_code, data)
         if (result) {
@@ -53,10 +64,15 @@ export class ContactMasterService {
         if (!output) {
             throw new NotFoundException(`${c_code} is not exist`)
         }
-        var result = await this.contactMaster.delete(c_code)
-        if (result) {
-            var msg = { message: "Deleted successfully" }
-            return msg
+        if(output.status == 1){
+            throw new NotFoundException(`${c_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.contactMaster.update(c_code, {
+        ...(output.status && { status: 1 })});
+        if(result){
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

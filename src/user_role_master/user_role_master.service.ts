@@ -19,7 +19,7 @@ export class UserRoleMasterService {
     
     //-------------------------------find one userRole using role_code-------------------//
     async getOneUserRole(role_code) {
-        let result= await this.userRoleMaster.findOne({ where:{role_code: role_code }, relations:['user_master_created','user_master_updated']});
+        let result= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
         if(!result){
             throw new NotFoundException(`${role_code},data not found`);
         }

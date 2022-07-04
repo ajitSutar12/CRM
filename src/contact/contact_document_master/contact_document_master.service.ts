@@ -20,11 +20,14 @@ export class ContactDocumentMasterService {
 
     //-------------------------------find one contact_document_master-------------------//
     async getOneContactDocumentMaster(cdm_code) {
-        let findUser= await this.ContactDocumentMaster.findOne({ where:{cdm_code: cdm_code }, relations:['contact_master','document_master','deal_master']});
-        if(!findUser){
+        let result= await this.ContactDocumentMaster.findOne({ where:{cdm_code: cdm_code }, relations:['contact_master','document_master','deal_master']});
+        if(!result){
             throw new NotFoundException(`${cdm_code},data not found`);
         }
-        return findUser;
+        if(result.status == 1){
+            throw new NotFoundException(`${cdm_code},data not found`);
+        }
+        return result;
     }
 
     //-------------------------------find all contact_document_master----------------------------//
@@ -33,6 +36,7 @@ export class ContactDocumentMasterService {
                         .leftJoinAndSelect("contact_document_master.contact_master",'cm')
                         .leftJoinAndSelect("contact_document_master.document_master",'dm')
                         .leftJoinAndSelect("contact_document_master.deal_master",'dem')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -42,6 +46,9 @@ export class ContactDocumentMasterService {
         let output= await this.ContactDocumentMaster.findOne({ where:{cdm_code: cdm_code }});
         if(!output){
             throw new NotFoundException(`${cdm_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${cdm_code}, data not found`);
         }
         let result= await this.ContactDocumentMaster.update(cdm_code,data);
         if(result){
@@ -56,7 +63,12 @@ export class ContactDocumentMasterService {
         if(!output){
             throw new NotFoundException(`${cdm_code}, data not found`);
         }
-        let result= await this.ContactDocumentMaster.delete(cdm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${cdm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.ContactDocumentMaster.update(cdm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

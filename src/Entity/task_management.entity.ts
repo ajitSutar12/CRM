@@ -59,6 +59,9 @@ export class task_management{
     @IsNotEmpty()
     updated_timestamp: Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => task_category, task_category =>task_category.task_management)
     @JoinColumn({name:"t_c_id"})
     task_category:task_category[]

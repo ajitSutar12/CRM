@@ -20,6 +20,9 @@ export class unit_master {
     @IsNotEmpty()
     u_status: Number;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> product_master, product_master =>product_master.unit_master)
     product_master:product_master[]
 }

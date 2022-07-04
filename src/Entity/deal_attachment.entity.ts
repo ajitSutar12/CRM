@@ -39,6 +39,9 @@ export class deal_attachment{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => deal_master, deal_master =>deal_master.deal_attachment)
     @JoinColumn({name:"deal_code"})
     deal_master:deal_master[]

@@ -54,6 +54,9 @@ export class contact_email_mapping{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> contact_email_mapping_attachment, contact_email_mapping_attachment =>contact_email_mapping_attachment.contact_email_mapping)
     contact_email_mapping_attachment:contact_email_mapping_attachment[]
 }

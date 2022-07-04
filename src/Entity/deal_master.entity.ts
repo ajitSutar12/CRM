@@ -66,6 +66,9 @@ export class deal_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => contact_master, contact_master =>contact_master.deal_master)
     @JoinColumn({name:"contact_id"})
     contact_master:contact_master[]

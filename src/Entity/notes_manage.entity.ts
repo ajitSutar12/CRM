@@ -39,6 +39,9 @@ export class notes_manage{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => contact_master, contact_master =>contact_master.notes_manage)
     @JoinColumn({name:"contact_id"})
     contact_master:contact_master[]

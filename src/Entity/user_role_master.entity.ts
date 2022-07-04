@@ -40,8 +40,9 @@ export class user_role_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> user_master, user_master =>user_master.user_role_master)
     user_master:user_master[]
-
-
 }

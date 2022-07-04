@@ -51,6 +51,9 @@ export class user_menu_access{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => user_master, user_master =>user_master.user_menu_access)
     @JoinColumn({name:"user_code"})
     user_master:user_master[]

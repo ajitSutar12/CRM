@@ -44,6 +44,9 @@ export class notes_management_deal{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => deal_master, deal_master =>deal_master.notes_management_deal)
     @JoinColumn({name:"deal_id"})
     deal_master:deal_master[]

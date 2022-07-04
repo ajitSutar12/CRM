@@ -115,6 +115,9 @@ export class user_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @OneToMany(()=> user_menu_access, user_menu_access =>user_menu_access.user_master)
     user_menu_access:user_menu_access[]
 

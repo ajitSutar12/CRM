@@ -44,6 +44,9 @@ export class deal_master_product_mapping{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => deal_master, deal_master =>deal_master.deal_master_product_mapping)
     @JoinColumn({name:"deal_code"})
     deal_master:deal_master[]
@@ -51,7 +54,5 @@ export class deal_master_product_mapping{
     @ManyToOne(() => product_master, product_master =>product_master.deal_master_product_mapping)
     @JoinColumn({name:"product_code"})
     product_master:product_master[]
-
-   
 
 }

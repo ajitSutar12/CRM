@@ -38,6 +38,9 @@ export class deal_master_milestone_mapping{
     @Column()
     @IsNotEmpty()
     updated_timestamp:Date;
+
+    @Column({default:0})
+    status: number
     
     @ManyToOne(() => deal_master, deal_master =>deal_master.deal_master_milestone_mapping)
     @JoinColumn({name:"deal_id"})

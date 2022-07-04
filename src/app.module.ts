@@ -54,6 +54,7 @@ import { target_master } from './Entity/target_master.entity';
 import { TargetMasterModule } from './target_master/target_master.module';
 
 
+import { ActivityModule } from './activity/activity.module';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config),
@@ -61,7 +62,8 @@ import { TargetMasterModule } from './target_master/target_master.module';
                  product_master, product_type, unit_master, product_rate_master, country_state_city,deal_master,
                  financial_year, user_master, user_menu_access, user_role_master, tax_master, notes_manage, task_category,
                  contact_document_master, deal_attachment, deal_master_product_mapping, deal_milestone_master,
-                 deal_master_milestone_mapping, notes_management_deal,company_master,target_master]),
+                 deal_master_milestone_mapping, notes_management_deal,company_master, target_master]),
+                
               CompanyMasterModule,
               MenuMasterModule,
               FinancialYearModule,
@@ -82,9 +84,10 @@ import { TargetMasterModule } from './target_master/target_master.module';
               DealModule,
               CampaignModule,
               ContactModule,
+              ActivityModule,
               ExpenseModule,
-              TargetMasterModule,
-              ],
+              TargetMasterModule
+            ],
   controllers: [AppController],
   providers: [AppService],
 })
