@@ -23,6 +23,7 @@ export class NotesManageService {
     async findNotesManage(){
         var result = await this.notesManage.createQueryBuilder('notes_manage')
                         .leftJoinAndSelect('notes_manage.contact_master','cm')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -33,6 +34,9 @@ export class NotesManageService {
         if(!result){
             throw new NotFoundException(`${notes_code} is not exist`)
           }
+          if(result.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
+        }
         return result
     }
 
@@ -41,6 +45,9 @@ export class NotesManageService {
         var output = await this.notesManage.findOne({where: {notes_code:notes_code}})
         if(!output){
             throw new NotFoundException(`${notes_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
         }
         var result = await this.notesManage.update(notes_code, data)
         if(result){
@@ -55,10 +62,15 @@ export class NotesManageService {
         if(!output){
             throw new NotFoundException(`${notes_code} is not exist`)
         }
-        var result = await this.notesManage.delete(notes_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.notesManage.update(notes_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

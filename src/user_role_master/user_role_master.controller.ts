@@ -63,7 +63,7 @@ export class UserRoleMasterController {
     }
 
     //-------------------------------delete userRole data----------------------------//
-    @Delete(':role_code')
+    @Put('delete/:role_code')
     @UsePipes(ValidationPipe)
     delete(@Param('role_code') role_code: number) {
         return this.userRoleMasterService.deleteUserRoleData(role_code)

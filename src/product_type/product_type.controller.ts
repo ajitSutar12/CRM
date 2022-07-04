@@ -54,7 +54,7 @@ export class ProductTypeController {
     }
 
     //------------------Delete single record from product_type------------------//
-    @Delete(':pt_code')
+    @Put('delete/:pt_code')
     delete(@Param('pt_code') pt_code: number){
         return this.ProductTypeService.deleteProductType(pt_code)
     }

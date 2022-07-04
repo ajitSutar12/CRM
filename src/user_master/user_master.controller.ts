@@ -83,7 +83,7 @@ export class UserMasterController {
     }
 
     //------------------------------delete user data-------------------------------//
-    @Delete(':user_code')
+    @Put('delete/:user_code')
     @UsePipes(ValidationPipe)
     delete(@Param('user_code') user_code: number){
         return this.userMasterService.deleteUserData(user_code)

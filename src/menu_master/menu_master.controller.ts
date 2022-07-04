@@ -54,7 +54,7 @@ export class MenuMasterController {
     }
 
     //------------------Delete single record from menu_master------------------//
-    @Delete(':m_code')
+    @Put('delete/:m_code')
     delete(@Param('m_code') m_code: number){
         return this.MenuMasterService.deleteMenuMaster(m_code)
     }

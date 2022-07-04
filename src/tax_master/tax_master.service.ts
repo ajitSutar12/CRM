@@ -23,6 +23,9 @@ export class TaxMasterService {
         if(!result){
             throw new NotFoundException(`${t_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${t_code}, data not found`);
+        }
         return result;
       }
     
@@ -31,6 +34,7 @@ export class TaxMasterService {
         var result = await this.taxMaster.createQueryBuilder("tax_master") 
                         .leftJoinAndSelect("tax_master.user_master_created",'umc')
                         .leftJoinAndSelect("tax_master.user_master_updated",'umu')
+                        .where({status:0})
                         .getMany()
         return result;
     }
@@ -40,6 +44,9 @@ export class TaxMasterService {
         let output= await this.taxMaster.findOne({ where:{t_code: t_code }});
         if(!output){
             throw new NotFoundException(`${t_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${t_code}, data not found`);
         }
         let result= await this.taxMaster.update(t_code,data);
         if(result){
@@ -54,9 +61,14 @@ export class TaxMasterService {
         if(!output){
             throw new NotFoundException(`${t_code},data not found`);
         }
-        let result= await this.taxMaster.delete(t_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${t_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.taxMaster.update(t_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

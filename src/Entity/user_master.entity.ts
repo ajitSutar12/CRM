@@ -140,6 +140,6 @@ export class user_master{
     @OneToMany(()=> expense_master, expense_master =>expense_master.user_master)
     expense_master:expense_master[]
 
-    @ManyToOne(() => target_master, target_master => target_master.user_master)
+    @OneToMany(() => target_master, target_master => target_master.user_master)
     target_master:target_master[]
 }

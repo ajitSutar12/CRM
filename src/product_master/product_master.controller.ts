@@ -63,7 +63,7 @@ export class ProductMasterController {
     }
     
     //------------------------------delete Product data-------------------------------//
-    @Delete(':p_code')
+    @Put('delete/:p_code')
     @UsePipes(ValidationPipe)
     delete(@Param('p_code') p_code: number){
         return this.productMasterService.deleteProductData(p_code);

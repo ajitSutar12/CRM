@@ -22,7 +22,7 @@ export class TaskManagementService {
 
     //------------------Finding all records from contact_master------------------//
     async findAllTaskManagement(){
-        var result = await this.taskManagement.find()
+        var result = await this.taskManagement.find({where:{status:0}})
         return result
     }
 
@@ -32,6 +32,9 @@ export class TaskManagementService {
         if(!result){
             throw new NotFoundException(`${tm_code} is not exist`)
           }
+          if(result.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
+        }
         return result
     }
 
@@ -40,6 +43,9 @@ export class TaskManagementService {
         var output = await this.taskManagement.findOne({where: {tm_code:tm_code}})
         if(!output){
             throw new NotFoundException(`${tm_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
         }
         var result = await this.taskManagement.update(tm_code, data)
         if(result){
@@ -54,10 +60,15 @@ export class TaskManagementService {
         if(!output){
             throw new NotFoundException(`${tm_code} is not exist`)
         }
-        var result = await this.taskManagement.delete(tm_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.taskManagement.update(tm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

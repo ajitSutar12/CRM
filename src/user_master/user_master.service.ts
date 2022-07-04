@@ -23,6 +23,9 @@ export class UserMasterService {
         if(!result){
             throw new NotFoundException(`${user_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${user_code}, data not found`);
+        }
         return result;
     }
 
@@ -30,6 +33,7 @@ export class UserMasterService {
     async getAllUser(){
         const result = await this.userMaster.createQueryBuilder("user_master") 
                         .leftJoinAndSelect("user_master.user_role_master",'ur')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -39,6 +43,9 @@ export class UserMasterService {
         let output= await this.userMaster.findOne({ where:{user_code: user_code }});
         if(!output){
             throw new NotFoundException(`${user_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${user_code}, data not found`);
         }
         let result= await this.userMaster.update(user_code,data);
         if(result){
@@ -53,9 +60,14 @@ export class UserMasterService {
         if(!output){
             throw new NotFoundException(`${user_code}, data not found`);
         }
-        let result= await this.userMaster.delete(user_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${user_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.userMaster.update(user_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

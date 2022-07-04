@@ -65,7 +65,7 @@ export class UserMenuAccessController {
     }
     
      //-------------------------------delete UserMenuAccess data----------------------------//
-    @Delete(':uma_code')
+    @Put('delete/:uma_code')
     @UsePipes(ValidationPipe)
     delete(@Param('uma_code') uma_code: number){
         return this.userMenuAccessService.deleteUserMenuData(uma_code)

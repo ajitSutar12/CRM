@@ -64,7 +64,7 @@ export class NotesManageController {
     }
 
     //------------------Delete single record from contact_email_mapping------------------//
-    @Delete(':notes_code')
+    @Put('delete/:notes_code')
     delete(@Param('notes_code') notes_code: number){
         return this.NotesManageService.deleteNotesManage(notes_code)
     }

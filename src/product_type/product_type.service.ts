@@ -21,7 +21,7 @@ export class ProductTypeService {
 
     //------------------Finding all records from product_type------------------//
     async findAllProductType(){
-        var result = await this.productType.find()
+        var result = await this.productType.find({where:{status:0}})
         return result
     }
 
@@ -31,6 +31,9 @@ export class ProductTypeService {
         if(!result){
             throw new NotFoundException(`${pt_code} is not exist`)
           }
+          if(result.status == 1){
+            throw new NotFoundException(`${pt_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class ProductTypeService {
         var output = await this.productType.findOne({where: {pt_code:pt_code}})
         if(!output){
             throw new NotFoundException(`${pt_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${pt_code}, data not found`);
         }
         var result = await this.productType.update(pt_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class ProductTypeService {
         if(!output){
             throw new NotFoundException(`${pt_code} is not exist`)
         }
-        var result = await this.productType.delete(pt_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${pt_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.productType.update(pt_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

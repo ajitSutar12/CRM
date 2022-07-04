@@ -66,7 +66,7 @@ export class FinancialYearController {
     }
 
     //------------------Delete single record from financial_year------------------//
-    @Delete(':fy_code')
+    @Put('delete/:fy_code')
     delete(@Param('fy_code') fy_code: number){
         return this.FinancialYearService.deleteFinancialYear(fy_code)
     }

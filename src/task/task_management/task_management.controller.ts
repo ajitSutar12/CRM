@@ -72,7 +72,7 @@ export class TaskManagementController {
     }
 
     //------------------Delete single record from task_management------------------//
-    @Delete(':tm_code')
+    @Put('delete/:tm_code')
     delete(@Param('tm_code') tm_code: number){
         return this.TaskManagementService.deleteTaskManagement(tm_code)
     }

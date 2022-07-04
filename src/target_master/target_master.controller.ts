@@ -67,7 +67,7 @@ export class TargetMasterController {
     }
 
     //------------------------------delete target data-------------------------------//
-    @Delete(':tm_code')
+    @Put('delete/:tm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('tm_code') tm_code: number){
         return this.targetMasterService.deleteTargetData(tm_code)

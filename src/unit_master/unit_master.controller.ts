@@ -49,7 +49,7 @@ export class UnitMasterController {
     }
     
     //-------------------------------delete unit data----------------------------//
-    @Delete(':u_code')
+    @Put('delete/:u_code')
     @UsePipes(ValidationPipe)
     delete(@Param('u_code') u_code: number){
         return this.unitMasterService.deleteUnitData(u_code)

@@ -54,6 +54,9 @@ export class target_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number
+
     @ManyToOne(() => user_master, user_master => user_master.target_master)
     @JoinColumn({name:"t_user_id"})
     user_master:user_master[]

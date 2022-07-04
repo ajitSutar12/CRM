@@ -59,7 +59,7 @@ export class TaxMasterController {
     }
     
     //------------------------------delete Tax data-------------------------------//
-    @Delete(':t_code')
+    @Put('delete/:t_code')
     @UsePipes(ValidationPipe)
     delete(@Param('role_code') role_code: number){
         return this.taxMasterService.deleteTaxData(role_code)

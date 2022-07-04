@@ -23,12 +23,15 @@ export class UnitMasterService {
         if(!result){
             throw new NotFoundException(`${u_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${u_code}, data not found`);
+        }
         return result;
     }
 
     //-------------------------------find all unit data----------------------------//
     async getAllUnit(){
-        return await this.unitMaster.find();
+        return await this.unitMaster.find({where: {status:0}});
     }
 
     //-------------------------------update unit data----------------------------//
@@ -36,6 +39,9 @@ export class UnitMasterService {
         let output= await this.unitMaster.findOne({ where:{u_code: u_code }});
         if(!output){
             throw new NotFoundException(`${u_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${u_code}, data not found`);
         }
         let result= await this.unitMaster.update(u_code,data);
         if(result){
@@ -50,9 +56,14 @@ export class UnitMasterService {
         if(!output){
             throw new NotFoundException(`${u_code},data not found`);
         }
-        let result= await this.unitMaster.delete(u_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${u_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.unitMaster.update(u_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

@@ -23,6 +23,7 @@ export class ProductRateMasterService {
     async findAllProductRateMaster(){
         var result = await this.productRateMaster.createQueryBuilder("product_rate_master") 
                         .leftJoinAndSelect("product_rate_master.product_master",'pm')
+                        .where({status:0})
                         .getMany()
         return result;
     }
@@ -33,6 +34,9 @@ export class ProductRateMasterService {
         if(!result){
             throw new NotFoundException(`${pr_code} is not exist`)
           }
+          if(result.status == 1){
+            throw new NotFoundException(`${pr_code}, data not found`);
+        }
         return result
     }
 
@@ -41,6 +45,9 @@ export class ProductRateMasterService {
         var output = await this.productRateMaster.findOne({where: {pr_code:pr_code}})
         if(!output){
             throw new NotFoundException(`${pr_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${pr_code}, data not found`);
         }
         var result = await this.productRateMaster.update(pr_code, data)
         if(result){
@@ -55,10 +62,15 @@ export class ProductRateMasterService {
         if(!output){
             throw new NotFoundException(`${pr_code} is not exist`)
         }
-        var result = await this.productRateMaster.delete(pr_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${pr_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.productRateMaster.update(pr_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

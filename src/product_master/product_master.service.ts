@@ -24,6 +24,9 @@ export class ProductMasterService {
         if(!result){
             throw new NotFoundException(`${p_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${p_code}, data not found`);
+        }
         return result;
       }
     
@@ -33,6 +36,7 @@ export class ProductMasterService {
                         .leftJoinAndSelect("product_master.product_category",'pc')
                         .leftJoinAndSelect("product_master.product_type",'pt')
                         .leftJoinAndSelect("product_master.unit_master",'um')
+                        .where({status:0})
                         .getMany()
         return result;
     }
@@ -42,6 +46,9 @@ export class ProductMasterService {
         let output= await this.productMaster.findOne({ where:{p_code: p_code }});
         if(!output){
             throw new NotFoundException(`${p_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${p_code}, data not found`);
         }
         let result= await this.productMaster.update(p_code,data);
         if(result){
@@ -56,7 +63,12 @@ export class ProductMasterService {
         if(!output){
             throw new NotFoundException(`${p_code},data not found`);
         }
-        let result= await this.productMaster.delete(p_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${p_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.productMaster.update(p_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

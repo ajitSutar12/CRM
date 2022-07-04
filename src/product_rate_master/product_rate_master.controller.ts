@@ -66,7 +66,7 @@ export class ProductRateMasterController {
     }
 
     //------------------Delete single record from product_rate_master------------------//
-    @Delete(':pr_code')
+    @Put('delete/:pr_code')
     delete(@Param('pr_code') pr_code: number){
         return this.ProductRateMasterService.deleteProductRateMaster(pr_code)
     }

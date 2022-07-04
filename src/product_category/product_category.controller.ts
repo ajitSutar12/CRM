@@ -54,7 +54,7 @@ export class ProductCategoryController {
     }
 
     //------------------Delete single record from product_category------------------//
-    @Delete(':pc_code')
+    @Put('delete/:pc_code')
     delete(@Param('pc_code') pc_code: number){
         return this.ProductCategoryService.deleteProductCategory(pc_code)
     }

@@ -21,7 +21,7 @@ export class MenuMasterService {
 
     //------------------Finding all records from menu_master------------------//
     async findAllMenuMaster(){
-        var result = await this.menuMaster.find()
+        var result = await this.menuMaster.find({where:{status:0}})
         return result
     }
 
@@ -31,6 +31,9 @@ export class MenuMasterService {
         if(!result){
             throw new NotFoundException(`${m_code} is not exist`)
           }
+          if(result.status == 1){
+            throw new NotFoundException(`${m_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class MenuMasterService {
         var output = await this.menuMaster.findOne({where: {m_code:m_code}})
         if(!output){
             throw new NotFoundException(`${m_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${m_code}, data not found`);
         }
         var result = await this.menuMaster.update(m_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class MenuMasterService {
         if(!output){
             throw new NotFoundException(`${m_code} is not exist`)
         }
-        var result = await this.menuMaster.delete(m_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${m_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.menuMaster.update(m_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

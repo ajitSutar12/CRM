@@ -23,6 +23,9 @@ export class TargetMasterService {
         if(!result){
             throw new NotFoundException(`${tm_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
+        }
         return result;
     }
 
@@ -31,6 +34,7 @@ export class TargetMasterService {
         const result = await this.targetMaster.createQueryBuilder("target_master") 
                         .leftJoinAndSelect("target_master.user_master",'um')
                         .leftJoinAndSelect("target_master.product_master",'pm')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -40,6 +44,9 @@ export class TargetMasterService {
         let output= await this.targetMaster.findOne({ where:{tm_code: tm_code }});
         if(!output){
             throw new NotFoundException(`${tm_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
         }
         let result= await this.targetMaster.update(tm_code,data);
         if(result){
@@ -54,9 +61,14 @@ export class TargetMasterService {
         if(!output){
             throw new NotFoundException(`${tm_code}, data not found`);
         }
-        let result= await this.targetMaster.delete(tm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${tm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.targetMaster.update(tm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

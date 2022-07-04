@@ -52,7 +52,7 @@ export class TaskCategoryController {
     }
 
     //------------------Delete single record from task_category------------------//
-    @Delete(':tc_code')
+    @Put('delete/:tc_code')
     delete(@Param('tc_code') tc_code: number){
         return this.TaskCategoryService.deleteTaskCategory(tc_code)
     }

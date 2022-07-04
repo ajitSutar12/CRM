@@ -23,12 +23,16 @@ export class UserRoleMasterService {
         if(!result){
             throw new NotFoundException(`${role_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${role_code}, data not found`);
+        }
         return result;
       }
     
     //-------------------------------find all userRole data----------------------------//
     async getAllUserRole(){
         var result = await this.userRoleMaster.createQueryBuilder("user_role_master") 
+                                .where({status:0})
                                 .getMany()
         return result;
     }
@@ -38,6 +42,9 @@ export class UserRoleMasterService {
         let output= await this.userRoleMaster.findOne({ where:{role_code: role_code }});
         if(!output){
             throw new NotFoundException(`${role_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${role_code}, data not found`);
         }
         let result= await this.userRoleMaster.update(role_code,data);
         if(result){
@@ -52,9 +59,14 @@ export class UserRoleMasterService {
         if(!output){
             throw new NotFoundException(`${role_code},data not found`);
         }
-        let result= await this.userRoleMaster.delete(role_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${role_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.userRoleMaster.update(role_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

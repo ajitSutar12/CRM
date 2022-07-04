@@ -23,6 +23,9 @@ export class UserMenuAccessService {
         if(!result){
             throw new NotFoundException(`${uma_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${uma_code}, data not found`);
+        }
         return result;
       }
     
@@ -31,6 +34,7 @@ export class UserMenuAccessService {
         var result = await this.userMenuAccess.createQueryBuilder("user_menu_access") 
                                 .leftJoinAndSelect("user_menu_access.user_master",'um')
                                 .leftJoinAndSelect("user_menu_access.menu_master",'mm')
+                                .where({status:0})
                                 .getMany()
         return result;
     }
@@ -40,6 +44,9 @@ export class UserMenuAccessService {
         let output= await this.userMenuAccess.findOne({ where:{uma_code: uma_code }});
         if(!output){
             throw new NotFoundException(`${uma_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${uma_code}, data not found`);
         }
         let result= await this.userMenuAccess.update(uma_code,data);
         if(result){
@@ -54,9 +61,14 @@ export class UserMenuAccessService {
         if(!output){
             throw new NotFoundException(`${uma_code},data not found`);
         }
-        let result= await this.userMenuAccess.delete(uma_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${uma_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.userMenuAccess.update(uma_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }
