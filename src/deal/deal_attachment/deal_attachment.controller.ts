@@ -65,7 +65,7 @@ export class DealAttachmentController {
     }
 
     //-------------------------------delete dealAttachment data----------------------------//
-    @Delete(':da_code')
+    @Put('delete/:da_code')
     @UsePipes(ValidationPipe)
     delete(@Param('da_code') da_code: number) {
         return this.dealAttachmentService.deleteDealData(da_code)

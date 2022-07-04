@@ -52,7 +52,7 @@ export class EventStatusMasterController {
     }
 
     //------------------Delete single record from event_status_master------------------//
-    @Delete(':esm_code')
+    @Put('delete/:esm_code')
     delete(@Param('esm_code') esm_code: number){
         return this.EventStatusMasterService.deleteEventStatusMaster(esm_code)
     }

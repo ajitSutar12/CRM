@@ -67,7 +67,7 @@ export class DealMasterProductMappingController {
     }
 
     //-------------------------------delete dealMasterProductMapping data----------------------------//
-    @Delete(':dmpm_code')
+    @Put('delete/:dmpm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('dmpm_code') dmpm_code: number) {
         return this.dealMasterProductMappingService.deleteDealData(dmpm_code)

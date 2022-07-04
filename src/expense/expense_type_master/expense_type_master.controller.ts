@@ -47,7 +47,7 @@ export class ExpenseTypeMasterController {
     }
     
     //-------------------------------delete ExpenseType data----------------------------//
-    @Delete(':etm_code')
+    @Put('delete/:etm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('etm_code') etm_code: number){
         return this.expenseTypeMasterService.deleteExpenseTypeData(etm_code)

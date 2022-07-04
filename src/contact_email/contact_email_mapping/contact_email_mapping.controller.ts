@@ -70,7 +70,7 @@ export class ContactEmailMappingController {
     }
 
     //------------------Delete single record from contact_email_mapping------------------//
-    @Delete(':cei_code')
+    @Put('delete/:cei_code')
     delete(@Param('cei_code') cei_code: number){
         return this.ContactEmailMappingService.deleteContactEmailMapping(cei_code)
     }

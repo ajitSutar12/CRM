@@ -12,6 +12,9 @@ export class expense_type_master{
     @MaxLength(50)
     e_type:String;
 
+    @Column({default:0})
+    status: number;
+
     @OneToMany(() => expense_master, expense_master => expense_master.expense_type_master)
     expense_master:expense_master[]
 }

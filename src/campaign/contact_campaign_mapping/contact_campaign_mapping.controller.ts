@@ -57,7 +57,7 @@ export class ContactCampaignMappingController {
     }
 
     //------------------------------delete from contact_campaign_mapping-------------------------------//
-    @Delete(':ccm_id')
+    @Put('delete/:ccm_id')
     @UsePipes(ValidationPipe)
     delete(@Param('ccm_id') ccm_id: number){
         return this.ContactCampaignMappingService.deleteContactCampaignMapping(ccm_id)

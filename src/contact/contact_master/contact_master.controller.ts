@@ -78,7 +78,7 @@ export class ContactMasterController {
     }
 
     //------------------Delete single record from contact_master------------------//
-    @Delete(':c_code')
+    @Put('delete/:c_code')
     delete(@Param('c_code') c_code: number){
         return this.ContactMasterService.deleteContactMaster(c_code)
     }

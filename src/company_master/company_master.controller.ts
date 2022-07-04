@@ -72,7 +72,7 @@ export class CompanyMasterController {
     }
 
     //------------------Delete single record from company_master------------------//
-    @Delete(':company_code')
+    @Put('delete/:company_code')
     delete(@Param('company_code') company_code: number){
         return this.CompanyMasterService.deleteCompanyMaster(company_code)
     }

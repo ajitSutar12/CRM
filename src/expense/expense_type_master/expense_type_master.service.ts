@@ -23,12 +23,15 @@ export class ExpenseTypeMasterService {
         if(!result){
             throw new NotFoundException(`${etm_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${etm_code}, data not found`);
+        }
         return result;
     }
 
     //-------------------------------find all ExpenseType data----------------------------//
     async getAllExpenseType(){
-        return await this.expenseTypeMaster.find();
+        return await this.expenseTypeMaster.find({where:{status:0}});
     }
 
     //-------------------------------update ExpenseType data----------------------------//
@@ -36,6 +39,9 @@ export class ExpenseTypeMasterService {
         let output= await this.expenseTypeMaster.findOne({ where:{etm_code: etm_code }});
         if(!output){
             throw new NotFoundException(`${etm_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${etm_code}, data not found`);
         }
         let result= await this.expenseTypeMaster.update(etm_code,data);
         if(result){
@@ -50,9 +56,14 @@ export class ExpenseTypeMasterService {
         if(!output){
             throw new NotFoundException(`${etm_code},data not found`);
         }
-        let result= await this.expenseTypeMaster.delete(etm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${etm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.expenseTypeMaster.update(etm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

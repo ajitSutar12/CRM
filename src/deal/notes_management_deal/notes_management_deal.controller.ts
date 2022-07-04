@@ -67,7 +67,7 @@ export class NotesManagementDealController {
     }
 
     //-------------------------------delete notesManagementDeal data----------------------------//
-    @Delete(':notes_code')
+    @Put('delete:notes_code')
     @UsePipes(ValidationPipe)
     delete(@Param('notes_code') notes_code: number) {
         return this.notesManagementDealService.deleteNotesManagementDealData(notes_code)

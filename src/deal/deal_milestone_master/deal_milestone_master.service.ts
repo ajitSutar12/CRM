@@ -23,12 +23,15 @@ export class DealMilestoneMasterService {
         if(!output){
             throw new NotFoundException(`${dm_code},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${dm_code}, data not found`);
+        }
         return output;
       }
     
     //-------------------------------find all dealMilestoneMaster data----------------------------//
     async getAllDeal(){
-        var result = await this.dealMilestoneMaster.find();
+        var result = await this.dealMilestoneMaster.find({where:{status: 0}});
         return result;
     }
     
@@ -37,6 +40,9 @@ export class DealMilestoneMasterService {
         let output= await this.dealMilestoneMaster.findOne({ where:{dm_code: dm_code }});
         if(!output){
             throw new NotFoundException(`${dm_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${dm_code}, data not found`);
         }
         let result= await this.dealMilestoneMaster.update(dm_code,data);
         if(result){
@@ -51,7 +57,12 @@ export class DealMilestoneMasterService {
         if(!output){
             throw new NotFoundException(`${dm_code},data not found`);
         }
-        let result= await this.dealMilestoneMaster.delete(dm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${dm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.dealMilestoneMaster.update(dm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

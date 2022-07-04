@@ -52,7 +52,7 @@ export class EventTypeMasterController {
     }
 
     //------------------Delete single record from event_type_master------------------//
-    @Delete(':etm_code')
+    @Put('delete/:etm_code')
     delete(@Param('etm_code') etm_code: number){
         return this.EventTypeMasterService.deleteEventTypeMaster(etm_code)
     }

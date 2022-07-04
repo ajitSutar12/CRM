@@ -52,8 +52,6 @@ import { ContactModule } from './contact/contact.module';
 import { ExpenseModule } from './expense/expense.module';
 import { target_master } from './Entity/target_master.entity';
 import { TargetMasterModule } from './target_master/target_master.module';
-
-
 import { ActivityModule } from './activity/activity.module';
 
 @Module({

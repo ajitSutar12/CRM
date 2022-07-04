@@ -52,7 +52,7 @@ export class CampaignTypeMasterController {
     }
 
     //------------------Delete single record from campaign_type_master------------------//
-    @Delete(':ct_code')
+    @Put('delete/:ct_code')
     delete(@Param('ct_code') ct_code: number){
         return this.CampaignTypeMasterService.deleteCampaignTypeMaster(ct_code)
     }

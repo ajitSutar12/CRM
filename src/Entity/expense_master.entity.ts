@@ -59,6 +59,9 @@ export class expense_master{
     @IsNotEmpty()
     updated_timestamp:Date;
 
+    @Column({default:0})
+    status: number;
+
     @ManyToOne(() => expense_type_master, expense_type_master => expense_type_master.expense_master)
     @JoinColumn({name:"e_type_id"})
     expense_type_master:expense_type_master[]

@@ -53,7 +53,7 @@ export class DealMilestoneMasterController {
     }
 
     //-------------------------------delete dealMilestoneMaster data----------------------------//
-    @Delete(':dm_code')
+    @Put('delete/:dm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('dm_code') dm_code: number) {
         return this.dealMilestoneMasterService.deleteDealData(dm_code)

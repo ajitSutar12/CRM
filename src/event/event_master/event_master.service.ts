@@ -25,6 +25,7 @@ export class EventMasterService {
                         .innerJoinAndSelect("event_master.event_type_master","etm")
                         .innerJoinAndSelect("event_master.event_status_master","esm")
                         .innerJoinAndSelect("event_master.event_related_master","erm")
+                        .where({status : 0})
                         .getMany()
         return result
     }
@@ -34,7 +35,10 @@ export class EventMasterService {
         var result = await this.eventMaster.findOne({where: {event_code:event_code}, relations:['event_related_master','event_status_master','event_type_master']})
         if(!result){
             throw new NotFoundException(`${event_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${event_code}, data not found`);
+        }
         return result
     }
 
@@ -43,6 +47,9 @@ export class EventMasterService {
         var output = await this.eventMaster.findOne({where: {event_code:event_code}})
         if(!output){
             throw new NotFoundException(`${event_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${event_code}, data not found`);
         }
         var result = await this.eventMaster.update(event_code, data)
         if(result){
@@ -57,10 +64,15 @@ export class EventMasterService {
         if(!output){
             throw new NotFoundException(`${event_code} is not exist`)
         }
-        var result = await this.eventMaster.delete(event_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${event_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.eventMaster.update(event_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

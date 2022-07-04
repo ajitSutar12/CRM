@@ -52,7 +52,7 @@ export class CallStatusMasterController {
     }
 
     //------------------Delete single record from call_status_master------------------//
-    @Delete(':csm_code')
+    @Put('delete/:csm_code')
     delete(@Param('csm_code') csm_code: number){
         return this.CallStatusMasterService.deleteCallStatusMaster(csm_code)
     }

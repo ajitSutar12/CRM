@@ -23,6 +23,7 @@ export class ContactVisitMasterService {
     async findContactVisitMaster(){
         var result = await this.contactVisitMaster.createQueryBuilder('contact_visit_master')
                         .leftJoinAndSelect('contact_visit_master.contact_master','cm')
+                        .where({status:0})
                         .getMany()
         return result
     }
@@ -32,7 +33,10 @@ export class ContactVisitMasterService {
         var result = await this.contactVisitMaster.findOne({where: {cv_code:cv_code}, relations:['contact_master']})
         if(!result){
             throw new NotFoundException(`${cv_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${cv_code}, data not found`);
+        }
         return result
     }
 
@@ -41,6 +45,9 @@ export class ContactVisitMasterService {
         var output = await this.contactVisitMaster.findOne({where: {cv_code:cv_code}})
         if(!output){
             throw new NotFoundException(`${cv_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${cv_code}, data not found`);
         }
         var result = await this.contactVisitMaster.update(cv_code, data)
         if(result){
@@ -55,10 +62,15 @@ export class ContactVisitMasterService {
         if(!output){
             throw new NotFoundException(`${cv_code} is not exist`)
         }
-        var result = await this.contactVisitMaster.delete(cv_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${cv_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.contactVisitMaster.update(cv_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

@@ -23,6 +23,9 @@ export class DealMasterMilestoneMappingService {
         if(!output){
             throw new NotFoundException(`${dmmm_id},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${dmmm_id}, data not found`);
+        }
         return output;
       }
     
@@ -31,6 +34,7 @@ export class DealMasterMilestoneMappingService {
         var result = await this.dealMasterMilestoneMapping.createQueryBuilder("deal_master_Milestone_mapping") 
                                 .leftJoinAndSelect("deal_master_Milestone_mapping.deal_master",'dm')
                                 .leftJoinAndSelect("deal_master_Milestone_mapping.deal_milestone_master",'dmm')
+                                .where({status:0})
                                 .getMany()
         return result;
     }
@@ -40,6 +44,9 @@ export class DealMasterMilestoneMappingService {
         let output= await this.dealMasterMilestoneMapping.findOne({ where:{dmmm_id: dmmm_id }});
         if(!output){
             throw new NotFoundException(`${dmmm_id},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${dmmm_id}, data not found`);
         }
         let result= await this.dealMasterMilestoneMapping.update(dmmm_id,data);
         if(result){
@@ -54,7 +61,12 @@ export class DealMasterMilestoneMappingService {
         if(!output){
             throw new NotFoundException(`${dmmm_id},data not found`);
         }
-        let result= await this.dealMasterMilestoneMapping.delete(dmmm_id);
+        if(output.status == 1){
+            throw new NotFoundException(`${dmmm_id}, data not found`);
+        }
+        output.status = 1
+        let result = await this.dealMasterMilestoneMapping.update(dmmm_id, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

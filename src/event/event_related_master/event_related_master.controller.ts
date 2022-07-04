@@ -52,7 +52,7 @@ export class EventRelatedMasterController {
     }
 
     //------------------Delete single record from event_related_master------------------//
-    @Delete(':erm_code')
+    @Put('delete/:erm_code')
     delete(@Param('erm_code') erm_code: number){
         return this.EventRelatedMasterService.deleteEventRelatedMaster(erm_code)
     }

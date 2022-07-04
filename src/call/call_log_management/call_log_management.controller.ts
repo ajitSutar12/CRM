@@ -90,7 +90,7 @@ export class CallLogManagementController {
     }
 
     //------------------Delete single record from call_log_management------------------//
-    @Delete(':clm_code')
+    @Put('delete/:clm_code')
     delete(@Param('clm_code') clm_code: number){
         return this.CallLogManagementService.deleteCallLogManagement(clm_code)
     }

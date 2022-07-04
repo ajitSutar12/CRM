@@ -67,7 +67,7 @@ export class ExpenseMasterController {
     }
 
     //------------------------------delete expense data-------------------------------//
-    @Delete(':em_code')
+    @Put('delete/:em_code')
     @UsePipes(ValidationPipe)
     delete(@Param('em_code') em_code: number){
         return this.expenseMasterService.deleteExpenseData(em_code)

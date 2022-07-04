@@ -52,7 +52,7 @@ export class TransactionMasterController {
     }
 
     //------------------Delete single record from transaction_master------------------//
-    @Delete(':t_code')
+    @Put('delete/:t_code')
     delete(@Param('t_code') t_code: number){
         return this.TransactionMasterService.deleteTransactionMaster(t_code)
     }

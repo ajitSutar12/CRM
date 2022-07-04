@@ -23,6 +23,9 @@ export class NotesManagementDealService {
         if(!output){
             throw new NotFoundException(`${notes_code},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
+        }
         return output;
       }
     
@@ -31,6 +34,7 @@ export class NotesManagementDealService {
         var result = await this.notesManagementDeal.createQueryBuilder("notes_management_deal") 
                                 .leftJoinAndSelect("notes_management_deal.deal_master",'dm')
                                 .leftJoinAndSelect("notes_management_deal.contact_master",'cm')
+                                .where({status: 0})
                                 .getMany()
         return result;
     }
@@ -40,6 +44,9 @@ export class NotesManagementDealService {
         let output= await this.notesManagementDeal.findOne({ where:{notes_code: notes_code }});
         if(!output){
             throw new NotFoundException(`${notes_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
         }
         let result= await this.notesManagementDeal.update(notes_code,data);
         if(result){
@@ -54,7 +61,12 @@ export class NotesManagementDealService {
         if(!output){
             throw new NotFoundException(`${notes_code},data not found`);
         }
-        let result= await this.notesManagementDeal.delete(notes_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${notes_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.notesManagementDeal.update(notes_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

@@ -79,7 +79,7 @@ export class CampaignMasterController {
     }
 
     //------------------------------delete from campaign_master-------------------------------//
-    @Delete(':cm_code')
+    @Put('delete/:cm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('cm_code') cm_code: number){
         return this.CampaignMasterService.deleteCampaignMaster(cm_code)

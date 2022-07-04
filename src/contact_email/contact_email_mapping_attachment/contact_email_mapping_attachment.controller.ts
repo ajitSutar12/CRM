@@ -62,7 +62,7 @@ export class ContactEmailMappingAttachmentController {
     }
 
     //------------------Delete single record from contact_email_mapping_attachment------------------//
-    @Delete(':cema_code')
+    @Put('delete/:cema_code')
     delete(@Param('cema_code') cema_code: number){
         return this.ContactEmailMappingAttachmentService.deleteContactEmailMappingAttachment(cema_code)
     }

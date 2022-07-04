@@ -23,6 +23,9 @@ export class DealAttachmentService {
         if(!output){
             throw new NotFoundException(`${da_code},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${da_code}, data not found`);
+        }
         return output;
       }
     
@@ -30,6 +33,7 @@ export class DealAttachmentService {
     async getAllDeal(){
         var result = await this.dealAttachment.createQueryBuilder("deal_attachment") 
                                 .leftJoinAndSelect("deal_attachment.deal_master",'dm')
+                                .where({status:0})
                                 .getMany()
         return result;
     }
@@ -39,6 +43,9 @@ export class DealAttachmentService {
         let output= await this.dealAttachment.findOne({ where:{da_code: da_code }});
         if(!output){
             throw new NotFoundException(`${da_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${da_code}, data not found`);
         }
         let result= await this.dealAttachment.update(da_code,data);
         if(result){
@@ -53,7 +60,12 @@ export class DealAttachmentService {
         if(!output){
             throw new NotFoundException(`${da_code},data not found`);
         }
-        let result= await this.dealAttachment.delete(da_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${da_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.dealAttachment.update(da_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

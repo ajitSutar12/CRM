@@ -67,7 +67,7 @@ export class ContactDocumentMasterController {
     }
 
     //------------------------------delete from contact_document_master-------------------------------//
-    @Delete(':cdm_code')
+    @Put('delete/:cdm_code')
     @UsePipes(ValidationPipe)
     delete(@Param('cdm_code') cdm_code: number){
         return this.ContactDocumentMasterService.deleteContactDocumentMaster(cdm_code)

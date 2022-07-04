@@ -80,7 +80,7 @@ export class EventMasterController {
     }
 
     //------------------Delete single record from contact_master------------------//
-    @Delete(':event_code')
+    @Put('delete/:event_code')
     delete(@Param('event_code') event_code: number){
         return this.EventMasterService.deleteEventMaster(event_code)
     }

@@ -21,7 +21,7 @@ export class EventRelatedMasterService {
 
     //------------------Finding all records from event_related_master------------------//
     async findAllEventRelatedMaster(){
-        var result = await this.eventRelatedMaster.find()
+        var result = await this.eventRelatedMaster.find({where: { status : 0}})
         return result
     }
 
@@ -30,7 +30,10 @@ export class EventRelatedMasterService {
         var result = await this.eventRelatedMaster.findOne({where: {erm_code:erm_code}})
         if(!result){
             throw new NotFoundException(`${erm_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${erm_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class EventRelatedMasterService {
         var output = await this.eventRelatedMaster.findOne({where: {erm_code:erm_code}})
         if(!output){
             throw new NotFoundException(`${erm_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${erm_code}, data not found`);
         }
         var result = await this.eventRelatedMaster.update(erm_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class EventRelatedMasterService {
         if(!output){
             throw new NotFoundException(`${erm_code} is not exist`)
         }
-        var result = await this.eventRelatedMaster.delete(erm_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${erm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.eventRelatedMaster.update(erm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

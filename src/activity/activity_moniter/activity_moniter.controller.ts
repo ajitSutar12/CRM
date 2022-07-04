@@ -62,7 +62,7 @@ export class ActivityMoniterController {
     }
 
     //------------------Delete single record from activity_moniter------------------//
-    @Delete(':am_code')
+    @Put('delete/:am_code')
     delete(@Param('am_code') am_code: number){
         return this.ActivityMoniterService.deleteAcitvityMoniter(am_code)
     }

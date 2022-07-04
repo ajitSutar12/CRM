@@ -56,7 +56,12 @@ export class DealMasterService {
         if(!output){
             throw new NotFoundException(`${deal_code},data not found`);
         }
-        let result= await this.dealMaster.delete(deal_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${deal_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.dealMaster.update(deal_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

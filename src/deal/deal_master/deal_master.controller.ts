@@ -75,7 +75,7 @@ export class DealMasterController {
     }
 
     //-------------------------------delete deal data----------------------------//
-    @Delete(':deal_code')
+    @Put('delete/:deal_code')
     @UsePipes(ValidationPipe)
     delete(@Param('deal_code') deal_code: number) {
         return this.dealMasterService.deleteDealData(deal_code)

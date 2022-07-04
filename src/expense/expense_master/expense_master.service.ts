@@ -23,6 +23,9 @@ export class ExpenseMasterService {
         if(!result){
             throw new NotFoundException(`${em_code},data not found`);
         }
+        if(result.status == 1){
+            throw new NotFoundException(`${em_code}, data not found`);
+        }
         return result;
     }
 
@@ -32,6 +35,7 @@ export class ExpenseMasterService {
                         .leftJoinAndSelect("expense_master.expense_type_master",'etm')
                         .leftJoinAndSelect("expense_master.user_master",'um')
                         .leftJoinAndSelect("expense_master.task_management",'tm')
+                        .where({status :0 })
                         .getMany()
         return result
     }
@@ -41,6 +45,9 @@ export class ExpenseMasterService {
         let output= await this.expenseMaster.findOne({ where:{em_code: em_code }});
         if(!output){
             throw new NotFoundException(`${em_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${em_code}, data not found`);
         }
         let result= await this.expenseMaster.update(em_code,data);
         if(result){
@@ -55,9 +62,14 @@ export class ExpenseMasterService {
         if(!output){
             throw new NotFoundException(`${em_code}, data not found`);
         }
-        let result= await this.expenseMaster.delete(em_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${em_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.expenseMaster.update(em_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            let msg={message:"Deleted Successfully"};
+            let msg={message:"deleted Successfully"};
             return msg;
         }
     }

@@ -68,7 +68,7 @@ export class ContactVisitMasterController {
     }
 
     //------------------Delete single record from contact_visit_master------------------//
-    @Delete(':cv_code')
+    @Put('delete/:cv_code')
     delete(@Param('cv_code') cv_code: number){
         return this.ContactVisitMasterService.deleteContactVisitMaster(cv_code)
     }

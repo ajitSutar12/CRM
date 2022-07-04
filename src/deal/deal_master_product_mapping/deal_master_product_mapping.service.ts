@@ -23,6 +23,9 @@ export class DealMasterProductMappingService {
         if(!output){
             throw new NotFoundException(`${dmpm_code},data not found`);
         }
+        if(output.status == 1){
+            throw new NotFoundException(`${dmpm_code}, data not found`);
+        }
         return output;
       }
     
@@ -31,6 +34,7 @@ export class DealMasterProductMappingService {
         var result = await this.dealMasterProductMapping.createQueryBuilder("deal_master_product_mapping") 
                                 .leftJoinAndSelect("deal_master_product_mapping.deal_master",'dm')
                                 .leftJoinAndSelect("deal_master_product_mapping.product_master",'pm')
+                                .where({status:0})
                                 .getMany()
         return result;
     }
@@ -40,6 +44,9 @@ export class DealMasterProductMappingService {
         let output= await this.dealMasterProductMapping.findOne({ where:{dmpm_code: dmpm_code }});
         if(!output){
             throw new NotFoundException(`${dmpm_code},data not found`);
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${dmpm_code}, data not found`);
         }
         let result= await this.dealMasterProductMapping.update(dmpm_code,data);
         if(result){
@@ -54,7 +61,12 @@ export class DealMasterProductMappingService {
         if(!output){
             throw new NotFoundException(`${dmpm_code},data not found`);
         }
-        let result= await this.dealMasterProductMapping.delete(dmpm_code);
+        if(output.status == 1){
+            throw new NotFoundException(`${dmpm_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.dealMasterProductMapping.update(dmpm_code, {
+        ...(output.status && { status: 1 })});
         if(result){
             let msg={message:"deleted Successfully"};
             return msg;

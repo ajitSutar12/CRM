@@ -21,7 +21,7 @@ export class ContactEmailMappingService {
 
     //------------------Finding all records from contact_email_mapping------------------//
     async findContactEmailMapping(){
-        var result = await this.contactEmailMapping.find()
+        var result = await this.contactEmailMapping.find({where:{status:0}})
         return result
     }
 
@@ -30,7 +30,10 @@ export class ContactEmailMappingService {
         var result = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
         if(!result){
             throw new NotFoundException(`${cei_code} is not exist`)
-          }
+        }
+        if(result.status == 1){
+            throw new NotFoundException(`${cei_code}, data not found`);
+        }
         return result
     }
 
@@ -39,6 +42,9 @@ export class ContactEmailMappingService {
         var output = await this.contactEmailMapping.findOne({where: {cei_code:cei_code}})
         if(!output){
             throw new NotFoundException(`${cei_code} is not exist`)
+        }
+        if(output.status == 1){
+            throw new NotFoundException(`${cei_code}, data not found`);
         }
         var result = await this.contactEmailMapping.update(cei_code, data)
         if(result){
@@ -53,10 +59,15 @@ export class ContactEmailMappingService {
         if(!output){
             throw new NotFoundException(`${cei_code} is not exist`)
         }
-        var result = await this.contactEmailMapping.delete(cei_code)
+        if(output.status == 1){
+            throw new NotFoundException(`${cei_code}, data not found`);
+        }
+        output.status = 1
+        let result = await this.contactEmailMapping.update(cei_code, {
+        ...(output.status && { status: 1 })});
         if(result){
-            var msg = {message : "Deleted successfully"}
-            return msg
+            let msg={message:"deleted Successfully"};
+            return msg;
         }
     }
 }

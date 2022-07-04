@@ -52,7 +52,7 @@ export class DocumentMasterController {
     }
 
     //------------------Delete single record from document_master------------------//
-    @Delete(':dm_code')
+    @Put('delete/:dm_code')
     delete(@Param('dm_code') dm_code: number){
         return this.DocumentMasterService.deleteDocumentMaster(dm_code)
     }
