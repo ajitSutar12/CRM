@@ -28,6 +28,7 @@
     "@nestjs/typeorm": "^8.1.4",
     "class-transformer": "^0.5.1",
     "fastify-swagger": "^5.2.0",
+    "moment": "^2.29.4",
     "mysql2": "^2.3.3",
     "nestjs-typeorm-paginate": "^4.0.1",
     "pg": "^8.7.3",

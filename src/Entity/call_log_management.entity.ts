@@ -76,7 +76,7 @@ export class call_log_management{
         
     @Column({nullable:true})
     @IsNumber()
-    followup_by: Number;
+    Followup_by: Number;
 
     @Column({default:0})
     status: number
